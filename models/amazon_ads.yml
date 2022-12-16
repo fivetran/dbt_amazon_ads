@@ -1,66 +1,33 @@
 version: 2
 
 models:
-  - name: amazon_ads__ad_group_report
-    description: Each record represents the daily performance of a Facebook ad at the URL level.
+  - name: amazon_ads__ad_report
+    description: ~~~~Fill in later.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - date_day
-            - account_id
-            - campaign_id
-            - ad_set_id
             - ad_id
-          config:
-            # Below is so we don't run this test if the user has allowed urls to have null entries
-            enabled: "{{ var('ad_reporting__url_report__using_null_filter', True) }}"
     columns:
       - name: date_day
-        description: The date of the performance.
-      - name: account_id
-        description: The ID of the related account.
-      - name: account_name
-        description: The name of the related account.
+        description: "{{ doc('date_day') }}"
+
+  - name: amazon_ads__ad_group_report
+    description: ~~~~Fill in later.
+    tests:     
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - ad_group_id
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+      - name: ad_group_id
+        description: "{{ doc('campaign_id') }}"
+      - name: ad_group_name
+        description: "{{ doc('campaign_name') }}"
       - name: campaign_id
-        description: The ID of the related campaign.
+        description: "{{ doc('campaign_id') }}"
       - name: campaign_name
-        description: The name of the related campaign.
-      - name: ad_set_id
-        description: The ID of the related ad set.
-      - name: ad_set_name
-        description: The name of the related ad set.
-      - name: ad_id
-        description: The ID of the related ad.
-      - name: ad_name
-        description: The name of the related ad.
-      - name: creative_id
-        description: The ID of the related creative.
-      - name: creative_name
-        description: The name of the related creative.
-      - name: base_url
-        description: The base URL of the ad, extracted from the page_link and template_page_link.
-        tests:
-          - not_null:
-              config:
-                # Below is so we don't run this test if the user has allowed urls to have null entries
-                enabled: "{{ var('ad_reporting__url_report__using_null_filter', True) }}"
-      - name: url_host
-        description: The URL host of the ad, extracted from the page_link and template_page_link.
-      - name: url_path
-        description: The URL path of the ad, extracted from the page_link and template_page_link.
-      - name: utm_source
-        description: The utm_source parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_medium
-        description: The utm_medium parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_campaign
-        description: The utm_campaign parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_content
-        description: The utm_content parameter of the ad, extracted from the page_link and template_page_link.
-      - name: utm_term
-        description: The utm_term parameter of the ad, extracted from the page_link and template_page_link.
-      - name: clicks
-        description: The number of clicks the ad had on the given day.
-      - name: impressions
-        description: The number of impressions the ad had on the given day.
-      - name: spend
-        description: The spend on the ad in the given day.
+        description: "{{ doc('campaign_name') }}"
+
