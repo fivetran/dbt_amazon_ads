@@ -5,13 +5,17 @@ with report as (
     from {{ var('ad_group_level_report') }}
 ), 
 
-{% if var('amazon_ads__portfolio_history_enabled', True) %}
 portfolios as (
-    select *
-    from {{ var('portfolio_history') }}
-    where is_most_recent_record = True
+    select
+    {% if var('amazon_ads__portfolio_history_enabled', True) %}
+        *
+        from {{ var('portfolio_history') }}
+        where is_most_recent_record = True
+    {% else %}
+        null as portfolio_name,
+        null as portfolio_id
+    {% endif %}
 ), 
-{% endif %}
 
 campaigns as (
     select *
@@ -28,12 +32,8 @@ ad_groups as (
 fields as (
     select
         report.date_day,
-
-        {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        portfolio.portfolio_name,
-        portfolio.portfolio_id,
-        {% endif %}
-
+        portfolios.portfolio_name,
+        portfolios.portfolio_id,
         campaigns.campaign_name,
         campaigns.campaign_id,
         ad_groups.ad_group_name,
@@ -41,11 +41,10 @@ fields as (
         ad_groups.serving_status,
         ad_groups.state,
         ad_groups.default_bid,
-        
         report.campaign_bidding_strategy,
-        report.cost,
-        report.clicks,
-        report.impressions
+        sum(report.cost) as cost,
+        sum(report.clicks) as clicks,
+        sum(report.impressions) as impressions 
 
         {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__ad_group_stats_passthrough_metrics') }}
 
@@ -55,11 +54,10 @@ fields as (
         on report.ad_group_id = ad_groups.ad_group_id
     left join campaigns
         on ad_groups.campaign_id = campaigns.campaign_id
+    left join portfolios
+        on campaigns.portfolio_id = portfolios.portfolio_id
 
-    {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        left join portfolios
-            on campaigns.portfolio_id = portfolios.portfolio_id
-    {% endif %}
+    {{ dbt_utils.group_by(11) }}
 )
 
 select *
