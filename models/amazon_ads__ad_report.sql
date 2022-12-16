@@ -5,13 +5,17 @@ with report as (
     from {{ var('advertised_product_report') }}
 ), 
 
-{% if var('amazon_ads__portfolio_history_enabled', True) %}
 portfolios as (
-    select *
-    from {{ var('portfolio_history') }}
-    where is_most_recent_record = True
+    select
+    {% if var('amazon_ads__portfolio_history_enabled', True) %}
+        *
+        from {{ var('portfolio_history') }}
+        where is_most_recent_record = True
+    {% else %}
+        null as portfolio_name,
+        null as portfolio_id
+    {% endif %}
 ), 
-{% endif %}
 
 campaigns as (
     select *
@@ -34,12 +38,8 @@ ads as (
 fields as (
     select
         report.date_day,
-
-        {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        portfolio.portfolio_name,
-        portfolio.portfolio_id,
-        {% endif %}
-
+        portfolios.portfolio_name,
+        portfolios.portfolio_id,
         campaigns.campaign_name,
         campaigns.campaign_id,
         ad_groups.ad_group_name,
@@ -47,17 +47,16 @@ fields as (
         ads.ad_id,
         ads.serving_status,
         ads.state,
-        
         report.advertised_asin,
         report.advertised_sku,
         report.campaign_budget_amount,
         report.campaign_budget_currency_code,
         report.campaign_budget_type,
-        report.cost,
-        report.clicks,
-        report.impressions
+        sum(report.cost) as cost,
+        sum(report.clicks) as clicks,
+        sum(report.impressions) as impressions 
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__advertised_product_passthrough_metrics') }}
+        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__advertised_product_passthrough_metrics', transform='sum') }}
 
     from report
     
@@ -67,11 +66,10 @@ fields as (
         on report.ad_group_id = ad_groups.ad_group_id
     left join campaigns
         on report.campaign_id = campaigns.campaign_id
+    left join portfolios
+        on campaigns.portfolio_id = portfolios.portfolio_id
 
-    {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        left join portfolios
-            on campaigns.portfolio_id = portfolios.portfolio_id
-    {% endif %}
+    {{ dbt_utils.group_by(15) }}
 )
 
 select *
