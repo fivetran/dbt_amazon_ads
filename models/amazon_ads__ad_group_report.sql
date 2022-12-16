@@ -50,9 +50,6 @@ fields as (
         report.cost,
         report.clicks,
         report.impressions
-        {# sum(report.cost) as cost,
-        sum(report.clicks) as clicks,
-        sum(report.impressions) as impressions #}
 
         {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__ad_group_stats_passthrough_metrics', transform = 'sum') }}
 
@@ -65,12 +62,6 @@ fields as (
     {% if var('amazon_ads__portfolio_history_enabled', True) %}
         left join portfolios
             on campaigns.portfolio_id = portfolios.portfolio_id
-
-        {# {{ dbt_utils.group_by(8) }} #}
-
-    {% else %}
-        {# {{ dbt_utils.group_by(6) }} #}
-
     {% endif %}
 )
 
