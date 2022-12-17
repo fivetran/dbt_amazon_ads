@@ -17,6 +17,7 @@ vars:
     campaign_level_report: "{{ ref('stg_amazon_ads__campaign_level_report') }}"
     portfolio_history: "{{ ref('stg_amazon_ads__portfolio_history') }}"
     product_ad_history: "{{ ref('stg_amazon_ads__product_ad_history') }}"
+    profile: "{{ ref('stg_amazon_ads__profile') }}"
     keyword_history: "{{ ref('stg_amazon_ads__keyword_history') }}"
     targeting_keyword_report: "{{ ref('stg_amazon_ads__targeting_keyword_report') }}"
     search_term_ad_keyword_report: "{{ ref('stg_amazon_ads__search_term_ad_keyword_report') }}"

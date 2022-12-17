@@ -5,6 +5,12 @@ with report as (
     from {{ var('advertised_product_report') }}
 ), 
 
+account_info as (
+    select *
+    from {{ var('profile') }}
+    where _fivetran_deleted = False
+),
+
 portfolios as (
     select
     {% if var('amazon_ads__portfolio_history_enabled', True) %}
@@ -38,6 +44,10 @@ ads as (
 fields as (
     select
         report.date_day,
+        account_info.account_name,
+        account_info.account_id,
+        account_info.country_code,
+        account_info.profile_id,
         portfolios.portfolio_name,
         portfolios.portfolio_id,
         campaigns.campaign_name,
@@ -61,15 +71,17 @@ fields as (
     from report
     
     left join ads
-        on report.ad_id = ads.ad_id
+        on ads.ad_id = report.ad_id
     left join ad_groups
-        on report.ad_group_id = ad_groups.ad_group_id
+        on ad_groups.ad_group_id = report.ad_group_id
     left join campaigns
-        on report.campaign_id = campaigns.campaign_id
+        on campaigns.campaign_id = report.campaign_id
     left join portfolios
-        on campaigns.portfolio_id = portfolios.portfolio_id
+        on portfolios.portfolio_id = campaigns.portfolio_id
+    left join account_info
+        on account_info.profile_id = campaigns.profile_id
 
-    {{ dbt_utils.group_by(15) }}
+    {{ dbt_utils.group_by(19) }}
 )
 
 select *
