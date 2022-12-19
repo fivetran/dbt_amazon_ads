@@ -222,3 +222,14 @@ models:
       - name: cost
         description: "{{ doc('cost') }}"
 
+  - name: amazon_ads__targeting_keyword_report
+    description: ~~~~Fill in later.
+    tests:     
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - keyword_id
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+
