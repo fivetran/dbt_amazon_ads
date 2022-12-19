@@ -40,6 +40,10 @@ fields as (
         portfolios.portfolio_id,
         campaigns.campaign_name,
         campaigns.campaign_id,
+        report.campaign_bidding_strategy,
+        report.campaign_budget_amount,
+        report.campaign_budget_currency_code,
+        report.campaign_budget_type,
         sum(report.cost) as cost,
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions 
@@ -55,7 +59,7 @@ fields as (
     left join account_info
         on account_info.profile_id = campaigns.profile_id
 
-    {{ dbt_utils.group_by(9) }}
+    {{ dbt_utils.group_by(13) }}
 )
 
 select *

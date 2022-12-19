@@ -40,16 +40,36 @@ models:
     columns:
       - name: date_day
         description: "{{ doc('date_day') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
       - name: ad_group_id
         description: "{{ doc('campaign_id') }}"
         tests:
           - not_null
       - name: ad_group_name
         description: "{{ doc('campaign_name') }}"
+      - name: campaign_bidding_strategy
+        description: "{{ doc('campaign_bidding_strategy') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: default_bid
+        description: "{{ doc('default_bid') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
       - name: clicks
         description: "{{ doc('clicks') }}"
       - name: impressions
@@ -67,6 +87,10 @@ models:
     columns:
       - name: date_day
         description: "{{ doc('date_day') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
       - name: ad_id
         description: "{{ doc('ad_id') }}"
         tests:
@@ -79,6 +103,71 @@ models:
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: advertised_asin
+        description: "{{ doc('advertised_asin') }}"
+      - name: advertised_sku
+        description: "{{ doc('advertised_sku') }}" 
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}" 
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+
+  - name: amazon_ads__campaign_report
+    description: ~~~~Fill in later.
+    tests:     
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - campaign_id
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
+      - name: campaign_bidding_strategy
+        description: "{{ doc('campaign_bidding_strategy') }}"
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}"
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
       - name: clicks
         description: "{{ doc('clicks') }}"
       - name: impressions
@@ -96,20 +185,36 @@ models:
     columns:
       - name: date_day
         description: "{{ doc('date_day') }}"
-      - name: portfolio_id
-        description: "{{ doc('portfolio_id') }}"
-        tests:
-          - not_null
-      - name: portfolio_name
-        description: "{{ doc('portfolio_name') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
       - name: ad_group_id
         description: "{{ doc('campaign_id') }}"
       - name: ad_group_name
         description: "{{ doc('campaign_name') }}"
+      - name: campaign_bidding_strategy
+        description: "{{ doc('campaign_bidding_strategy') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: default_bid
+        description: "{{ doc('default_bid') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+        tests:
+          - not_null
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
       - name: clicks
         description: "{{ doc('clicks') }}"
       - name: impressions
