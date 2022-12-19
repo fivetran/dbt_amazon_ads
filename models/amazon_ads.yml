@@ -11,17 +11,24 @@ models:
     columns:
       - name: date_day
         description: "{{ doc('date_day') }}"
-
-  - name: amazon_ads__ad_report
-    description: ~~~~Fill in later.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - date_day
-            - ad_id
-    columns:
-      - name: date_day
-        description: "{{ doc('date_day') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+        tests: 
+          - not_null
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+        tests: 
+          - not_null
+      - name: account_name
+        description: "{{ doc('account_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
 
   - name: amazon_ads__ad_group_report
     description: ~~~~Fill in later.
@@ -35,10 +42,78 @@ models:
         description: "{{ doc('date_day') }}"
       - name: ad_group_id
         description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
       - name: ad_group_name
         description: "{{ doc('campaign_name') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+
+  - name: amazon_ads__ad_report
+    description: ~~~~Fill in later.
+    tests:     
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - ad_id
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+      - name: ad_id
+        description: "{{ doc('ad_id') }}"
+        tests:
+          - not_null
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: ad_group_name
+        description: "{{ doc('campaign_name') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+
+  - name: amazon_ads__portfolio_report
+    description: ~~~~Fill in later.
+    tests:     
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - date_day
+            - portfolio_id
+    columns:
+      - name: date_day
+        description: "{{ doc('date_day') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+        tests:
+          - not_null
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: ad_group_id
+        description: "{{ doc('campaign_id') }}"
+      - name: ad_group_name
+        description: "{{ doc('campaign_name') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
 
