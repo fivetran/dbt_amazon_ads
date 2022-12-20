@@ -16,7 +16,7 @@ portfolios as (
     {% if var('amazon_ads__portfolio_history_enabled', True) %} 
         * 
         from {{ var('portfolio_history') }} 
-        where is_most_recent_record = True
+        where is_most_recent_record = True 
     {% else %} 
         null as portfolio_name, 
         null as portfolio_id 
