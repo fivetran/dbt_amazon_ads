@@ -32,7 +32,7 @@ fields as (
         portfolios.portfolio_name,
         portfolios.portfolio_id,
         campaigns.campaign_name,
-        campaigns.campaign_id,
+        report.campaign_id,
         report.campaign_bidding_strategy,
         report.campaign_budget_amount,
         report.campaign_budget_currency_code,
