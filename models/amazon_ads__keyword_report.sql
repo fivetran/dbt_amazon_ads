@@ -12,15 +12,8 @@ account_info as (
 ),
 
 portfolios as (
-    select
-    {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        *
-        from {{ var('portfolio_history') }}
-        where is_most_recent_record = True
-    {% else %}
-        null as portfolio_name,
-        null as portfolio_id
-    {% endif %}
+    select *
+    from {{ ref('int_amazon_ads__portfolio_history') }}
 ), 
 
 campaigns as (
