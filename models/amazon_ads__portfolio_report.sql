@@ -2,7 +2,7 @@
 
 with report as (
     select *
-    --use campaign report since portfolio report not provided
+    --use campaign report since portfolio report not provided 
     from {{ var('campaign_level_report') }}
 ), 
 
