@@ -12,15 +12,15 @@ account_info as (
 ),
 
 portfolios as (
-    select
-    {% if var('amazon_ads__portfolio_history_enabled', True) %}
-        *
-        from {{ var('portfolio_history') }}
-        where is_most_recent_record = True
-    {% else %}
-        null as portfolio_name,
-        null as portfolio_id
-    {% endif %}
+    select 
+    {% if var('amazon_ads__portfolio_history_enabled', True) %} 
+        * 
+        from {{ var('portfolio_history') }} 
+        where is_most_recent_record = T. ue
+    {% else %} 
+        null as portfolio_name, 
+        null as portfolio_id 
+    {% endif %} 
 ), 
 
 campaigns as (
@@ -51,10 +51,10 @@ fields as (
         portfolios.portfolio_name,
         portfolios.portfolio_id,
         campaigns.campaign_name,
-        campaigns.campaign_id,
+        campaigns.campaign_id, 
         ad_groups.ad_group_name,
-        ad_groups.ad_group_id,
-        ads.ad_id,
+        ad_groups.ad_group_id, 
+        ads.ad_id, 
         ads.serving_status,
         ads.state,
         report.advertised_asin,
