@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: amazon_ads__account_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the account level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -10,7 +10,7 @@ models:
             - profile_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
       - name: profile_id
         description: "{{ doc('profile_id') }}"
         tests: 
@@ -31,7 +31,7 @@ models:
         description: "{{ doc('cost') }}"
 
   - name: amazon_ads__ad_group_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the ad group level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -39,7 +39,7 @@ models:
             - ad_group_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
       - name: account_id
         description: "{{ doc('account_id') }}"
       - name: account_name
@@ -78,7 +78,7 @@ models:
         description: "{{ doc('cost') }}"
 
   - name: amazon_ads__ad_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the ad level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -86,7 +86,7 @@ models:
             - ad_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
       - name: account_id
         description: "{{ doc('account_id') }}"
       - name: account_name
@@ -133,7 +133,7 @@ models:
         description: "{{ doc('cost') }}"
 
   - name: amazon_ads__campaign_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the campaign level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -141,7 +141,7 @@ models:
             - campaign_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
       - name: account_id
         description: "{{ doc('account_id') }}"
       - name: account_name
@@ -176,7 +176,7 @@ models:
         description: "{{ doc('cost') }}"
 
   - name: amazon_ads__portfolio_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the portfolio level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -184,7 +184,7 @@ models:
             - portfolio_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
       - name: account_id
         description: "{{ doc('account_id') }}"
       - name: account_name
@@ -223,7 +223,7 @@ models:
         description: "{{ doc('cost') }}"
 
   - name: amazon_ads__keyword_report
-    description: ~~~~Fill in later.
+    description: Each record in this table represents the daily performance at the keyword level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -231,14 +231,52 @@ models:
             - keyword_id
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: ad_group_name
+        description: "{{ doc('ad_group_name') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: keyword_bid
+        description: "{{ doc('keyword_bid') }}"
       - name: keyword_id
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('keyword_id') }}"
         tests:
           - not_null
+      - name: keyword_text
+        description: "{{ doc('keyword_text') }}"
+      - name: keyword_type
+        description: "{{ doc('keyword_type') }}"
+      - name: match_type
+        description: "{{ doc('match_type') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
 
-  - name: amazon_ads__serach_report
-    description: ~~~~Fill in later.
+  - name: amazon_ads__search_report
+    description: Each record in this table represents the daily performance at the search term level.
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -246,9 +284,45 @@ models:
             - search_term
     columns:
       - name: date_day
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('report_date') }}"
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_name
+        description: "{{ doc('account_name') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: ad_group_name
+        description: "{{ doc('ad_group_name') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: keyword_id
+        description: "{{ doc('keyword_id') }}"
+      - name: keyword_text
+        description: "{{ doc('keyword_text') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
       - name: search_term
-        description: "{{ doc('date_day') }}"
+        description: "{{ doc('search_term') }}"
         tests:
           - not_null
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: targeting
+        description: "{{ doc('targeting') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
 
