@@ -1,9 +1,21 @@
+{% docs _fivetran_deleted %}
+Boolean created by Fivetran to indicate whether the record has been deleted.
+{% enddocs %}
+
 {% docs _fivetran_id %}
 Unique ID used by Fivetran to sync and dedupe data.
 {% enddocs %}
 
 {% docs _fivetran_synced %}
 Timestamp of when a record was last synced.
+{% enddocs %}
+
+{% docs account_id %}
+Identifier for sellers and vendors. Note that this value is not unique and may be the same across marketplaces.
+{% enddocs %}
+
+{% docs account_name %}
+Account Name. Not currently populated for sellers.
 {% enddocs %}
 
 {% docs ad_group_id %}
@@ -78,12 +90,16 @@ Total number of ad clicks.
 Total cost of ad clicks.
 {% enddocs %}
 
+{% docs country_code %}
+The code for a given country.
+{% enddocs %}
+
 {% docs creation_date %}
 The date of creation of the record.
 {% enddocs %}
 
-{% docs date_day %}
-The date of the report.
+{% docs currency_code %}
+The currency used for all monetary values for entities under this profile.
 {% enddocs %}
 
 {% docs default_bid %}
@@ -108,6 +124,10 @@ The ID of the keyword.
 
 {% docs keyword_match_type %}
 One of (broad, exact, or phrase.)
+{% enddocs %}
+
+{% docs keyword_text %}
+The exact text for the keyword.
 {% enddocs %}
 
 {% docs keyword_type %}
@@ -135,7 +155,7 @@ The name of the Portfolio.
 {% enddocs %}
 
 {% docs profile_id %}
-The profile ID associated with your Amazon Ads account.
+The profile ID associated with your Amazon Ads account. Advertisers who operate in more than one marketplace (for example, Amazon.com, Amazon.co.uk, Amazon.co.jp) will have one profile associated with each marketplace.
 {% enddocs %}
 
 {% docs report_date %}
