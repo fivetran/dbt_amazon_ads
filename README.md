@@ -34,6 +34,7 @@ The following table lists all models that are materialized within this package b
 | [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)            | Each record in this table represents the daily performance at the ad level. 
 
 # 🎯 How do I use the dbt package?
+## Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
 - At least one Fivetran Amazon Ads connector syncing data into your destination.
