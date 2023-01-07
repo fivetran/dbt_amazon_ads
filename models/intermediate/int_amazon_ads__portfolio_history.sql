@@ -15,7 +15,7 @@ with portfolios as (
         {% for column in columns %}
             {# set null for each column #}
             {%- if column['name'] == 'id' -%}
-                cast(null as {{ dbt_utils.type_bigint() }}) as portfolio_id
+                cast(null as {{ dbt.type_bigint() }}) as portfolio_id
             {%- elif column['name'] == 'name' -%}
                 null as portfolio_name
             {%- else -%}
