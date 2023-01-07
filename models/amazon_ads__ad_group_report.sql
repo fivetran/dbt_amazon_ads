@@ -49,7 +49,7 @@ fields as (
         sum(report.clicks) as clicks,
         sum(report.impressions) as impressions 
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__ad_group_stats_passthrough_metrics', transform='sum') }}
+        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__ad_group_passthrough_metrics', transform='sum') }}
 
     from report
 
