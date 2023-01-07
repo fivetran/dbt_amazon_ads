@@ -46,7 +46,7 @@ fields as (
         sum(report.impressions) as impressions 
 
         --use campaign report since portfolio report not provided
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__campaign_stats_passthrough_metrics', transform='sum') }}
+        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__campaign_passthrough_metrics', transform='sum') }}
 
     from portfolios
 
