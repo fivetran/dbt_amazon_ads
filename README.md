@@ -12,7 +12,7 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Amazona Ads dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
+# Amazon Ads dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
 # 📣 What does this dbt package do?
 - Produces modeled tables that leverage Amazon Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-ads#schemainformation) and builds off the output of our [Amazon Ads source package](https://github.com/fivetran/dbt_amazon_ads_source).
 - Provides insight into your ad performance across the following grains:
