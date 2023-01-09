@@ -189,20 +189,20 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
-      - name: ad_group_id
-        description: "{{ doc('campaign_id') }}"
-      - name: ad_group_name
-        description: "{{ doc('campaign_name') }}"
-      - name: campaign_bidding_strategy
-        description: "{{ doc('campaign_bidding_strategy') }}"
-      - name: campaign_id
-        description: "{{ doc('campaign_id') }}"
-      - name: campaign_name
-        description: "{{ doc('campaign_name') }}"
+      - name: budget_amount
+        description: The budget amount associated with the portfolio. Cannot be null.
+      - name: budget_currency_code
+        description: The currency used for all monetary values for entities under this profile. Cannot be null.
+      - name: budget_end_date
+        description: The end date after which the budget is no longer applied. Optional if policy is set to dateRange or monthlyRecurring.
+      - name: budget_start_date
+        description: The starting date in YYYYMMDD format to which the budget is applied. Required if policy is set to dateRange. Not specified if policy is set to monthlyRecurring. Note that the starting date for monthlyRecurring is the date when the policy is set.
+      - name: budget_policy
+        description: The budget policy. Set to dateRange to specify a budget for a specific period of time. Set to monthlyRecurring to specify a budget that is automatically renewed at the beginning of each month. Cannot be null.
       - name: country_code
         description: "{{ doc('country_code') }}"
-      - name: default_bid
-        description: "{{ doc('default_bid') }}"
+      - name: in_budget
+        description: Indicates the current budget status of the portfolio. Set to true if the portfolio is in budget, set to false if the portfolio is out of budget.
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
       - name: portfolio_name
@@ -282,6 +282,7 @@ models:
           combination_of_columns:
             - date_day
             - search_term
+            - keyword_id
     columns:
       - name: date_day
         description: "{{ doc('report_date') }}"
