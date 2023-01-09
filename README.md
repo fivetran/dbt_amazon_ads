@@ -12,7 +12,7 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Amazon_ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
+# Amazon Ads Source dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
 # 📣 What does this dbt package do?
 - Produces modeled tables that leverage Amazon Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-ads#schemainformation) and builds off the output of our [Amazon Ads source package](https://github.com/fivetran/dbt_amazon_ads_source).
 - Provides insight into your ad performance across the following grains:
@@ -26,8 +26,8 @@ The following table lists all models that are materialized within this package b
 | **Model**                | **Description**                                                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report)             | Each record in this table represents the daily performance at the account level. |
-| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report)            | Each record in this table represents the daily performance at the campaign level. |
-| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report)            | Each record in this table represents the daily performance at the portfolio level. |
+| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report)            | Each record in this table represents the daily performance at the campaign level. | 
+| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report)            | Each record in this table represents the daily performance at the portfolio level. | 
 | [amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report)            | Each record in this table represents the daily performance at the ad group level. |
 | [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)            | Each record in this table represents the daily performance at the keyword level. |
 | [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report)            | Each record in this table represents the daily performance at the search term level. |
@@ -115,7 +115,7 @@ models:
 ### Change the source table references
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
 
-> IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_amazon_ads/blob/main/dbt_project.yml) variable declarations to see the expected names.
+> IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
 
 ```yml
 vars:

@@ -175,8 +175,8 @@ models:
       - name: cost
         description: "{{ doc('cost') }}"
 
-  - name: amazon_ads__portfolio_report
-    description: Each record in this table represents the daily performance at the portfolio level.
+  - name: amazon_ads__portfolio_report 
+    description: Each record in this table represents the daily performance at the portfolio level. 
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
@@ -275,13 +275,13 @@ models:
       - name: cost
         description: "{{ doc('cost') }}"
 
-  - name: amazon_ads__search_report
-    description: Each record in this table represents the daily performance at the search term level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - date_day
-            - search_term
+  - name: amazon_ads__search_report 
+    description: Each record in this table represents the daily performance at the search term level. 
+    tests: 
+      - dbt_utils.unique_combination_of_columns: 
+          combination_of_columns: 
+            - date_day 
+            - search_term 
     columns:
       - name: date_day
         description: "{{ doc('report_date') }}"
