@@ -49,6 +49,7 @@ fields as (
         report.ad_group_id,
         report.keyword_id,
         keywords.keyword_text,
+        keywords.match_type,
         keywords.serving_status,
         keywords.state,
         report.search_term,
@@ -72,7 +73,7 @@ fields as (
     left join account_info
         on account_info.profile_id = campaigns.profile_id
 
-    {{ dbt_utils.group_by(17) }}
+    {{ dbt_utils.group_by(18) }}
 )
 
 select *

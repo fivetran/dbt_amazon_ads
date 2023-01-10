@@ -304,6 +304,8 @@ models:
         description: "{{ doc('keyword_id') }}"
       - name: keyword_text
         description: "{{ doc('keyword_text') }}"
+      - name: match_type
+        description: "{{ doc('match_type') }}"
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
       - name: portfolio_name
