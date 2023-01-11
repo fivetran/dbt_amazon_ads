@@ -22,9 +22,7 @@ with portfolios as (
                 null as {{column['name']}}
             {%- endif -%}
             {# add comma if not the last column #}
-            {%- if column != columns|last -%}
-                , 
-            {%- endif -%}
+            {%- if not loop.last -%} , {% endif -%}
         {% endfor %}
     {% endif %}
 )
