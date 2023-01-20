@@ -1,5 +1,3 @@
-# ‼️ This is a work-in-progress ‼️
-
 <p align="center">
     <a alt="License"
         href="https://github.com/fivetran/dbt_amazon_ads/blob/main/LICENSE">
@@ -41,7 +39,7 @@ To use this dbt package, you must have the following:
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 ### Databricks Dispatch Configuration
-If you are using a Databricks destination with this package you will need to add the below (or a variation of the below) dispatch configuration within your `dbt_project.yml`. This is necessary to ensure this package searches for macros in the `dbt-labs/spark_utils` package before searching the `dbt-labs/dbt_utils` package.
+If you are using a Databricks destination with this package, you will need to add the following dispatch configuration (or its variation) within your `dbt_project.yml`. This is necessary to ensure that this package searches for macros in the `dbt-labs/spark_utils` package before searching the `dbt-labs/dbt_utils` package.
 ```yml
 dispatch:
   - macro_namespace: dbt_utils
@@ -50,7 +48,7 @@ dispatch:
 
 ## Step 2: Install the package
 Include the following amazon_ads package version in your `packages.yml` file:
-> TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read the dbt docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
+> TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read dbt's Package Management documentation](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
   - package: fivetran/amazon_ads
@@ -78,9 +76,9 @@ vars:
 <details><summary>Expand for configurations</summary>
 
 ### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the below configurations to your `dbt_project.yml` file. These variables allow for the pass-through fields to be aliased (`alias`) if desired, but not required. Use the below format for declaring the respective pass-through variables:
+By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the following configurations to your `dbt_project.yml` file. These variables allow the pass-through fields to be aliased (`alias`) if desired, but not required. Use the following format for declaring the respective pass-through variables:
 
->**Note** Please ensure you exercised due diligence when adding metrics to these models. The metrics added by default (clicks, impressions, and cost) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example metric averages, which may be inaccurately represented at the grain for reports created in this package. You will want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
+> **Note** Ensure that you exercised due diligence when adding metrics to these models. The metrics added by default (clicks, impressions, and cost) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example, metric averages, which may be inaccurately represented at the grain for reports created in this package. You want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
 
 ```yml
 vars:
@@ -102,7 +100,7 @@ vars:
 ```
 
 ### Changing the Build Schema
-By default this package will build the Amazon_ads staging models within a schema titled (<target_schema> + `amazon_ads_source`) in your destination. If this is not where you would like your Amazon Ads staging data to be written, add the following configuration to your root `dbt_project.yml` file:
+By default, this package will build the Amazon_ads staging models within a schema titled (<target_schema> + `amazon_ads_source`) in your destination. If this is not where you would like your Amazon Ads staging data to be written, add the following configuration to your root `dbt_project.yml` file:
 
 ```yml
 models:
@@ -131,7 +129,7 @@ Fivetran offers the ability for you to orchestrate your dbt project through [Fiv
 </details>
 
 # 🔍 Does this package have dependencies?
-This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on these packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
+This dbt package is dependent on the following dbt packages. Be aware that these dependencies are installed by default within this package. For more information on these packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of the dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
     
 ```yml
@@ -150,7 +148,7 @@ packages:
 The Fivetran team maintaining this package _only_ maintains the latest version of the package. We highly recommend you stay consistent with the [latest version](https://hub.getdbt.com/fivetran/amazon_ads/latest/) of the package and refer to the [CHANGELOG](https://github.com/fivetran/dbt_amazon_ads/blob/main/CHANGELOG.md) and release notes for more information on changes across versions.
 
 ## Opinionated Decisions
-In creating this package, which is meant for a wide range of use cases, we had to take opinionated stances on certain decisions, such as logic choices or column selection. Therefore we have documented significant choices in the [DECISIONLOG.md](https://github.com/fivetran/dbt_amazon_ads/blob/main/DECISIONLOG.md) and will continue to update this as the package evolves. We are always open to and encourage feedback on these choices and the package in general.
+In creating this package, which is meant for a wide range of use cases, we had to take opinionated stances on certain decisions, such as logic choices or column selection. Therefore, we have documented significant choices in the [DECISIONLOG.md](https://github.com/fivetran/dbt_amazon_ads/blob/main/DECISIONLOG.md) and will continue to update this as the package evolves. We are always open to and encourage feedback on these choices and the package in general.
 
 ## Contributions
 A small team of analytics engineers at Fivetran develops these dbt packages. However, these packages are made better by community contributions! 
@@ -158,6 +156,6 @@ A small team of analytics engineers at Fivetran develops these dbt packages. How
 We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package!
 
 # 🏪 Are there any resources available?
-- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose) section to find the right avenue of support for you.
+- If you have questions or want to reach out for help, refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran or would like to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
 - Have questions or want to just say hi? Book a time during our office hours [on Calendly](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or email us at solutions@fivetran.com.
