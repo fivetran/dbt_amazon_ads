@@ -39,7 +39,7 @@ To use this dbt package, you must have the following:
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 ### Databricks Dispatch Configuration
-If you are using a Databricks destination with this package, you will need to add the following dispatch configuration (or its variation) within your `dbt_project.yml`. This is necessary to ensure that this package searches for macros in the `dbt-labs/spark_utils` package before searching the `dbt-labs/dbt_utils` package.
+If you are using a Databricks destination with this package, you will need to add the following dispatch configuration (or a variation) within your `dbt_project.yml`. This is necessary to ensure that this package searches for macros in the `dbt-labs/spark_utils` package before searching the `dbt-labs/dbt_utils` package.
 ```yml
 dispatch:
   - macro_namespace: dbt_utils
