@@ -1,5 +1,3 @@
-# ‼️ This is a work-in-progress ‼️
-
 <p align="center">
     <a alt="License"
         href="https://github.com/fivetran/dbt_amazon_ads/blob/main/LICENSE">
