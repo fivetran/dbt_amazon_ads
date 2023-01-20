@@ -129,7 +129,7 @@ Fivetran offers the ability for you to orchestrate your dbt project through [Fiv
 </details>
 
 # 🔍 Does this package have dependencies?
-This dbt package is dependent on the following dbt packages. Please be aware that these dependencies are installed by default within this package. For more information on these packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
+This dbt package is dependent on the following dbt packages. Be aware that these dependencies are installed by default within this package. For more information on these packages, refer to the [dbt hub](https://hub.getdbt.com/) site.
 > IMPORTANT: If you have any of the dependent packages in your own `packages.yml` file, we highly recommend that you remove them from your root `packages.yml` to avoid package version conflicts.
     
 ```yml
@@ -156,6 +156,6 @@ A small team of analytics engineers at Fivetran develops these dbt packages. How
 We highly encourage and welcome contributions to this package. Check out [this dbt Discourse article](https://discourse.getdbt.com/t/contributing-to-a-dbt-package/657) on the best workflow for contributing to a package!
 
 # 🏪 Are there any resources available?
-- If you have questions or want to reach out for help, please refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose) section to find the right avenue of support for you.
+- If you have questions or want to reach out for help, refer to the [GitHub Issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose) section to find the right avenue of support for you.
 - If you would like to provide feedback to the dbt package team at Fivetran or would like to request a new dbt package, fill out our [Feedback Form](https://www.surveymonkey.com/r/DQ7K7WW).
 - Have questions or want to just say hi? Book a time during our office hours [on Calendly](https://calendly.com/fivetran-solutions-team/fivetran-solutions-team-office-hours) or email us at solutions@fivetran.com.
