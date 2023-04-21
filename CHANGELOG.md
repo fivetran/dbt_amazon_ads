@@ -1,3 +1,9 @@
+# dbt_amazon_ads v0.UPDATE.UPDATE
+
+ ## Under the Hood:
+
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
+- Updated the pull request [templates](/.github).
  # dbt_amazon_ads v0.1.0
 🎉 This is the initial release of this package! 🎉
 ## 📣 What does this dbt package do?
