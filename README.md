@@ -52,8 +52,11 @@ Include the following amazon_ads package version in your `packages.yml` file:
 ```yaml
 packages:
   - package: fivetran/amazon_ads
-    version: [">=0.1.0", "<0.2.0"]
+    version: [">=0.1.0", "<0.2.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
+
+Do NOT include the `amazon_ads_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
+
 
 ## Step 3: Define database and schema variables
 By default, this package uses your destination and the `amazon_ads` schema. If your Amazon Ads data is in a different database or schema (for example, if your Amazon Ads schema is named `amazon_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:
