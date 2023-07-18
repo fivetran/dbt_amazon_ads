@@ -10,7 +10,7 @@
 [PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
 - Updated testing seed data to reflect the source column changes.
 
- [PR #8](https://github.com/fivetran/dbt_amazon_ads/pull/8) includes the following updates:
+ [PR #4](https://github.com/fivetran/dbt_amazon_ads/pull/4) includes the following updates:
 - Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
 - Updated the pull request [templates](/.github).
 
