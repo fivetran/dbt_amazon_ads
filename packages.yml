@@ -1,3 +1,7 @@
 packages:
-  - package: fivetran/amazon_ads_source
-    version: [">=0.1.0", "<0.2.0"]
+  # - package: fivetran/amazon_ads_source
+  #   version: [">=0.2.0", "<0.3.0"]
+
+  - git: https://github.com/fivetran/dbt_amazon_ads_source.git
+    revision: feature/api-v3-updates
+    warn-unpinned: false

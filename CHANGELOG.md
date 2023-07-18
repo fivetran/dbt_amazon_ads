@@ -1,9 +1,19 @@
-# dbt_amazon_ads v0.UPDATE.UPDATE
+# dbt_amazon_ads_source v0.2.0
+## 🚨 Breaking changes
+- This release is labeled breaking since changes made in the [dbt_amazon_ads_source](https://github.com/fivetran/dbt_amazon_ads_source) are breaking. Note that columns in this package are unchanged.
+- Further details are available in the [dbt_amazon_ads_source CHANGELOG](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/CHANGELOG.md).
+## 🎉 Features
+[PR #11](https://github.com/fivetran/dbt_amazon_ads/pull/11) includes the following updates:
+- Updated documentation to reference changes in the source package.
 
- ## Under the Hood:
+ ## 🚘 Under the Hood
+[PR #11](https://github.com/fivetran/dbt_amazon_ads/pull/11) includes the following updates:
+- Updated testing seed data to reflect the source column changes.
 
+ [PR #8](https://github.com/fivetran/dbt_amazon_ads/pull/8) includes the following updates:
 - Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
 - Updated the pull request [templates](/.github).
+
  # dbt_amazon_ads v0.1.0
 🎉 This is the initial release of this package! 🎉
 ## 📣 What does this dbt package do?
