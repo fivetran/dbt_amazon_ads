@@ -3,11 +3,11 @@
 - This release is labeled breaking since changes made in the [dbt_amazon_ads_source](https://github.com/fivetran/dbt_amazon_ads_source) are breaking. Note that columns in this package are unchanged.
 - Further details are available in the [dbt_amazon_ads_source CHANGELOG](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/CHANGELOG.md).
 ## 🎉 Features
-[PR #11](https://github.com/fivetran/dbt_amazon_ads/pull/11) includes the following updates:
+[PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
 - Updated documentation to reference changes in the source package.
 
  ## 🚘 Under the Hood
-[PR #11](https://github.com/fivetran/dbt_amazon_ads/pull/11) includes the following updates:
+[PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
 - Updated testing seed data to reflect the source column changes.
 
  [PR #8](https://github.com/fivetran/dbt_amazon_ads/pull/8) includes the following updates:
