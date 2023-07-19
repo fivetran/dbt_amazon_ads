@@ -63,15 +63,15 @@ fields as (
     from report
 
     left join keywords
-        on keywords.keyword_id = report.keyword_id
+        on cast(keywords.keyword_id as {{ dbt.type_string() }}) = cast(report.keyword_id as {{ dbt.type_string() }})
     left join ad_groups
-        on ad_groups.ad_group_id = report.ad_group_id
+        on cast(ad_groups.ad_group_id as {{ dbt.type_string() }}) = cast(report.ad_group_id as {{ dbt.type_string() }})
     left join campaigns
-        on campaigns.campaign_id = report.campaign_id
+        on cast(campaigns.campaign_id as {{ dbt.type_string() }}) = cast(report.campaign_id as {{ dbt.type_string() }})
     left join portfolios
-        on portfolios.portfolio_id = campaigns.portfolio_id
+        on cast(portfolios.portfolio_id as {{ dbt.type_string() }}) = cast(campaigns.portfolio_id as {{ dbt.type_string() }})
     left join account_info
-        on account_info.profile_id = campaigns.profile_id
+        on cast(account_info.profile_id as {{ dbt.type_string() }}) = cast(campaigns.profile_id as {{ dbt.type_string() }})
 
     {{ dbt_utils.group_by(18) }}
 )

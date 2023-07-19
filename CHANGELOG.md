@@ -8,6 +8,7 @@
 
  ## 🚘 Under the Hood
 [PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
+- Update casts on joins to bridge the gap between ID types changed to STRING and IDs that remained type INTEGER.
 - Updated testing seed data to reflect the source column changes.
 
  [PR #4](https://github.com/fivetran/dbt_amazon_ads/pull/4) includes the following updates:
