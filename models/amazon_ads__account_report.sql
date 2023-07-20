@@ -35,9 +35,9 @@ fields as (
     from report
 
     left join campaigns
-        on cast(campaigns.campaign_id as {{ dbt.type_string() }}) = cast(report.campaign_id as {{ dbt.type_string() }})
+        on campaigns.campaign_id = report.campaign_id
     left join account_info
-        on cast(account_info.profile_id as {{ dbt.type_string() }}) = cast(campaigns.profile_id as {{ dbt.type_string() }})
+        on account_info.profile_id = campaigns.profile_id
     
 
     {{ dbt_utils.group_by(5) }}

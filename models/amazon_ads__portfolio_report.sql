@@ -51,11 +51,11 @@ fields as (
     from portfolios
 
     left join campaigns
-        on cast(campaigns.portfolio_id as {{ dbt.type_string() }}) = cast(portfolios.portfolio_id as {{ dbt.type_string() }})
+        on campaigns.portfolio_id = portfolios.portfolio_id
     left join account_info
-        on cast(account_info.profile_id as {{ dbt.type_string() }}) = cast(campaigns.profile_id as {{ dbt.type_string() }})
+        on account_info.profile_id = campaigns.profile_id
     left join report
-        on cast(report.campaign_id as {{ dbt.type_string() }}) = cast(campaigns.campaign_id as {{ dbt.type_string() }})
+        on report.campaign_id = campaigns.campaign_id
 
     {{ dbt_utils.group_by(15) }}
 )

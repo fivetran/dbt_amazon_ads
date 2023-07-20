@@ -64,15 +64,15 @@ fields as (
     from report
     
     left join ads
-        on cast(ads.ad_id as {{ dbt.type_string() }})  = cast(report.ad_id as {{ dbt.type_string() }})
+        on ads.ad_id = report.ad_id
     left join ad_groups
-        on cast(ad_groups.ad_group_id as {{ dbt.type_string() }})  = cast(report.ad_group_id as {{ dbt.type_string() }})
+        on ad_groups.ad_group_id = report.ad_group_id
     left join campaigns
-        on cast(campaigns.campaign_id as {{ dbt.type_string() }})  = cast(report.campaign_id as {{ dbt.type_string() }})
+        on campaigns.campaign_id = report.campaign_id
     left join portfolios
-        on cast(portfolios.portfolio_id as {{ dbt.type_string() }})  = cast(campaigns.portfolio_id as {{ dbt.type_string() }}) 
+        on portfolios.portfolio_id = campaigns.portfolio_id 
     left join account_info
-        on cast(account_info.profile_id as {{ dbt.type_string() }})  = cast(campaigns.profile_id as {{ dbt.type_string() }}) 
+        on account_info.profile_id = campaigns.profile_id 
 
     {{ dbt_utils.group_by(19) }}
 )
