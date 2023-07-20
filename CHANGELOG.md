@@ -1,7 +1,7 @@
 # dbt_amazon_ads v0.2.0
 [PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
 ## 🚨 Breaking changes
-- This release is labeled breaking since changes made in the [dbt_amazon_ads_source](https://github.com/fivetran/dbt_amazon_ads_source) are breaking. Note that columns in this package are unchanged.
+- This release is labeled breaking since changes made in [dbt_amazon_ads_source](https://github.com/fivetran/dbt_amazon_ads_source) are breaking. Note that columns in this package are unchanged.
 - Further details are available in the [dbt_amazon_ads_source CHANGELOG](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/CHANGELOG.md).
 ## 🎉 Features
 - Updated documentation to reference changes in the source package.
