@@ -7,7 +7,6 @@
 - Updated documentation to reference changes in the source package.
 
  ## 🚘 Under the Hood
-- Update casts on joins to bridge the gap between ID types changed to STRING and IDs that remained type INTEGER.
 - Updated testing seed data to reflect the source seed changes.
 
  [PR #4](https://github.com/fivetran/dbt_amazon_ads/pull/4) includes the following updates:
