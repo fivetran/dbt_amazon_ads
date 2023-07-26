@@ -70,9 +70,9 @@ fields as (
     left join campaigns
         on campaigns.campaign_id = report.campaign_id
     left join portfolios
-        on portfolios.portfolio_id = campaigns.portfolio_id
+        on portfolios.portfolio_id = campaigns.portfolio_id 
     left join account_info
-        on account_info.profile_id = campaigns.profile_id
+        on account_info.profile_id = campaigns.profile_id 
 
     {{ dbt_utils.group_by(19) }}
 )

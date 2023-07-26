@@ -1,13 +1,13 @@
 config-version: 2
 
 name: 'amazon_ads_integration_tests'
-version: '0.1.0'
+version: '0.2.0'
 
 profile: 'integration_tests' 
 
 vars:
   amazon_ads_source:
-    amazon_ads_schema: amazon_ads_integration_tests
+    amazon_ads_schema: amazon_ads_integration_tests_02
     amazon_ads_ad_group_history_identifier: "ad_group_history_data"
     amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
     amazon_ads_advertised_product_report_identifier: "advertised_product_report_data"
