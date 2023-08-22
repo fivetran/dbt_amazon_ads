@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
 {# This intermediate model creates a dummy portfolio table if the user does not use portfolios. 

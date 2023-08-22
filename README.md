@@ -78,6 +78,16 @@ vars:
 ## (Optional) Step 5: Additional configurations
 <details><summary>Expand for configurations</summary>
 
+### Unioning Multiple Connectors
+If you have multiple amazon_ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to union the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `amazon_ads_union_schemas` or `amazon_ads_union_databases` variables like the following example (**note that you cannot use both**):
+
+```yml
+vars:
+  amazon_ads_source:
+    amazon_ads_union_schemas: ['amazon_ads_usa','amazon_ads_canada'] # use this if the data is in different schemas/datasets of the same database/project
+    amazon_ads_union_databases: ['amazon_ads_usa','amazon_ads_canada'] # use this if the data is in different databases/projects but uses the same schema name
+```
+
 ### Passing Through Additional Metrics
 By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the following configurations to your `dbt_project.yml` file. These variables allow the pass-through fields to be aliased (`alias`) if desired, but not required. Use the following format for declaring the respective pass-through variables:
 

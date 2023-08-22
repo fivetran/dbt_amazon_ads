@@ -1,3 +1,4 @@
+UPDATE TESTS AND CHECK SOURCE_RELATION ADDED PROPERLY!!! (delete line when done.)
 version: 2
 
 models:
@@ -9,6 +10,8 @@ models:
             - date_day
             - profile_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: profile_id
@@ -38,6 +41,8 @@ models:
             - date_day
             - ad_group_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -85,6 +90,8 @@ models:
             - date_day
             - ad_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -140,6 +147,8 @@ models:
             - date_day
             - campaign_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -183,6 +192,8 @@ models:
             - date_day
             - portfolio_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -230,6 +241,8 @@ models:
             - date_day
             - keyword_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -284,6 +297,8 @@ models:
             - search_term
             - keyword_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id

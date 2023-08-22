@@ -1,3 +1,14 @@
+# dbt_amazon_ads v0.3.0
+[PR #8](https://github.com/fivetran/dbt_amazon_ads/pull/8) includes the following updates:
+## Feature update 🎉
+- Unioning capability! This adds the ability to union source data from multiple amazon_ads connectors. Refer to the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md) for more details.
+
+## Under the hood 🚘
+- In the source package, updated tmp models to union source data using the `fivetran_utils.union_data` macro. 
+- To distinguish which source each field comes from, added `source_relation` column in each staging and downstream model and applied the `fivetran_utils.source_relation` macro.
+- Updated tests to account for the new `source_relation` column.
+    - The `source_relation` column is included in all joins and window function partition clauses in the transform package. 
+
 # dbt_amazon_ads v0.2.0
 [PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
 ## 🚨 Breaking changes

@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
 with report as (
@@ -65,14 +67,19 @@ fields as (
     
     left join ads
         on ads.ad_id = report.ad_id
+        and ad_id.source_relation = ad_id.source_relation
     left join ad_groups
         on ad_groups.ad_group_id = report.ad_group_id
+        and ad_group_id.source_relation = ad_group_id.source_relation
     left join campaigns
         on campaigns.campaign_id = report.campaign_id
+        and campaign_id.source_relation = campaign_id.source_relation
     left join portfolios
-        on portfolios.portfolio_id = campaigns.portfolio_id 
+        on portfolios.portfolio_id = campaigns.portfolio_id
+        and portfolio_id.source_relation = portfolio_id.source_relation 
     left join account_info
-        on account_info.profile_id = campaigns.profile_id 
+        on account_info.profile_id = campaigns.profile_id
+        and profile_id.source_relation = profile_id.source_relation 
 
     {{ dbt_utils.group_by(19) }}
 )
