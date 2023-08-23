@@ -177,3 +177,6 @@ The state of the record (enabled, paused, or archived).
 {% docs targeting %}
 A string representation of the expression object used in the targeting clause.
 {% enddocs %}
+{% docs source_relation %}
+The source of the record if the unioning functionality is being used. If not this field will be empty.
+{% enddocs %}
