@@ -1,3 +1,5 @@
+ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
+
 {{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__amazon_ads_enabled','amazon_ads__portfolio_history_enabled'])) }}
 
 with report as (
@@ -26,6 +28,7 @@ campaigns as (
 
 fields as (
     select
+        report.source_relation,
         report.date_day,
         account_info.account_name,
         account_info.account_id,
@@ -52,12 +55,15 @@ fields as (
 
     left join campaigns
         on campaigns.portfolio_id = portfolios.portfolio_id
+        and campaigns.source_relation = portfolios.source_relation
     left join account_info
         on account_info.profile_id = campaigns.profile_id
+        and account_info.source_relation = campaigns.source_relation
     left join report
         on report.campaign_id = campaigns.campaign_id
+        and report.source_relation = campaigns.source_relation
 
-    {{ dbt_utils.group_by(15) }}
+    {{ dbt_utils.group_by(16) }}
 )
 
 select *
