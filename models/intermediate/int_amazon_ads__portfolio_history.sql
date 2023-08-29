@@ -1,5 +1,3 @@
-ADD source_relation WHERE NEEDED + CHECK JOINS AND WINDOW FUNCTIONS! (Delete this line when done.)
-
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
 {# This intermediate model creates a dummy portfolio table if the user does not use portfolios. 
@@ -12,6 +10,7 @@ with portfolios as (
         from {{ var('portfolio_history') }}
         where is_most_recent_record = True
     {% else %}
+        cast(null as {{ dbt.type_string() }}) as source_relation,
         {# uses the columns macro from the source package to populate column names #}
         {%- set columns = amazon_ads_source.get_portfolio_history_columns() -%}
         {% for column in columns %}
