@@ -6,8 +6,8 @@
 ## Under the hood 🚘
 - In the source package, updated tmp models to union source data using the `fivetran_utils.union_data` macro. 
 - To distinguish which source each field comes from, added `source_relation` column in each staging and downstream model and applied the `fivetran_utils.source_relation` macro.
+  - The `source_relation` column is included in all joins in the transform package. 
 - Updated tests to account for the new `source_relation` column.
-    - The `source_relation` column is included in all joins in the transform package. 
 
 # dbt_amazon_ads v0.2.0
 [PR #6](https://github.com/fivetran/dbt_amazon_ads/pull/6) includes the following updates:
