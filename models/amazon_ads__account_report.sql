@@ -20,6 +20,7 @@ campaigns as (
 
 fields as (
     select
+        report.source_relation,
         report.date_day,
         account_info.account_name,
         account_info.account_id,
@@ -36,11 +37,13 @@ fields as (
 
     left join campaigns
         on campaigns.campaign_id = report.campaign_id
+        and campaigns.source_relation = report.source_relation
     left join account_info
         on account_info.profile_id = campaigns.profile_id
+        and account_info.source_relation = campaigns.source_relation
     
 
-    {{ dbt_utils.group_by(5) }}
+    {{ dbt_utils.group_by(6) }}
 )
 
 select *

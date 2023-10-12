@@ -6,9 +6,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - profile_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: profile_id
@@ -35,9 +38,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - ad_group_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -82,9 +88,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - ad_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -137,9 +146,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - campaign_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -180,9 +192,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - portfolio_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -227,9 +242,12 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - keyword_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
@@ -280,10 +298,13 @@ models:
     tests:     
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
+            - source_relation
             - date_day
             - search_term
             - keyword_id
     columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
       - name: date_day
         description: "{{ doc('report_date') }}"
       - name: account_id
