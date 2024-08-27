@@ -19,7 +19,7 @@
 - Generates a comprehensive data dictionary of your source and modeled Amazon Ads data through the [dbt docs site](https://fivetran.github.io/dbt_amazon_ads/).
 
 <!--section="amazon_ads_transformation_model"-->
-The following table lists all models that are materialized within this package by default.
+The following table lists all tables that are materialized within this package by default.
 > TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_amazon_ads/#!/overview?g_v=1&g_e=seeds).
 
 | **Table**                | **Description**                                                                                                                                |
