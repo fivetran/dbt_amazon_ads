@@ -12,3 +12,13 @@ destination_configurations:
     dispatch:
       - macro_namespace: dbt_utils
         search_order: [ 'spark_utils', 'dbt_utils' ]
+
+public_models: [
+  "amazon_ads__portfolio_report",
+  "amazon_ads__search_report",
+  "amazon_ads__ad_group_report",
+  "amazon_ads__keyword_report",
+  "amazon_ads__campaign_report",
+  "amazon_ads__account_report",
+  "amazon_ads__ad_report"
+]
