@@ -18,10 +18,11 @@
 - Materializes output models designed to work simultaneously with our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting).
 - Generates a comprehensive data dictionary of your source and modeled Amazon Ads data through the [dbt docs site](https://fivetran.github.io/dbt_amazon_ads/).
 
+<!--section="amazon_ads_transformation_model"-->
 The following table lists all models that are materialized within this package by default.
 > TIP: See more details about these models in the package's [dbt docs site](https://fivetran.github.io/dbt_amazon_ads/#!/overview?g_v=1&g_e=seeds).
 
-| **Model**                | **Description**                                                                                                                                |
+| **Table**                | **Description**                                                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report)             | Each record in this table represents the daily performance at the account level. |
 | [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report)            | Each record in this table represents the daily performance at the portfolio level. |
@@ -30,6 +31,8 @@ The following table lists all models that are materialized within this package b
 | [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report)            | Each record in this table represents the daily performance at the search term level. |
 | [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)            | Each record in this table represents the daily performance at the keyword level. |
 | [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)            | Each record in this table represents the daily performance at the ad level.
+
+<!--section-end-->
 
 ## How do I use the dbt package?
 ### Step 1: Prerequisites
