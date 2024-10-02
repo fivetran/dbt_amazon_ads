@@ -9,7 +9,7 @@ with prod as (
         sum(clicks) as clicks, 
         sum(impressions) as impressions,
         sum(cost) as cost
-    from {{ target.schema }}_amazon_ads_prod.amazon_ads__account_report
+    from {{ target.schema }}_amazon_ads_prod.amazon_ads__ad_report
     group by 1
 ),
 
@@ -19,7 +19,7 @@ dev as (
         sum(clicks) as clicks, 
         sum(impressions) as impressions,
         sum(cost) as cost
-    from {{ target.schema }}_amazon_ads_dev.amazon_ads__account_report
+    from {{ target.schema }}_amazon_ads_dev.amazon_ads__ad_report
     group by 1
 ),
 

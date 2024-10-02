@@ -39,6 +39,9 @@ seeds:
       campaign_budget_amount: "float"
       click_through_rate: "float"
       keyword_bid: "float"
+      clicks: "float"
+      impressions: "float"
+      cost: "float"
         
 dispatch:
   - macro_namespace: dbt_utils
