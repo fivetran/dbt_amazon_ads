@@ -181,3 +181,11 @@ A string representation of the expression object used in the targeting clause.
 {% docs source_relation %}
 The source of the record if the unioning functionality is being used. If not this field will be empty.
 {% enddocs %}
+
+{% docs purchases_30_d %}
+Number of attributed conversion events occurring within 30 days of an ad click.
+{% enddocs %}
+
+{% docs sales_30_d %}
+Total value of sales occurring within 30 days of an ad click.
+{% enddocs %}
