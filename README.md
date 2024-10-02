@@ -49,13 +49,13 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 ```
 
-### Step 2: Install the package
-Include the following amazon_ads package version in your `packages.yml` file:
+### Step 2: Install the package (skip if also using the `ad_reporting` combo package)
+Include the following amazon_ads package version in your `packages.yml` file _if_ you are not also using the upstream [Ad Reporting combination package](https://github.com/fivetran/dbt_ad_reporting):
 > TIP: Check [dbt Hub](https://hub.getdbt.com/) for the latest installation instructions or [read dbt's Package Management documentation](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 ```yaml
 packages:
   - package: fivetran/amazon_ads
-    version: [">=0.3.0", "<0.4.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.4.0", "<0.5.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `amazon_ads_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
@@ -92,9 +92,9 @@ vars:
 To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
 #### Passing Through Additional Metrics
-By default, this package will select `clicks`, `impressions`, and `cost` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the following configurations to your `dbt_project.yml` file. These variables allow the pass-through fields to be aliased (`alias`) if desired, but not required. Use the following format for declaring the respective pass-through variables:
+By default, this package will select `clicks`, `impressions`, `cost`, `purchases_30_d`, and `sales_30_d` from the source reporting tables to store into the staging models. If you would like to pass through additional metrics to the staging models, add the following configurations to your `dbt_project.yml` file. These variables allow the pass-through fields to be aliased (`alias`) if desired, but not required. Use the following format for declaring the respective pass-through variables:
 
-> **Note** Ensure that you exercised due diligence when adding metrics to these models. The metrics added by default (clicks, impressions, and cost) have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example, metric averages, which may be inaccurately represented at the grain for reports created in this package. You want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
+> **Note** Ensure that you exercised due diligence when adding metrics to these models. The metrics added by default have been vetted by the Fivetran team maintaining this package for accuracy. There are metrics included within the source reports, for example, metric averages, which may be inaccurately represented at the grain for reports created in this package. You want to ensure whichever metrics you pass through are indeed appropriate to aggregate at the respective reporting levels provided in this package.
 
 ```yml
 vars:
@@ -127,7 +127,7 @@ models:
 ```
 
 #### Change the source table references
-If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable:
+If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable. This is not available when running the package on multiple unioned connectors.
 
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
 
@@ -149,7 +149,7 @@ This dbt package is dependent on the following dbt packages. Be aware that these
 ```yml
 packages:
     - package: fivetran/amazon_ads_source
-      version: [">=0.3.0", "<0.4.0"]
+      version: [">=0.4.0", "<0.5.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]

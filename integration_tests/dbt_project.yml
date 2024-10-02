@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'amazon_ads_integration_tests'
-version: '0.3.0'
+version: '0.4.0'
 
 profile: 'integration_tests' 
 
@@ -19,6 +19,13 @@ vars:
     amazon_ads_keyword_history_identifier: "keyword_history_data"
     amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
     amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
+
+  amazon_ads__campaign_passthrough_metrics:
+      - name: sales_7_d
+      - name: purchases_30_d 
+
+models:
+  +schema: "amazon_ads_{{ var('directed_schema','dev') }}"
 
 dispatch:
   - macro_namespace: dbt_utils
