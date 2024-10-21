@@ -40,9 +40,11 @@ fields as (
         report.campaign_budget_type,
         sum(report.cost) as cost,
         sum(report.clicks) as clicks,
-        sum(report.impressions) as impressions 
+        sum(report.impressions) as impressions,
+        sum(report.purchases_30_d) as purchases_30_d,
+        sum(report.sales_30_d) as sales_30_d
 
-        {{ fivetran_utils.persist_pass_through_columns(pass_through_variable='amazon_ads__campaign_passthrough_metrics', transform='sum') }}
+        {{ amazon_ads_persist_pass_through_columns(pass_through_variable='amazon_ads__campaign_passthrough_metrics', identifier='report', transform='sum', coalesce_with=0, exclude_fields=['purchases_30_d','sales_30_d']) }} 
 
     from report
 
