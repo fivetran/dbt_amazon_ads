@@ -35,6 +35,7 @@ models:
       - name: purchases_30_d
         description: "{{ doc('purchases_30_d') }}" 
       - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}" 
 
   - name: amazon_ads__ad_group_report
     description: Each record in this table represents the daily performance at the ad group level.

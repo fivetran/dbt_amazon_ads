@@ -57,7 +57,7 @@ search_report as (
         sum(purchases_30_d) as total_purchases_30_d,
         sum(sales_30_d) as total_sales_30_d
     from {{ ref('amazon_ads__search_report') }}
-),
+)
 
 select 
     'ad vs account' as comparison

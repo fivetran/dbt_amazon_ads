@@ -23,6 +23,8 @@ vars:
   amazon_ads__campaign_passthrough_metrics:
       - name: sales_7_d
       - name: purchases_30_d 
+        alias: purchases_alias
+      - name: purchases_14_d
 
 models:
   +schema: "amazon_ads_{{ var('directed_schema','dev') }}"
@@ -42,7 +44,3 @@ seeds:
       clicks: "float"
       impressions: "float"
       cost: "float"
-        
-dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['spark_utils', 'dbt_utils']
