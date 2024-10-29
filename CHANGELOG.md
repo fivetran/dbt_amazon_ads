@@ -1,3 +1,20 @@
+# dbt_amazon_ads v0.4.0
+[PR #16](https://github.com/fivetran/dbt_amazon_ads/pull/16) includes the following updates:
+
+## Feature Update: Conversions Support
+- We have added conversion metrics to each of the end models by default.
+- The conversion metrics are the following:
+  - `purchases_30_d`: Number of attributed conversion events occurring within 30 days of an ad click.
+  - `sales_30_d`: Total value of sales occurring within 30 days of an ad click.
+- To bring in other conversion fields (`purchases_same_sku_30_d`, `sales_14_d`, etc.), please refer to our [passthrough column variables](https://github.com/fivetran/dbt_amazon_ads_source?tab=readme-ov-file#passing-through-additional-metrics).
+
+> The above new field additions are **breaking changes** for users who were not already bringing in conversion fields via passthrough columns.
+
+## Under the Hood
+- Created `amazon_ads_persist_pass_through_columns` macro to ensure that the new conversion fields are backwards compatible with users who have already included them via [passthrough columns](https://github.com/fivetran/dbt_amazon_ads?tab=readme-ov-file#passing-through-additional-metrics) . The package will dynamically avoid "duplicate column" errors.
+- Added integrity and consistency validation tests within `integration_tests` folder for the transformation models (to be used by maintainers only).
+- Added documentation explaining potential discrepancies across reporting grains. See the [DECISIONLOG.md](https://github.com/fivetran/dbt_amazon_ads/blob/main/DECISIONLOG.md).
+
 # dbt_amazon_ads v0.3.0
 [PR #11](https://github.com/fivetran/dbt_amazon_ads/pull/11) includes the following updates:
 ## Feature update 🎉
