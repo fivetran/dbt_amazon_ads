@@ -32,6 +32,8 @@ The following table lists all tables that are materialized within this package b
 | [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)            | Each record in this table represents the daily performance at the keyword level. |
 | [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)            | Each record in this table represents the daily performance at the ad level.
 
+### Materialized Models
+Each transformation job run materializes 30 models if you enable all components of this data model. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
