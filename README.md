@@ -32,13 +32,15 @@ The following table lists all tables that are materialized within this package b
 | [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)            | Each record in this table represents the daily performance at the keyword level. |
 | [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)            | Each record in this table represents the daily performance at the ad level.
 
+### Materialized Models
+Each Quickstart transformation job run materializes 30 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
 <!--section-end-->
 
 ## How do I use the dbt package?
 ### Step 1: Prerequisites
 To use this dbt package, you must have the following:
 
-- At least one Fivetran Amazon Ads connector syncing data into your destination.
+- At least one Fivetran Amazon Ads connection syncing data into your destination.
 - A **BigQuery**, **Snowflake**, **Redshift**, **PostgreSQL**, or **Databricks** destination.
 
 #### Databricks Dispatch Configuration
@@ -71,7 +73,7 @@ vars:
 ```
 
 ### Step 4: Disable models for non-existent sources
-Your Amazon Ads connector may not sync every table that this package expects. If you do not have the `PORTFOLIO_HISTORY` table synced, add the following variable to your root `dbt_project.yml` file:
+Your Amazon Ads connection may not sync every table that this package expects. If you do not have the `PORTFOLIO_HISTORY` table synced, add the following variable to your root `dbt_project.yml` file:
 
 ```yml
 vars:
@@ -81,8 +83,8 @@ vars:
 ### (Optional) Step 5: Additional configurations
 <details open><summary>Expand/Collapse details</summary>
 
-#### Union multiple connectors
-If you have multiple amazon_ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `amazon_ads_union_schemas` OR `amazon_ads_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
+#### Union multiple connections
+If you have multiple amazon_ads connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `amazon_ads_union_schemas` OR `amazon_ads_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
 
 ```yml
 vars:
@@ -130,7 +132,7 @@ models:
 ```
 
 #### Change the source table references
-If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable. This is not available when running the package on multiple unioned connectors.
+If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable. This is not available when running the package on multiple unioned connections.
 
 > IMPORTANT: See this project's [`dbt_project.yml`](https://github.com/fivetran/dbt_amazon_ads_source/blob/main/dbt_project.yml) variable declarations to see the expected names.
 

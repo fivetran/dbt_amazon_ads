@@ -1,3 +1,9 @@
+# dbt_amazon_ads version.version
+
+## Documentation
+- Added Quickstart model counts to README. ([#21](https://github.com/fivetran/dbt_amazon_ads/pull/21))
+- Corrected references to connectors and connections in the README. ([#21](https://github.com/fivetran/dbt_amazon_ads/pull/21))
+
 # dbt_amazon_ads v0.4.0
 [PR #16](https://github.com/fivetran/dbt_amazon_ads/pull/16) includes the following updates:
 
