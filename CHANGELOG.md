@@ -1,6 +1,6 @@
 # dbt_amazon_ads v0.5.0
 
-[PR #22](https://github.com/fivetran/dbt_amazon_ads/pull/22) includes the following updates:
+[PR #23](https://github.com/fivetran/dbt_amazon_ads/pull/23) includes the following updates:
 
 ## Breaking Change for dbt Core < 1.9.5
 > *Note: This is not relevant to Fivetran Quickstart users.*
