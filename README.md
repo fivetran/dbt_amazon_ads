@@ -1,4 +1,6 @@
-<p align="center">
+# Amazon Ads dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
+
+<p align="left">
     <a alt="License"
         href="https://github.com/fivetran/dbt_amazon_ads/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
@@ -10,7 +12,6 @@
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
 
-# Amazon Ads dbt Package ([Docs](https://fivetran.github.io/dbt_amazon_ads/))
 ## What does this dbt package do?
 - Produces modeled tables that leverage Amazon Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-ads#schemainformation) and builds off the output of our [Amazon Ads source package](https://github.com/fivetran/dbt_amazon_ads_source).
 - Provides insight into your ad performance across the following grains:
@@ -57,7 +58,7 @@ Include the following amazon_ads package version in your `packages.yml` file _if
 ```yaml
 packages:
   - package: fivetran/amazon_ads
-    version: [">=0.4.0", "<0.5.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=0.5.0", "<0.6.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 Do NOT include the `amazon_ads_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
@@ -157,7 +158,7 @@ This dbt package is dependent on the following dbt packages. Be aware that these
 ```yml
 packages:
     - package: fivetran/amazon_ads_source
-      version: [">=0.4.0", "<0.5.0"]
+      version: [">=0.5.0", "<0.6.0"]
 
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
