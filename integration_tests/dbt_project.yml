@@ -34,6 +34,8 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 
 seeds:
+  +docs:
+    show: False
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"
   amazon_ads_integration_tests:
     +column_types:
@@ -44,3 +46,6 @@ seeds:
       clicks: "float"
       impressions: "float"
       cost: "float"
+flags:
+  send_anonymous_usage_stats: False
+  use_colors: True
