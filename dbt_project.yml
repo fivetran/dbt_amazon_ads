@@ -24,3 +24,9 @@ vars:
     keyword_history: "{{ source('amazon_ads', 'keyword_history') }}"
     targeting_keyword_report: "{{ source('amazon_ads', 'targeting_keyword_report') }}"
     search_term_ad_keyword_report: "{{ source('amazon_ads', 'search_term_ad_keyword_report') }}"
+   
+    amazon_ads__ad_group_passthrough_metrics: []
+    amazon_ads__advertised_product_passthrough_metrics: []
+    amazon_ads__campaign_passthrough_metrics: []
+    amazon_ads__search_term_ad_keyword_passthrough_metrics: []
+    amazon_ads__targeting_keyword_passthrough_metrics: []
