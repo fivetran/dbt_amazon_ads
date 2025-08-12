@@ -1,0 +1,369 @@
+version: 2
+
+sources:
+  - name: amazon_ads # This source will only be used if you are using a single amazon_ads source connector. If multiple sources are being unioned, their tables will be directly referenced via adapter.get_relation.
+    schema: "{{ var('amazon_ads_schema', 'amazon_ads') }}"
+    database: "{% if target.type != 'spark'%}{{ var('amazon_ads_database', target.database) }}{% endif %}"
+
+    loader: Fivetran
+
+    config:
+      loaded_at_field: _fivetran_synced
+      enabled: "{{ var('ad_reporting__amazon_ads_enabled', true) }}"
+      freshness: 
+        warn_after: {count: 48, period: hour}
+        error_after: {count: 168, period: hour}
+        
+    tables:
+      - name: ad_group_history
+        description: Each record represents an ad group in Amazon Ads.
+        identifier: "{{ var('amazon_ads_ad_group_history_identifier', 'ad_group_history') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: "{{ doc('ad_group_id') }}"
+          - name: name
+            description: "{{ doc('ad_group_name') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: creation_date
+            description: "{{ doc('creation_date') }}"
+          - name: default_bid
+            description: "{{ doc('default_bid') }}"
+          - name: last_updated_date
+            description: "{{ doc('last_updated_date') }}"
+          - name: serving_status
+            description: "{{ doc('serving_status') }}"
+          - name: state
+            description: "{{ doc('state') }}"
+
+      - name: ad_group_level_report
+        description: Each record in this table represents the daily performance by Amazon ad group. 
+        identifier: "{{ var('amazon_ads_ad_group_level_report_identifier', 'ad_group_level_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('report_date') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: campaign_bidding_strategy
+            description: "{{ doc('campaign_bidding_strategy') }}"
+          - name: clicks
+            description: "{{ doc('clicks') }}"
+          - name: impressions
+            description: "{{ doc('impressions') }}"
+          - name: cost
+            description: "{{ doc('cost') }}"
+          - name: purchases_30_d
+            description: "{{ doc('purchases_30_d') }}" 
+          - name: sales_30_d
+            description: "{{ doc('sales_30_d') }}"
+
+      - name: advertised_product_report
+        description: Advertised product reports contain performance data for products that are advertised as part of your campaigns.
+        identifier: "{{ var('amazon_ads_advertised_product_report_identifier', 'advertised_product_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('report_date') }}"
+          - name: ad_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: advertised_asin
+            description: "{{ doc('advertised_asin') }}"
+          - name: advertised_sku
+            description: "{{ doc('advertised_sku') }}" 
+          - name: campaign_budget_amount
+            description: "{{ doc('campaign_budget_amount') }}" 
+          - name: campaign_budget_currency_code
+            description: "{{ doc('campaign_budget_currency_code') }}"
+          - name: campaign_budget_type
+            description: "{{ doc('campaign_budget_type') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: clicks
+            description: "{{ doc('clicks') }}"
+          - name: impressions
+            description: "{{ doc('impressions') }}"
+          - name: cost
+            description: "{{ doc('cost') }}"
+          - name: purchases_30_d
+            description: "{{ doc('purchases_30_d') }}" 
+          - name: sales_30_d
+            description: "{{ doc('sales_30_d') }}"
+
+      - name: campaign_history
+        description: Each record represents a campaign in Amazon Ads.
+        identifier: "{{ var('amazon_ads_campaign_history_identifier', 'campaign_history') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: "{{ doc('campaign_id') }}"
+          - name: name
+            description: "{{ doc('campaign_name') }}"
+          - name: creation_date
+            description: "{{ doc('creation_date') }}"
+          - name: last_updated_date
+            description: "{{ doc('last_updated_date') }}"
+          - name: portfolio_id
+            description: "{{ doc('portfolio_id') }}"
+          - name: bidding_strategy
+            description: The bidding strategy associated with a campaign (legacyForSales, autoForSales, or manual.)
+          - name: budget
+            description: The budget for the campaign.
+          - name: budget_type
+            description: "{{ doc('campaign_budget_type') }}"
+          - name: effective_budget
+            description: Adjusted budget for the campaign that has been impacted by a budget rule.
+          - name: end_date
+            description: The end date of the campaign.
+          - name: profile_id
+            description: "{{ doc('profile_id') }}"
+          - name: serving_status
+            description: "{{ doc('serving_status') }}"
+          - name: start_date
+            description: The start date of the campaign.
+          - name: state
+            description: "{{ doc('state') }}"
+          - name: targeting_type
+            description: The type of targeting used for the campaign, either manual or auto.
+
+      - name: campaign_level_report
+        description: Each record in this table represents the daily performance by Amazon campaign.
+        identifier: "{{ var('amazon_ads_campaign_level_report_identifier', 'campaign_level_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('report_date') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: clicks
+            description: "{{ doc('clicks') }}"
+          - name: impressions
+            description: "{{ doc('impressions') }}"
+          - name: cost
+            description: "{{ doc('cost') }}"
+          - name: campaign_applicable_budget_rule_id
+            description: "{{ doc('campaign_applicable_budget_rule_id') }}" 
+          - name: campaign_applicable_budget_rule_name
+            description: "{{ doc('campaign_applicable_budget_rule_name') }}"
+          - name: campaign_bidding_strategy
+            description: "{{ doc('campaign_bidding_strategy') }}"
+          - name: campaign_budget_amount
+            description: "{{ doc('campaign_budget_amount') }}" 
+          - name: campaign_budget_currency_code
+            description: "{{ doc('campaign_budget_currency_code') }}"
+          - name: campaign_budget_type
+            description: "{{ doc('campaign_budget_type') }}"
+          - name: campaign_rule_based_budget_amount
+            description: "{{ doc('campaign_rule_based_budget_amount') }}"
+          - name: purchases_30_d
+            description: "{{ doc('purchases_30_d') }}" 
+          - name: sales_30_d
+            description: "{{ doc('sales_30_d') }}"
+
+      - name: keyword_history
+        description: Each record represents a keyword in Amazon Ads.
+        identifier: "{{ var('amazon_ads_keyword_history_identifier', 'keyword_history') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: "{{ doc('keyword_id') }}"
+          - name: last_updated_date
+            description: "{{ doc('last_updated_date') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: bid
+            description: "{{ doc('bid_keyword') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: creation_date
+            description: "{{ doc('creation_date') }}"            
+          - name: keyword_text
+            description: The exact text for the keyword.
+          - name: match_type
+            description: "{{ doc('keyword_match_type') }}"
+          - name: native_language_keyword
+            description: The unlocalized keyword text in the preferred locale of the advertiser.
+          - name: native_language_locale
+            description: The preferred language locale of the advertiser.
+          - name: serving_status
+            description: "{{ doc('serving_status') }}"
+          - name: state
+            description: "{{ doc('state') }}"
+
+      - name: portfolio_history
+        description: Each record represents a portfolio in Amazon Ads.
+        identifier: "{{ var('amazon_ads_portfolio_history_identifier', 'portfolio_history') }}"
+        config:
+          enabled: "{{ var('ad_reporting__amazon_ads_enabled', true) and var('amazon_ads__portfolio_history_enabled', true) }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: "{{ doc('portfolio_id') }}"
+          - name: name
+            description: "{{ doc('portfolio_name') }}"
+          - name: last_updated_date
+            description: "{{ doc('last_updated_date') }}"
+          - name: creation_date
+            description: "{{ doc('creation_date') }}"
+          - name: budget_amount
+            description: The budget amount associated with the portfolio. Cannot be null.
+          - name: budget_currency_code
+            description: The currency used for all monetary values for entities under this profile. Cannot be null.
+          - name: budget_end_date
+            description: The end date after which the budget is no longer applied. Optional if policy is set to dateRange or monthlyRecurring.
+          - name: budget_start_date
+            description: The starting date in YYYYMMDD format to which the budget is applied. Required if policy is set to dateRange. Not specified if policy is set to monthlyRecurring. Note that the starting date for monthlyRecurring is the date when the policy is set.
+          - name: budget_policy
+            description: The budget policy. Set to dateRange to specify a budget for a specific period of time. Set to monthlyRecurring to specify a budget that is automatically renewed at the beginning of each month. Cannot be null.
+          - name: in_budget
+            description: Indicates the current budget status of the portfolio. Set to true if the portfolio is in budget, set to false if the portfolio is out of budget.
+          - name: profile_id
+            description: "{{ doc('profile_id') }}"
+          - name: serving_status
+            description: "{{ doc('serving_status') }}"
+          - name: state
+            description: "{{ doc('state') }}"
+
+      - name: product_ad_history
+        description: Each record represents a product in Amazon Ads.
+        identifier: "{{ var('amazon_ads_product_ad_history_identifier', 'product_ad_history') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: "{{ doc('ad_id') }}"
+          - name: last_updated_date
+            description: "{{ doc('last_updated_date') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: asin
+            description: The Amazon Standard Identification Number (ASIN) associated with the ad.
+          - name: creation_date
+            description: "{{ doc('creation_date') }}"            
+          - name: sku
+            description: The product SKU associated with the ad. 
+          - name: serving_status
+            description: "{{ doc('serving_status') }}"
+          - name: state
+            description: "{{ doc('state') }}"
+      
+      - name: profile
+        description: Each record represents a profile. Advertisers who operate in more than one marketplace (for example, Amazon.com, Amazon.co.uk, Amazon.co.jp) will have one profile associated with each marketplace.
+        identifier: "{{ var('amazon_ads_profile_identifier', 'profile') }}"
+        columns:
+          - name: _fivetran_deleted
+            description: "{{ doc('_fivetran_deleted') }}"
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: id
+            description: ID of the profile. 
+          - name: account_id
+            description: Identifier for sellers and vendors. Note that this value is not unique and may be the same across marketplace.
+          - name: account_marketplace_string_id
+            description: The identifier of the marketplace to which the account is associated.
+          - name: account_name
+            description: Account Name. Not currently populated for sellers.
+          - name: account_sub_type
+            description: The account subtype.
+          - name: account_type
+            description: One of seller, vendor, or agency.
+          - name: account_valid_payment_method
+            description: For Vendors, this returns if the Advertiser has set up a valid payment method.
+          - name: country_code
+            description: The code for a given country.
+          - name: currency_code
+            description: The currency used for all monetary values for entities under this profile.
+          - name:  daily_budget
+            description: Daily budget for Sponsored Product campaigns for seller type accounts.
+          - name: timezone
+            description: The time zone used for all date-based campaign management and reporting.
+
+      - name: targeting_keyword_report
+        description: Targeting reports contain performance metrics broken down by both targeting expressions and keywords.
+        identifier: "{{ var('amazon_ads_targeting_keyword_report_identifier', 'targeting_keyword_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('report_date') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: ad_keyword_status
+            description: "{{ doc('ad_keyword_status') }}" 
+          - name: campaign_budget_amount
+            description: "{{ doc('campaign_budget_amount') }}" 
+          - name: campaign_budget_currency_code
+            description: "{{ doc('campaign_budget_currency_code') }}"
+          - name: campaign_budget_type
+            description: "{{ doc('campaign_budget_type') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: keyword_bid
+            description: "{{ doc('keyword_bid') }}"
+          - name: keyword_id
+            description: "{{ doc('keyword_id') }}"
+          - name: keyword_type
+            description: "{{ doc('keyword_type') }}"
+          - name: match_type
+            description: "{{ doc('match_type') }}"
+          - name: targeting
+            description: "{{ doc('targeting') }}"
+          - name: clicks
+            description: "{{ doc('clicks') }}"
+          - name: impressions
+            description: "{{ doc('impressions') }}"
+          - name: cost
+            description: "{{ doc('cost') }}"
+          - name: purchases_30_d
+            description: "{{ doc('purchases_30_d') }}" 
+          - name: sales_30_d
+            description: "{{ doc('sales_30_d') }}"
+
+      - name: search_term_ad_keyword_report
+        description: Search term reports contain search term performance metrics broken down by targeting expressions and keywords. 
+        identifier: "{{ var('amazon_ads_search_term_ad_keyword_report_identifier', 'search_term_ad_keyword_report') }}"
+        columns:
+          - name: _fivetran_synced
+            description: "{{ doc('_fivetran_synced') }}"
+          - name: date
+            description: "{{ doc('report_date') }}"
+          - name: ad_group_id
+            description: "{{ doc('ad_group_id') }}"
+          - name: campaign_id
+            description: "{{ doc('campaign_id') }}"
+          - name: keyword_id
+            description: "{{ doc('keyword_id') }}"
+          - name: clicks
+            description: "{{ doc('clicks') }}"
+          - name: impressions
+            description: "{{ doc('impressions') }}"
+          - name: cost
+            description: "{{ doc('cost') }}"
+          - name: campaign_budget_amount
+            description: "{{ doc('campaign_budget_amount') }}" 
+          - name: campaign_budget_currency_code
+            description: "{{ doc('campaign_budget_currency_code') }}"
+          - name: campaign_budget_type
+            description: "{{ doc('campaign_budget_type') }}"
+          - name: keyword_bid
+            description: "{{ doc('keyword_bid') }}"
+          - name: search_term
+            description: "{{ doc('search_term') }}"
+          - name: targeting
+            description: "{{ doc('targeting') }}"
+          - name: purchases_30_d
+            description: "{{ doc('purchases_30_d') }}" 
+          - name: sales_30_d
+            description: "{{ doc('sales_30_d') }}"

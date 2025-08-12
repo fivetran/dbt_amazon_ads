@@ -3,12 +3,6 @@ version: 2
 models:
   - name: amazon_ads__account_report
     description: Each record in this table represents the daily performance at the account level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - profile_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -39,12 +33,6 @@ models:
 
   - name: amazon_ads__ad_group_report
     description: Each record in this table represents the daily performance at the ad group level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - ad_group_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -93,12 +81,6 @@ models:
 
   - name: amazon_ads__ad_report
     description: Each record in this table represents the daily performance at the ad level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - ad_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -155,12 +137,6 @@ models:
 
   - name: amazon_ads__campaign_report
     description: Each record in this table represents the daily performance at the campaign level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - campaign_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -205,12 +181,6 @@ models:
 
   - name: amazon_ads__portfolio_report
     description: Each record in this table represents the daily performance at the portfolio level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - portfolio_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -259,12 +229,6 @@ models:
 
   - name: amazon_ads__keyword_report
     description: Each record in this table represents the daily performance at the keyword level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - keyword_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -319,13 +283,6 @@ models:
 
   - name: amazon_ads__search_report
     description: Each record in this table represents the daily performance at the search term level.
-    tests:     
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - date_day
-            - search_term
-            - keyword_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"

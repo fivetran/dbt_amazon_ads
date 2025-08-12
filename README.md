@@ -13,7 +13,7 @@
 </p>
 
 ## What does this dbt package do?
-- Produces modeled tables that leverage Amazon Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-ads#schemainformation) and builds off the output of our [Amazon Ads source package](https://github.com/fivetran/dbt_amazon_ads_source).
+- Produces modeled tables that leverage Amazon Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/amazon-ads) in the format described by [this ERD](https://fivetran.com/docs/applications/amazon-ads#schemainformation).
 - Provides insight into your ad performance across the following grains:
   - Account, portfolio, campaign, ad group, ad, keyword, and search term
 - Materializes output models designed to work simultaneously with our [multi-platform Ad Reporting package](https://github.com/fivetran/dbt_ad_reporting).
@@ -58,10 +58,10 @@ Include the following amazon_ads package version in your `packages.yml` file _if
 ```yaml
 packages:
   - package: fivetran/amazon_ads
-    version: [">=0.5.0", "<0.6.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=1.0.0", "<1.1.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
-Do NOT include the `amazon_ads_source` package in this file. The transformation package itself has a dependency on it and will install the source package as well.
+> All required sources are now bundled into this transformation package. Do not include `fivetran/amazon_ads_source` in your `packages.yml`.
 
 
 ### Step 3: Define database and schema variables
@@ -126,10 +126,10 @@ By default, this package will build the Amazon Ads staging models (11 views, 11 
 
 ```yml
 models:
-    amazon_ads_source:
-      +schema: my_new_schema_name # leave blank for just the target_schema
     amazon_ads:
-      +schema: my_new_schema_name # leave blank for just the target_schema
+      +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
+      staging:
+        +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
 #### Change the source table references
@@ -157,9 +157,6 @@ This dbt package is dependent on the following dbt packages. Be aware that these
     
 ```yml
 packages:
-    - package: fivetran/amazon_ads_source
-      version: [">=0.5.0", "<0.6.0"]
-
     - package: fivetran/fivetran_utils
       version: [">=0.4.0", "<0.5.0"]
 

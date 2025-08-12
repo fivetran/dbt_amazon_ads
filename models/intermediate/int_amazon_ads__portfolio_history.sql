@@ -7,12 +7,12 @@ with portfolios as (
     select
     {% if var('amazon_ads__portfolio_history_enabled', True) %}
         *
-        from {{ var('portfolio_history') }}
+        from {{ ref('stg_amazon_ads__portfolio_history') }}
         where is_most_recent_record = True
     {% else %}
         cast(null as {{ dbt.type_string() }}) as source_relation,
         {# uses the columns macro from the source package to populate column names #}
-        {%- set columns = amazon_ads_source.get_portfolio_history_columns() -%}
+        {%- set columns = amazon_ads.get_portfolio_history_columns() -%}
         {% for column in columns %}
             {# set null for each column #}
             {%- if column['name'] == 'id' -%}

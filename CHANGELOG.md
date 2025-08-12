@@ -1,3 +1,24 @@
+# dbt_amazon_ads v1.0.0
+[PR #26](https://github.com/fivetran/dbt_amazon_ads/pull/26) includes the following updates:
+
+## Breaking Changes
+> A `--full-refresh` is required after upgrading to this release.
+
+### Source Package Consolidation
+- Consolidated `dbt_amazon_ads_source` into this package.
+- All functionality from the source package has been merged into this transformation package. Be sure to:
+  - Remove `fivetran/amazon_ads_source` from `packages.yml`
+  - Delete any `source:` overrides that reference the source package
+
+### dbt Fusion Compatibility Updates
+- For compatibility with dbt Fusion versions >= 1.10.6:
+    - Removed `dbt_utils.unique_combination_of_columns` tests
+    - Removed `accepted_values` tests
+    - In src_amazon_ads.yml, moved `loaded_at_field: _fivetran_synced` under the `config:` block.
+
+### Schema Configuration Updates
+- Some customizations have changed, refer to the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md) for details.
+
 # dbt_amazon_ads v0.5.0
 
 [PR #23](https://github.com/fivetran/dbt_amazon_ads/pull/23) includes the following updates:

@@ -1,0 +1,376 @@
+version: 2
+
+models:
+  - name: stg_amazon_ads__ad_group_history
+    description: Each record represents an ad group in Amazon Ads.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+        tests:
+          - not_null
+      - name: ad_group_name
+        description: "{{ doc('ad_group_name') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: creation_date
+        description: "{{ doc('creation_date') }}"
+      - name: default_bid
+        description: "{{ doc('default_bid') }}"
+      - name: last_updated_date
+        description: "{{ doc('last_updated_date') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: is_most_recent_record
+        description: "{{ doc('is_most_recent_record') }}"
+
+  - name: stg_amazon_ads__ad_group_level_report
+    description: Each record in this table represents the daily performance by Amazon ad group.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('report_date') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+        tests:
+          - not_null
+      - name: campaign_bidding_strategy
+        description: "{{ doc('campaign_bidding_strategy') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+      - name: purchases_30_d
+        description: "{{ doc('purchases_30_d') }}" 
+      - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}"
+
+  - name: stg_amazon_ads__advertised_product_report
+    description: Advertised product reports contain performance data for products that are advertised as part of your campaigns.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('report_date') }}"
+      - name: ad_id
+        description: "{{ doc('ad_group_id') }}"
+        tests:
+          - not_null
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: advertised_asin
+        description: "{{ doc('advertised_asin') }}"
+      - name: advertised_sku
+        description: "{{ doc('advertised_sku') }}" 
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}" 
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+      - name: purchases_30_d
+        description: "{{ doc('purchases_30_d') }}" 
+      - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}"
+
+  - name: stg_amazon_ads__campaign_history
+    description: Each record represents a campaign in Amazon Ads.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "{{ doc('campaign_name') }}"
+      - name: creation_date
+        description: "{{ doc('creation_date') }}"
+      - name: last_updated_date
+        description: "{{ doc('last_updated_date') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+      - name: bidding_strategy
+        description: The bidding strategy associated with a campaign (legacyForSales, autoForSales, or manual.)
+      - name: budget
+        description: The budget for the campaign.
+      - name: budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: effective_budget
+        description: Adjusted budget for the campaign that has been impacted by a budget rule.
+      - name: end_date
+        description: The end date of the campaign.
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: start_date
+        description: The start date of the campaign.
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: targeting_type
+        description: The type of targeting used for the campaign, either manual or auto.
+      - name: is_most_recent_record
+        description: "{{ doc('is_most_recent_record') }}"
+
+  - name: stg_amazon_ads__campaign_level_report
+    description: Campaign reports contain performance data broken down at the campaign level. 
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('report_date') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+        tests:
+          - not_null
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+      - name: campaign_applicable_budget_rule_id
+        description: "{{ doc('campaign_applicable_budget_rule_id') }}" 
+      - name: campaign_applicable_budget_rule_name
+        description: "{{ doc('campaign_applicable_budget_rule_name') }}"
+      - name: campaign_bidding_strategy
+        description: "{{ doc('campaign_bidding_strategy') }}"
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}" 
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: campaign_rule_based_budget_amount
+        description: "{{ doc('campaign_rule_based_budget_amount') }}"
+      - name: purchases_30_d
+        description: "{{ doc('purchases_30_d') }}" 
+      - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}"
+
+  - name: stg_amazon_ads__keyword_history
+    description: Each record represents a keyword in Amazon Ads.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: keyword_id
+        description: "{{ doc('keyword_id') }}"
+        tests:
+          - not_null
+      - name: last_updated_date
+        description: "{{ doc('last_updated_date') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: bid
+        description: "{{ doc('bid_keyword') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: creation_date
+        description: "{{ doc('creation_date') }}"            
+      - name: keyword_text
+        description: The exact text for the keyword.
+      - name: match_type
+        description: "{{ doc('keyword_match_type') }}"
+      - name: native_language_keyword
+        description: The unlocalized keyword text in the preferred locale of the advertiser.
+      - name: native_language_locale
+        description: The preferred language locale of the advertiser.
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: is_most_recent_record
+        description: "{{ doc('is_most_recent_record') }}"
+
+  - name: stg_amazon_ads__portfolio_history
+    description: Each record represents a portfolio in Amazon Ads.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: portfolio_id
+        description: "{{ doc('portfolio_id') }}"
+        tests:
+          - not_null
+      - name: portfolio_name
+        description: "{{ doc('portfolio_name') }}"
+      - name: last_updated_date
+        description: "{{ doc('last_updated_date') }}"
+      - name: creation_date
+        description: "{{ doc('creation_date') }}"
+      - name: budget_amount
+        description: The budget amount associated with the portfolio. Cannot be null.
+      - name: budget_currency_code
+        description: The currency used for all monetary values for entities under this profile. Cannot be null.
+      - name: budget_end_date
+        description: The end date after which the budget is no longer applied. Optional if policy is set to dateRange or monthlyRecurring.
+      - name: budget_start_date
+        description: The starting date in YYYYMMDD format to which the budget is applied. Required if policy is set to dateRange. Not specified if policy is set to monthlyRecurring. Note that the starting date for monthlyRecurring is the date when the policy is set.
+      - name: budget_policy
+        description: The budget policy. Set to dateRange to specify a budget for a specific period of time. Set to monthlyRecurring to specify a budget that is automatically renewed at the beginning of each month. Cannot be null.
+      - name: in_budget
+        description: Indicates the current budget status of the portfolio. Set to true if the portfolio is in budget, set to false if the portfolio is out of budget.
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: is_most_recent_record
+        description: "{{ doc('is_most_recent_record') }}"
+
+  - name: stg_amazon_ads__product_ad_history
+    description: Each record represents a product in Amazon Ads.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: ad_id
+        description: "{{ doc('ad_id') }}"
+        tests:
+          - not_null
+      - name: last_updated_date
+        description: "{{ doc('last_updated_date') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: asin
+        description: The ASIN associated with the ad.
+      - name: creation_date
+        description: "{{ doc('creation_date') }}"            
+      - name: sku
+        description: The product SKU associated with the ad. 
+      - name: serving_status
+        description: "{{ doc('serving_status') }}"
+      - name: state
+        description: "{{ doc('state') }}"
+      - name: is_most_recent_record
+        description: "{{ doc('is_most_recent_record') }}"
+
+  - name: stg_amazon_ads__profile
+    description: Each record represents a profile. Advertisers who operate in more than one marketplace (for example, Amazon.com, Amazon.co.uk, Amazon.co.jp) will have one profile associated with each marketplace.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: _fivetran_deleted
+        description: "{{ doc('_fivetran_deleted') }}"
+      - name: profile_id
+        description: "{{ doc('profile_id') }}"
+        tests: 
+          - not_null
+      - name: account_id
+        description: "{{ doc('account_id') }}"
+      - name: account_marketplace_string_id
+        description: The identifier of the marketplace to which the account is associated.
+      - name: account_name
+        description: "{{ doc('account_name') }}"
+      - name: account_sub_type
+        description: The account subtype.
+      - name: account_type
+        description: One of seller, vendor, or agency.
+      - name: account_valid_payment_method
+        description: For Vendors, this returns if the Advertiser has set up a valid payment method.
+      - name: country_code
+        description: "{{ doc('country_code') }}"
+      - name: currency_code
+        description: "{{ doc('currency_code') }}"
+      - name:  daily_budget
+        description: Daily budget for Sponsored Product campaigns for seller type accounts.
+      - name: timezone
+        description: The time zone used for all date-based campaign management and reporting.
+
+  - name: stg_amazon_ads__targeting_keyword_report
+    description: Targeting reports contain performance metrics broken down by both targeting expressions and keywords.
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('report_date') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: ad_keyword_status
+        description: "{{ doc('ad_keyword_status') }}" 
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}" 
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: keyword_bid
+        description: "{{ doc('keyword_bid') }}"
+      - name: keyword_id
+        description: "{{ doc('keyword_id') }}"
+        tests:
+          - not_null
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+      - name: keyword_type
+        description: "{{ doc('keyword_type') }}"
+      - name: match_type
+        description: "{{ doc('match_type') }}"
+      - name: targeting
+        description: "{{ doc('targeting') }}"
+      - name: purchases_30_d
+        description: "{{ doc('purchases_30_d') }}" 
+      - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}"
+
+  - name: stg_amazon_ads__search_term_ad_keyword_report
+    description: Search term reports contain search term performance metrics broken down by targeting expressions and keywords. 
+    columns:
+      - name: source_relation
+        description: "{{ doc('source_relation') }}"
+      - name: date_day
+        description: "{{ doc('report_date') }}"
+      - name: ad_group_id
+        description: "{{ doc('ad_group_id') }}"
+      - name: ad_keyword_status
+        description: "{{ doc('ad_keyword_status') }}" 
+      - name: campaign_budget_amount
+        description: "{{ doc('campaign_budget_amount') }}" 
+      - name: campaign_budget_currency_code
+        description: "{{ doc('campaign_budget_currency_code') }}"
+      - name: campaign_budget_type
+        description: "{{ doc('campaign_budget_type') }}"
+      - name: campaign_id
+        description: "{{ doc('campaign_id') }}"
+      - name: keyword_bid
+        description: "{{ doc('keyword_bid') }}"
+      - name: keyword_id
+        description: "{{ doc('keyword_id') }}"
+      - name: clicks
+        description: "{{ doc('clicks') }}"
+      - name: impressions
+        description: "{{ doc('impressions') }}"
+      - name: cost
+        description: "{{ doc('cost') }}"
+      - name: search_term
+        description: "{{ doc('search_term') }}"
+        tests:
+          - not_null
+      - name: targeting
+        description: "{{ doc('targeting') }}"
+      - name: purchases_30_d
+        description: "{{ doc('purchases_30_d') }}" 
+      - name: sales_30_d
+        description: "{{ doc('sales_30_d') }}"
