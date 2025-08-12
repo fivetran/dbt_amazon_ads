@@ -2,12 +2,12 @@
 
 with report as (
     select *
-    from {{ var('search_term_ad_keyword_report') }}
+    from {{ ref('stg_amazon_ads__search_term_ad_keyword_report') }}
 ), 
 
 account_info as (
     select *
-    from {{ var('profile') }}
+    from {{ ref('stg_amazon_ads__profile') }}
     where _fivetran_deleted = False
 ),
 
@@ -18,19 +18,19 @@ portfolios as (
 
 campaigns as (
     select *
-    from {{ var('campaign_history') }}
+    from {{ ref('stg_amazon_ads__campaign_history') }}
     where is_most_recent_record = True
 ),
 
 ad_groups as (
     select *
-    from {{ var('ad_group_history') }}
+    from {{ ref('stg_amazon_ads__ad_group_history') }}
     where is_most_recent_record = True
 ), 
 
 keywords as (
     select *
-    from {{ var('keyword_history') }}
+    from {{ ref('stg_amazon_ads__keyword_history') }}
     where is_most_recent_record = True
 ), 
 
