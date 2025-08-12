@@ -6,7 +6,7 @@ version: '1.0.0'
 profile: 'integration_tests' 
 
 vars:
-  amazon_ads_source:
+  amazon_ads:
     amazon_ads_schema: amazon_ads_integration_tests_03
     amazon_ads_ad_group_history_identifier: "ad_group_history_data"
     amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
