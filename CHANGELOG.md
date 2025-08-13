@@ -20,6 +20,18 @@
   - Removed all accepted_values tests.
   - Moved `loaded_at_field: _fivetran_synced` under the `config:` block in `src_amazon_ads.yml`.
 
+### Under the Hood
+
+- Updated conditions in `.github/workflows/auto-release.yml`.
+- Added `.github/workflows/generate-docs.yml`.
+- Added `+docs: show: False` to `integration_tests/dbt_project.yml`.
+- Migrated `flags` (e.g., `send_anonymous_usage_stats`, `use_colors`) from `sample.profiles.yml` to `integration_tests/dbt_project.yml`.
+- Updated `maintainer_pull_request_template.md` with improved checklist.
+- Refreshed README tag block by standardizing Quickstart-compatible badge set.
+- Updated Python image version to `3.10.13` in `pipeline.yml`.
+- Added `CI_DATABRICKS_DBT_CATALOG` to`pipeline.yml` (under the `environment` block, after `CI_DATABRICKS_DBT_TOKEN`).
+- Updated `.gitignore` to exclude additional DBT, Python, and system artifacts.
+
 # dbt_amazon_ads v0.5.0
 
 [PR #23](https://github.com/fivetran/dbt_amazon_ads/pull/23) includes the following updates:
