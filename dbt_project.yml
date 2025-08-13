@@ -10,7 +10,10 @@ models:
       +materialized: view
     staging:
       +schema: amazon_ads_source
-      +materialized: view
+      +materialized: table
+      tmp:
+        +materialized: view
+
 vars:
   amazon_ads:    
     ad_group_history: "{{ source('amazon_ads', 'ad_group_history') }}"
