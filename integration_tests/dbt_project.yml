@@ -1,12 +1,12 @@
 config-version: 2
 
 name: 'amazon_ads_integration_tests'
-version: '0.5.0'
+version: '1.0.0'
 
 profile: 'integration_tests' 
 
 vars:
-  amazon_ads_source:
+  amazon_ads:
     amazon_ads_schema: amazon_ads_integration_tests_03
     amazon_ads_ad_group_history_identifier: "ad_group_history_data"
     amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
@@ -34,6 +34,8 @@ dispatch:
     search_order: ['spark_utils', 'dbt_utils']
 
 seeds:
+  +docs:
+    show: False
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"
   amazon_ads_integration_tests:
     +column_types:
@@ -44,3 +46,6 @@ seeds:
       clicks: "float"
       impressions: "float"
       cost: "float"
+flags:
+  send_anonymous_usage_stats: False
+  use_colors: True

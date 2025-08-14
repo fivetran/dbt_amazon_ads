@@ -3,18 +3,18 @@
 with report as (
     select *
     --use campaign report since account report not provided
-    from {{ var('campaign_level_report') }}
+    from {{ ref('stg_amazon_ads__campaign_level_report') }}
 ), 
 
 account_info as (
     select *
-    from {{ var('profile') }}
+    from {{ ref('stg_amazon_ads__profile') }}
     where _fivetran_deleted = False
 ),
 
 campaigns as (
     select *
-    from {{ var('campaign_history') }}
+    from {{ ref('stg_amazon_ads__campaign_history') }}
     where is_most_recent_record = True
 ),
 
