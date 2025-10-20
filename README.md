@@ -26,15 +26,15 @@
 The following table lists all tables that are materialized within this package by default.
 > TIP: See more details about these tables in the package's [dbt docs site](https://fivetran.github.io/dbt_amazon_ads/#!/overview?g_v=1&g_e=seeds).
 
-| **Table**                | **Description**                                                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report) | Each record in this table represents the daily performance at the account level. |
-| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report) | Each record in this table represents the daily performance at the portfolio level. |
-| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report) | Each record in this table represents the daily performance at the campaign level. |
-| [amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report) | Each record in this table represents the daily performance at the ad group level. |
-| [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report) | Each record in this table represents the daily performance at the search term level. |
-| [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report) | Each record in this table represents the daily performance at the keyword level. |
-| [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report) | Each record in this table represents the daily performance at the ad level.
+| **Table** | **Details** |
+| --------- | ----------- |
+| [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report) | Each record in this table represents the daily performance at the account level.<br><br>**Example Analytics Questions:**<ul><li>What is my overall Amazon advertising spend and ROAS across all accounts?</li><li>How has my total advertising performance changed over time?</li><li>Which accounts are driving the highest conversion rates?</li></ul> |
+| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report) | Each record in this table represents the daily performance at the portfolio level.<br><br>**Example Analytics Questions:**<ul><li>Which portfolios are delivering the best return on ad spend?</li><li>How do different portfolio strategies compare in terms of performance?</li><li>What are the spending trends across my portfolio segments?</li></ul> |
+| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report) | Each record in this table represents the daily performance at the campaign level.<br><br>**Example Analytics Questions:**<ul><li>Which campaigns are driving the most conversions and revenue?</li><li>How do different campaign types compare in performance metrics?</li><li>What is the optimal budget allocation across my campaigns?</li></ul> |
+| [amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report) | Each record in this table represents the daily performance at the ad group level.<br><br>**Example Analytics Questions:**<ul><li>Which ad groups have the highest click-through rates?</li><li>How do ad group targeting strategies impact conversion performance?</li><li>Where should I adjust bids to improve ad group efficiency?</li></ul> |
+| [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report) | Each record in this table represents the daily performance at the search term level.<br><br>**Example Analytics Questions:**<ul><li>What search terms are driving the most valuable traffic?</li><li>Which customer search behaviors convert best?</li><li>How can I optimize my keyword strategy based on actual search performance?</li></ul> |
+| [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report) | Each record in this table represents the daily performance at the keyword level.<br><br>**Example Analytics Questions:**<ul><li>Which keywords are delivering the best cost per conversion?</li><li>How do broad, phrase, and exact match keywords compare in performance?</li><li>What keyword bidding adjustments will improve my ROAS?</li></ul> |
+| [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report) | Each record in this table represents the daily performance at the ad level.<br><br>**Example Analytics Questions:**<ul><li>Which ad creatives generate the highest engagement rates?</li><li>How do different ad formats perform across my campaigns?</li><li>What ad messaging resonates best with my target audience?</li></ul> |
 
 Many of the above reports are now configurable for [visualization via Streamlit](https://github.com/fivetran/streamlit_ad_reporting). Check out some [sample reports here](https://fivetran-ad-reporting.streamlit.app/ad_performance).
 
@@ -43,7 +43,7 @@ Curious what these tables can do? The Amazon Ads models provide advertising perf
 
 <p align="center">
   <a href="https://fivetran-ad-reporting.streamlit.app/ad_performance">
-    <img src="https://raw.githubusercontent.com/fivetran/dbt_amazon_ads/main/images/streamlit_example.png" alt="Fivetran Ad Reporting Streamlit App" width="60%">
+    <img src="./images/streamlit_example.png" alt="Fivetran Ad Reporting Streamlit App" width="70%">
   </a>
 </p>
 
