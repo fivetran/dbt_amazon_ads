@@ -28,13 +28,24 @@ The following table lists all tables that are materialized within this package b
 
 | **Table**                | **Description**                                                                                                                                |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report)             | Each record in this table represents the daily performance at the account level. |
-| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report)            | Each record in this table represents the daily performance at the portfolio level. |
-| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report)            | Each record in this table represents the daily performance at the campaign level. |
-| [amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report)            | Each record in this table represents the daily performance at the ad group level. |
-| [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report)            | Each record in this table represents the daily performance at the search term level. |
-| [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)            | Each record in this table represents the daily performance at the keyword level. |
-| [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)            | Each record in this table represents the daily performance at the ad level.
+| [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report) | Each record in this table represents the daily performance at the account level. |
+| [amazon_ads__portfolio_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__portfolio_report) | Each record in this table represents the daily performance at the portfolio level. |
+| [amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report) | Each record in this table represents the daily performance at the campaign level. |
+| [amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report) | Each record in this table represents the daily performance at the ad group level. |
+| [amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report) | Each record in this table represents the daily performance at the search term level. |
+| [amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report) | Each record in this table represents the daily performance at the keyword level. |
+| [amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report) | Each record in this table represents the daily performance at the ad level.
+
+Many of the above reports are now configurable for [visualization via Streamlit](https://github.com/fivetran/streamlit_ad_reporting). Check out some [sample reports here](https://fivetran-ad-reporting.streamlit.app/ad_performance).
+
+### Example Visualizations
+Curious what these tables can do? The Amazon Ads models provide advertising performance data that can be visualized to track key metrics like spend, impressions, click-through rates, and conversion rates, and return on ad spend across different campaign structures and time periods. Check out example visualizations in the [Fivetran Ad Reporting Streamlit App](https://fivetran-ad-reporting.streamlit.app/ad_performance), and see how you can use these tables in your own reporting. Below is a screenshot of an example dashboard—-explore the app for more.
+
+<p align="center">
+  <a href="https://fivetran-ad-reporting.streamlit.app/ad_performance">
+    <img src="https://raw.githubusercontent.com/fivetran/dbt_amazon_ads/main/images/streamlit_example.png" alt="Fivetran Ad Reporting Streamlit App" width="60%">
+  </a>
+</p>
 
 ### Materialized Models
 Each Quickstart transformation job run materializes 30 models if all components of this data model are enabled. This count includes all staging, intermediate, and final models materialized as `view`, `table`, or `incremental`.
