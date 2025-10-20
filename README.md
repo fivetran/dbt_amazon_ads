@@ -43,7 +43,7 @@ Curious what these tables can do? The Amazon Ads models provide advertising perf
 
 <p align="center">
   <a href="https://fivetran-ad-reporting.streamlit.app/ad_performance">
-    <img src="./images/streamlit_example.png" alt="Fivetran Ad Reporting Streamlit App" width="85%">
+    <img src="./images/streamlit_example.png" alt="Fivetran Ad Reporting Streamlit App" width="100%">
   </a>
 </p>
 
