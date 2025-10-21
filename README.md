@@ -39,7 +39,7 @@ The following table lists all tables that are materialized within this package b
 Many of the above reports are now configurable for [visualization via Streamlit](https://github.com/fivetran/streamlit_ad_reporting). Check out some [sample reports here](https://fivetran-ad-reporting.streamlit.app/ad_performance).
 
 ### Example Visualizations
-Curious what these tables can do? The Amazon Ads models provide advertising performance data that can be visualized to track key metrics like spend, impressions, click-through rates, and conversion rates, and return on ad spend across different campaign structures and time periods. Check out example visualizations in the [Fivetran Ad Reporting Streamlit App](https://fivetran-ad-reporting.streamlit.app/ad_performance), and see how you can use these tables in your own reporting. Below is a screenshot of an example dashboard—-explore the app for more.
+Curious what these tables can do? The Amazon Ads models provide advertising performance data that can be visualized to track key metrics like spend, impressions, click-through rates, conversion rates, and return on ad spend across different campaign structures and time periods. Check out example visualizations in the [Fivetran Ad Reporting Streamlit App](https://fivetran-ad-reporting.streamlit.app/ad_performance), and see how you can use these tables in your own reporting. Below is a screenshot of an example dashboard; explore the app for more.
 
 <p align="center">
   <a href="https://fivetran-ad-reporting.streamlit.app/ad_performance">
