@@ -1,7 +1,7 @@
 database_key: amazon_ads_database
 schema_key: amazon_ads_schema
 
-dbt_versions: ">=1.3.0 <2.0.0"
+dbt_versions: ">=1.3.0 <3.0.0"
 
 table_variables:
   amazon_ads__portfolio_history_enabled:

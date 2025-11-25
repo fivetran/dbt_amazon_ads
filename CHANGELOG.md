@@ -1,3 +1,10 @@
+# dbt_amazon_ads v1.1.0
+
+[PR #31](https://github.com/fivetran/dbt_amazon_ads/pull/31) includes the following updates:
+
+## Features
+  - Increases the required dbt version upper limit to v3.0.0
+
 # dbt_amazon_ads v1.0.0
 
 [PR #28](https://github.com/fivetran/dbt_amazon_ads/pull/28) includes the following updates:
