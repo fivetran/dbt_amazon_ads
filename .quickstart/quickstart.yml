@@ -7,6 +7,9 @@ table_variables:
   amazon_ads__portfolio_history_enabled:
     - portfolio_history
 
+  _fivetran_quickstart_product_ad_history:
+    - product_ad_history
+
 destination_configurations:
   databricks:
     dispatch:
@@ -22,3 +25,30 @@ public_models: [
   "amazon_ads__account_report",
   "amazon_ads__ad_report"
 ]
+
+supported_vars:
+  amazon_ads__advertised_product_passthrough_metrics:
+    type: dictionary
+    description: "Additional `ADVERTISED_PRODUCT_REPORT` columns to include in `amazon_ads__ad_report`"
+    display_name: "Additional Ad Report Metrics"
+
+  amazon_ads__campaign_passthrough_metrics:
+    type: dictionary
+    description: "Additional `CAMPAIGN_REPORT` columns to include in `amazon_ads__campaign_report`, `amazon_ads__account_report`, and `amazon_ads__portfolio_report`"
+    display_name: "Additional Campaign Report Metrics"
+
+  amazon_ads__ad_group_passthrough_metrics:
+    type: dictionary
+    description: "Additional `AD_GROUP_LEVEL_REPORT` columns to include in `amazon_ads__ad_group_report`"
+    display_name: "Additional Ad Group Report Metrics"
+
+  amazon_ads__targeting_keyword_passthrough_metrics:
+    type: dictionary
+    description: "Additional `TARGETING_KEYWORD_REPORT` columns to include in `amazon_ads__keyword_report`"
+    display_name: "Additional Keyword Report Metrics"
+
+  amazon_ads__search_term_ad_keyword_passthrough_metrics:
+    type: dictionary
+    description: "Additional `SEARCH_TERM_AD_KEYWORD_REPORT` columns to include in `amazon_ads__search_report`"
+    display_name: "Additional Search Term Report Metrics"
+
