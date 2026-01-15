@@ -1,4 +1,10 @@
 steps:
+  - label: ":no_entry: Build skipped via skip_bk"
+    if: build.message =~ /\bskip_bk\b/i
+    command: |
+      echo "Build intentionally skipped due to skip_bk in commit message"
+      exit 1
+
   - label: ":postgres: Run Tests - Postgres"
     key: "run-dbt-postgres"
     if: build.message !~ /\bskip_bk\b/i
