@@ -1,6 +1,7 @@
 steps:
   - label: ":postgres: Run Tests - Postgres"
     key: "run-dbt-postgres"
+    if: build.message !~ /\bskip_bk\b/i
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
@@ -16,6 +17,7 @@ steps:
 
   - label: ":snowflake-db: Run Tests - Snowflake"
     key: "run_dbt_snowflake"
+    if: build.message !~ /\bskip_bk\b/i
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
@@ -33,6 +35,7 @@ steps:
 
   - label: ":gcloud: Run Tests - BigQuery"
     key: "run_dbt_bigquery"
+    if: build.message !~ /\bskip_bk\b/i
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
@@ -45,6 +48,7 @@ steps:
 
   - label: ":amazon-redshift: Run Tests - Redshift"
     key: "run_dbt_redshift"
+    if: build.message !~ /\bskip_bk\b/i
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
@@ -60,6 +64,7 @@ steps:
 
   - label: ":databricks: Run Tests - Databricks"
     key: "run_dbt_databricks"
+    if: build.message !~ /\bskip_bk\b/i
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
