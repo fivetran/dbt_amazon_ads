@@ -27,6 +27,9 @@ vars:
       - name: purchases_14_d
 
 models:
+  +persist_docs:
+    relation: true
+    columns: true
   +schema: "amazon_ads_{{ var('directed_schema','dev') }}"
 
 dispatch:
