@@ -29,7 +29,7 @@ vars:
 models:
   +persist_docs:
     relation: true
-    columns: true
+    columns: "{{ false if target.type in ('databricks') else true }}"
   +schema: "amazon_ads_{{ var('directed_schema','dev') }}"
 
 dispatch:
