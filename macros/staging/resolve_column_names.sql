@@ -4,11 +4,12 @@
 
 {% macro default__resolve_column_names(_fivetran_table_name, _fivetran_columns) %}
 
+{% set package_name = 'amazon_ads' %}
 {% set resolved_column_names = _fivetran_columns %}
 
-{% if var('amazon_ads_using_custom_names', false) %}
+{% if var(package_name ~ '_using_custom_names', false) %}
     {% set resolved_column_names = [] %}
-    {% set custom_column_names = var('amazon_ads_custom_column_names', {}) %}
+    {% set custom_column_names = var(package_name ~ '_custom_column_names', {}) %}
 
     {% for column in _fivetran_columns %}
         {% set column_name = column.name %}
