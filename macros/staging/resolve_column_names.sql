@@ -1,11 +1,8 @@
-{% macro resolve_column_names(_fivetran_table_name, _fivetran_columns) %}
-    {{ return(adapter.dispatch('resolve_column_names', 'amazon_ads')(_fivetran_table_name, _fivetran_columns)) }}
+{% macro resolve_column_names(_fivetran_table_name, _fivetran_columns, package_name='amazon_ads') %}
+    {{ return(adapter.dispatch('resolve_column_names', 'amazon_ads')(_fivetran_table_name, _fivetran_columns, package_name)) }}
 {% endmacro %}
 
-{% macro default__resolve_column_names(_fivetran_table_name, _fivetran_columns) %}
-
-{% set package_name = 'amazon_ads' %}
-{% set resolved_column_names = _fivetran_columns %}
+{% macro default__resolve_column_names(_fivetran_table_name, _fivetran_columns, package_name) %}
 
 {% if var(package_name ~ '_using_custom_names', false) %}
     {% set resolved_column_names = [] %}
