@@ -1,1 +1,14 @@
-dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"
+#!/bin/bash
+
+# Pre-exit hook - runs when Buildkite job is about to exit (success, failure, or cancellation)
+
+set -euo pipefail
+
+echo "Running schema cleanup..."
+
+# Drop test schemas to avoid leaving behind temporary databases
+if [ -n "${db:-}" ]; then
+    dbt run-operation fivetran_utils.drop_schemas_automation --target "$db" || echo "Schema cleanup failed, continuing..."
+fi
+
+echo "Schema cleanup completed"
