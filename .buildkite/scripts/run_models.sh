@@ -21,3 +21,5 @@ dbt run --target "$db" --full-refresh
 dbt test --target "$db"
 dbt run --vars '{amazon_ads__portfolio_history_enabled: false}' --target "$db" --full-refresh
 dbt test --vars '{amazon_ads__portfolio_history_enabled: false}' --target "$db"
+
+dbt run-operation fivetran_utils.drop_schemas_automation --target "$db"
