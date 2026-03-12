@@ -1,6 +1,6 @@
 {% macro get_ad_group_history_columns() %}
 
-{% set columns = [
+{% set _fivetran_columns = [
     {"name": "campaign_id", "datatype": dbt.type_int()},
     {"name": "creation_date", "datatype": dbt.type_timestamp()},
     {"name": "default_bid", "datatype": dbt.type_float()},
@@ -10,6 +10,8 @@
     {"name": "serving_status", "datatype": dbt.type_string()},
     {"name": "state", "datatype": dbt.type_string()}
 ] %}
+
+{% set columns = amazon_ads.resolve_column_names('ad_group_history', _fivetran_columns) %}
 
 {{ return(columns) }}
 

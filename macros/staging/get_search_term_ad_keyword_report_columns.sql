@@ -1,6 +1,6 @@
 {% macro get_search_term_ad_keyword_report_columns() %}
 
-{% set columns = [
+{% set _fivetran_columns = [
     {"name": "ad_group_id", "datatype": dbt.type_int()},
     {"name": "ad_keyword_status", "datatype": dbt.type_string()},
     {"name": "campaign_budget_amount", "datatype": dbt.type_float()},
@@ -18,6 +18,8 @@
     {"name": "purchases_30_d", "datatype": dbt.type_int()},
     {"name": "sales_30_d", "datatype": dbt.type_float()}
 ] %}
+
+{% set columns = amazon_ads.resolve_column_names('search_term_ad_keyword_report', _fivetran_columns) %}
 
 {# Add backwards compatibility if conversion metrics were added via passthrough columns prior to them being brought in by default #}
 {{ amazon_ads_add_pass_through_columns(base_columns=columns, pass_through_fields=var('amazon_ads__search_term_ad_keyword_passthrough_metrics'), except_fields=['purchases_30_d', 'sales_30_d']) }}
