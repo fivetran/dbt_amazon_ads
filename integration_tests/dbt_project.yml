@@ -21,7 +21,7 @@ vars:
     amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
   amazon_ads_using_custom_names: true
   amazon_ads_custom_column_names:
-    amazon_ads_custom_column_names:
+    ad_group_history:
       creation_date: creationDate
       default_bid: defaultBid
     ad_group_level_report:

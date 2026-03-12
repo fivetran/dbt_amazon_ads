@@ -6,9 +6,9 @@
 
 {% set resolved_column_names = _fivetran_columns %}
 
-{% if var('using_custom_names', false) %}
+{% if var('amazon_ads_using_custom_names', false) %}
     {% set resolved_column_names = [] %}
-    {% set custom_column_names = var('custom_column_names', {}) %}
+    {% set custom_column_names = var('amazon_ads_custom_column_names', {}) %}
 
     {% for column in _fivetran_columns %}
         {% set column_name = column.name %}
