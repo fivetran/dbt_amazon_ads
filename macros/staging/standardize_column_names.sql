@@ -34,7 +34,6 @@
 {# Step 2: Get custom name mappings for this table if custom names are enabled #}
 {%- set custom_mappings = amazon_ads.resolve_column_names(table_name, base_columns, package_name) if var(package_name ~ '_using_custom_names', false) else {} %}
 
-select
 {# Step 3: Process each expected column to generate standardized select statements #}
 {%- for column in base_columns %}
     {%- set standard_name = column.name %}
@@ -64,6 +63,5 @@ select
     as {{ standard_name }}{{ ',' if not loop.last }}
 
 {% endfor %}
-from {{ tmp_relation }}
 
 {% endmacro %}
