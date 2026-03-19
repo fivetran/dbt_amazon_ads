@@ -38,6 +38,7 @@
 {%- for column in base_columns %}
     {%- set standard_name = column.name %}
     {%- set column_datatype = column.datatype %}
+    {%- set column_alias = column.alias if column.alias else standard_name %}
 
     {%- if standard_name in custom_mappings -%}
         {# Step 3a: Column has custom mappings - check which variants actually exist #}
@@ -60,7 +61,7 @@
     cast(null as {{ column_datatype }})
         {%- endif %}
     {% endif %}
-    as {{ standard_name }}{{ ',' if not loop.last }}
+    as {{ column_alias }}{{ ',' if not loop.last }}
 
 {% endfor %}
 
