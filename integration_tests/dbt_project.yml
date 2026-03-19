@@ -7,26 +7,33 @@ profile: 'integration_tests'
 
 vars:
   amazon_ads:
-    amazon_ads_schema: amazon_ads_integration_tests_03
-    amazon_ads_ad_group_history_identifier: "ad_group_history_data"
-    amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
-    amazon_ads_advertised_product_report_identifier: "advertised_product_report_data"
-    amazon_ads_campaign_history_identifier: "campaign_history_data"
-    amazon_ads_campaign_level_report_identifier: "campaign_level_report_data"
-    amazon_ads_portfolio_history_identifier: "portfolio_history_data"
-    amazon_ads_product_ad_history_identifier: "product_ad_history_data"
-    amazon_ads_profile_identifier: "profile_data"
-    amazon_ads_keyword_history_identifier: "keyword_history_data"
-    amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
-    amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
+    amazon_ads_union_schemas: ['zz_dbt_catherine_3', 'zz_dbt_catherine_4']
+    # amazon_ads_sources:
+    #   - database: postgres
+    #     schema: zz_dbt_catherine_3 # Required
+    #   - database: postgres
+    #     schema: zz_dbt_catherine_4
+    # amazon_ads_ad_group_history_identifier: "ad_group_history_data"
+    # amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
+    # amazon_ads_advertised_product_report_identifier: "advertised_product_report_data"
+    # amazon_ads_campaign_history_identifier: "campaign_history_data"
+    # amazon_ads_campaign_level_report_identifier: "campaign_level_report_data"
+    # amazon_ads_portfolio_history_identifier: "portfolio_history_data"
+    # amazon_ads_product_ad_history_identifier: "product_ad_history_data"
+    # amazon_ads_profile_identifier: "profile_data"
+    # amazon_ads_keyword_history_identifier: "keyword_history_data"
+    # amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
+    # amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
   amazon_ads_using_custom_names: true
 
   amazon_ads_custom_column_names:
-    ad_group_history:
-      creation_date: creationDate
-      default_bid: defaultBid
-    ad_group_level_report:
-      campaign_bidding_strategy: campaignBiddingStrategy
+    zz_dbt_catherine_3:
+      ad_group_history:
+        creation_date: creationDate
+        default_bid: defaultBid
+    zz_dbt_catherine_4:
+      ad_group_level_report:
+        campaign_bidding_strategy: campaignBiddingStrategy
 
   amazon_ads__campaign_passthrough_metrics:
       - name: sales_7_d

@@ -1,6 +1,6 @@
 {% macro get_campaign_history_columns() %}
 
-{% set _fivetran_columns = [
+{% set columns = [
     {"name": "bidding_strategy", "datatype": dbt.type_string()},
     {"name": "creation_date", "datatype": dbt.type_timestamp()},
     {"name": "end_date", "datatype": "date"},
@@ -17,8 +17,6 @@
     {"name": "budget_type", "datatype": dbt.type_string()},
     {"name": "effective_budget", "datatype": dbt.type_float()}
 ] %}
-
-{% set columns = amazon_ads.resolve_column_names('campaign_history', _fivetran_columns) %}
 
 {{ return(columns) }}
 

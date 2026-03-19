@@ -1,6 +1,6 @@
 {% macro get_product_ad_history_columns() %}
 
-{% set _fivetran_columns = [
+{% set columns = [
     {"name": "ad_group_id", "datatype": dbt.type_int()},
     {"name": "asin", "datatype": dbt.type_string()},
     {"name": "campaign_id", "datatype": dbt.type_int()},
@@ -11,8 +11,6 @@
     {"name": "sku", "datatype": dbt.type_string()},
     {"name": "state", "datatype": dbt.type_string()}
 ] %}
-
-{% set columns = amazon_ads.resolve_column_names('product_ad_history', _fivetran_columns) %}
 
 {{ return(columns) }}
 

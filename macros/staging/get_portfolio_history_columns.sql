@@ -1,6 +1,6 @@
 {% macro get_portfolio_history_columns() %}
 
-{% set _fivetran_columns = [
+{% set columns = [
     {"name": "budget_amount", "datatype": dbt.type_float()},
     {"name": "budget_currency_code", "datatype": dbt.type_string()},
     {"name": "budget_end_date", "datatype": "date"},
@@ -15,8 +15,6 @@
     {"name": "serving_status", "datatype": dbt.type_string()},
     {"name": "state", "datatype": dbt.type_string()}
 ] %}
-
-{% set columns = amazon_ads.resolve_column_names('portfolio_history', _fivetran_columns) %}
 
 {{ return(columns) }}
 
