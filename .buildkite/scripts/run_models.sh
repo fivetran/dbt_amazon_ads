@@ -23,9 +23,31 @@ cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
 db=$1
 echo `pwd`
 cd integration_tests
+
+# Set up base variables
+BASE_VARS=""
+if [[ -n "${BUILD_SCHEMA:-}" ]]; then
+    BASE_VARS="\"amazon_ads_schema\": \"${BUILD_SCHEMA}\""
+fi
+
+# Define test scenarios - easy to add/modify
+declare -a test_scenarios=(
+    # Scenario 1: Default run
+    "{${BASE_VARS}}"
+
+    # Scenario 2: Portfolio history disabled
+    "{${BASE_VARS}, \"amazon_ads__portfolio_history_enabled\": false}"
+)
+
 dbt deps
 dbt seed --target "$db" --full-refresh
-dbt run --target "$db" --full-refresh
-dbt test --target "$db"
-dbt run --vars '{amazon_ads__portfolio_history_enabled: false}' --target "$db" --full-refresh
-dbt test --vars '{amazon_ads__portfolio_history_enabled: false}' --target "$db"
+
+# Run each test scenario
+for i in "${!test_scenarios[@]}"; do
+    scenario_num=$((i + 1))
+    vars="${test_scenarios[$i]}"
+
+    echo "Running test scenario ${scenario_num}: ${vars}"
+    dbt run --target "$db" --vars "$vars" --full-refresh
+    dbt test --target "$db" --vars "$vars"
+done
