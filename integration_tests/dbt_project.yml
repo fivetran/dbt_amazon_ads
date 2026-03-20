@@ -43,12 +43,43 @@ seeds:
   amazon_ads_integration_tests:
     +column_types:
       _fivetran_synced: "timestamp"
-      campaign_budget_amount: "float"
-      click_through_rate: "float"
-      keyword_bid: "float"
-      clicks: "float"
-      impressions: "float"
-      cost: "float"
+    # Seeds with reporting metrics (clicks, impressions, cost)
+    ad_group_level_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        clicks: "float"
+        impressions: "float"
+        cost: "float"
+    campaign_level_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        clicks: "float"
+        impressions: "float"
+        cost: "float"
+    targeting_keyword_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        keyword_bid: "float"
+        clicks: "float"
+        impressions: "float"
+        cost: "float"
+    search_term_ad_keyword_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        keyword_bid: "float"
+        clicks: "float"
+        impressions: "float"
+        cost: "float"
+    advertised_product_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        clicks: "float"
+        impressions: "float"
+        cost: "float"
 flags:
   send_anonymous_usage_stats: False
   use_colors: True

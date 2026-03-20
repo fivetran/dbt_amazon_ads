@@ -24,10 +24,13 @@ db=$1
 echo `pwd`
 cd integration_tests
 
+# Get schema variable name from workflow file
+SCHEMA_VAR_NAME=$(grep -o 'schema_var_name: .*' ../.github/workflows/generate-docs.yml | cut -d' ' -f2 | tr -d '\r')
+
 # Set up base variables
 BASE_VARS=""
 if [[ -n "${BUILD_SCHEMA:-}" ]]; then
-    BASE_VARS="\"amazon_ads_schema\": \"${BUILD_SCHEMA}\""
+    BASE_VARS="\"${SCHEMA_VAR_NAME}\": \"${BUILD_SCHEMA}\""
 fi
 
 # Define test scenarios - easy to add/modify
