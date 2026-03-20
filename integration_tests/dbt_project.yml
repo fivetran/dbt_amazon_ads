@@ -20,7 +20,7 @@ vars:
     amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
     amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
 
-  amazon_ads__using_custom_names: true
+  amazon_ads_using_custom_names: true
   amazon_ads_custom_column_names:
     amazon_ads_integration_tests_03:
       ad_group_history:

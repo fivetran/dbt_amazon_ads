@@ -43,24 +43,27 @@
     {%- if standard_name in custom_mappings -%}
         {# Step 3a: Column has custom mappings - check which variants actually exist #}
         {%- set available_variants = [] -%}
-        {%- for variant in custom_mappings[standard_name] if variant in actual_column_names -%}
+        {%- for variant in custom_mappings[standard_name] if variant|lower in actual_column_names|map('lower') -%}
             {%- do available_variants.append(variant) -%}
         {%- endfor -%}
+
         {%- if available_variants|length > 1 -%}
-    coalesce({% for variant in available_variants %}{{ adapter.quote(variant) }}{{ ', ' if not loop.last }}{% endfor %})
+            coalesce({{ available_variants | join(', ') }})
         {%- elif available_variants|length == 1 -%}
-    {{ adapter.quote(available_variants[0]) }}
+            {{ available_variants[0] }}
         {%- else -%}
-    cast(null as {{ column_datatype }})
+            cast(null as {{ column_datatype }})
         {%- endif %}
+
     {%- else -%}
         {# Step 3b: Column has no custom mappings - check if standard name exists #}
         {%- if standard_name in actual_column_names -%}
-    {{ adapter.quote(standard_name) }}
+            {{ standard_name }}
         {%- else -%}
-    cast(null as {{ column_datatype }})
+            cast(null as {{ column_datatype }})
         {%- endif %}
     {% endif %}
+
     as {{ column_alias }}{{ ',' if not loop.last }}
 
 {% endfor %}
