@@ -37,7 +37,7 @@ def main():
     build_schema = sys.argv[3]
 
     # Load scenarios
-    config_file = Path('integration_tests/ci/test_scenarios.yml')
+    config_file = Path('ci/test_scenarios.yml')
     if not config_file.exists():
         print(f"Error: {config_file} not found")
         sys.exit(1)
