@@ -20,7 +20,7 @@ case "${BUILDKITE_STEP_KEY:-}" in
     "run_dbt_bigquery")
         echo "Setting up BigQuery credentials and dependencies"
         export GCLOUD_SERVICE_KEY=$(gcloud secrets versions access latest --secret="GCLOUD_SERVICE_KEY" --project="dbt-package-testing-363917")
-        DBT_ADAPTER="dbt-bigquery"
+        export DBT_ADAPTER="dbt-bigquery"
         ;;
     "run-dbt-postgres")
         echo "Setting up PostgreSQL credentials and dependencies"
@@ -28,7 +28,7 @@ case "${BUILDKITE_STEP_KEY:-}" in
         export CI_POSTGRES_DBT_USER=$(gcloud secrets versions access latest --secret="CI_POSTGRES_DBT_USER" --project="dbt-package-testing-363917")
         export CI_POSTGRES_DBT_PASS=$(gcloud secrets versions access latest --secret="CI_POSTGRES_DBT_PASS" --project="dbt-package-testing-363917")
         export CI_POSTGRES_DBT_DBNAME=$(gcloud secrets versions access latest --secret="CI_POSTGRES_DBT_DBNAME" --project="dbt-package-testing-363917")
-        DBT_ADAPTER="dbt-postgres"
+        export DBT_ADAPTER="dbt-postgres"
         ;;
     "run_dbt_redshift")
         echo "Setting up Redshift credentials and dependencies"
@@ -36,7 +36,7 @@ case "${BUILDKITE_STEP_KEY:-}" in
         export CI_REDSHIFT_DBT_HOST=$(gcloud secrets versions access latest --secret="CI_REDSHIFT_DBT_HOST" --project="dbt-package-testing-363917")
         export CI_REDSHIFT_DBT_PASS=$(gcloud secrets versions access latest --secret="CI_REDSHIFT_DBT_PASS" --project="dbt-package-testing-363917")
         export CI_REDSHIFT_DBT_USER=$(gcloud secrets versions access latest --secret="CI_REDSHIFT_DBT_USER" --project="dbt-package-testing-363917")
-        DBT_ADAPTER="dbt-redshift"
+        export DBT_ADAPTER="dbt-redshift"
         ;;
     "run_dbt_snowflake")
         echo "Setting up Snowflake credentials and dependencies"
@@ -46,7 +46,7 @@ case "${BUILDKITE_STEP_KEY:-}" in
         export CI_SNOWFLAKE_DBT_ROLE=$(gcloud secrets versions access latest --secret="CI_SNOWFLAKE_DBT_ROLE" --project="dbt-package-testing-363917")
         export CI_SNOWFLAKE_DBT_USER=$(gcloud secrets versions access latest --secret="CI_SNOWFLAKE_DBT_USER" --project="dbt-package-testing-363917")
         export CI_SNOWFLAKE_DBT_WAREHOUSE=$(gcloud secrets versions access latest --secret="CI_SNOWFLAKE_DBT_WAREHOUSE" --project="dbt-package-testing-363917")
-        DBT_ADAPTER="dbt-snowflake"
+        export DBT_ADAPTER="dbt-snowflake"
         ;;
     "run_dbt_databricks")
         echo "Setting up Databricks credentials and dependencies"
@@ -54,6 +54,6 @@ case "${BUILDKITE_STEP_KEY:-}" in
         export CI_DATABRICKS_DBT_HTTP_PATH=$(gcloud secrets versions access latest --secret="CI_DATABRICKS_DBT_HTTP_PATH" --project="dbt-package-testing-363917")
         export CI_DATABRICKS_DBT_TOKEN=$(gcloud secrets versions access latest --secret="CI_DATABRICKS_DBT_TOKEN" --project="dbt-package-testing-363917")
         export CI_DATABRICKS_DBT_CATALOG=$(gcloud secrets versions access latest --secret="CI_DATABRICKS_DBT_CATALOG" --project="dbt-package-testing-363917")
-        DBT_ADAPTER="dbt-databricks"
+        export DBT_ADAPTER="dbt-databricks"
         ;;
 esac
