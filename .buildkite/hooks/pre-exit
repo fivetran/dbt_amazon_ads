@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Cleanup hook - drops the build schema when the agent exits
+# Runs regardless of build success, failure, cancellation, or interruption
+
+set +e  # Don't exit on errors during cleanup
+
+echo "Cleaning up build schema: ${BUILD_SCHEMA:-not_set}"
+
+# Only proceed if BUILD_SCHEMA is set
+if [[ -z "${BUILD_SCHEMA}" ]]; then
+    echo "BUILD_SCHEMA not set, skipping cleanup"
+    exit 0
+fi
+
+echo "Running schema cleanup..."
+cd integration_tests
+dbt run-operation amazon_ads_integration_tests.buildkite_cleanup
+cd ..
+
+echo "Schema cleanup completed"

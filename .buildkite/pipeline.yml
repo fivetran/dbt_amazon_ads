@@ -11,6 +11,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "WAREHOUSE_TYPE=postgres"
             - "CI_POSTGRES_DBT_DBNAME"
             - "CI_POSTGRES_DBT_HOST"
             - "CI_POSTGRES_DBT_PASS"
@@ -27,6 +28,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "WAREHOUSE_TYPE=snowflake"
             - "CI_SNOWFLAKE_DBT_ACCOUNT"
             - "CI_SNOWFLAKE_DBT_DATABASE"
             - "CI_SNOWFLAKE_DBT_PASS"
