@@ -1,3 +1,6 @@
+env:
+  DBT_PACKAGE_NAME: "amazon_ads"
+
 steps:
   - label: ":postgres: Run Tests - Postgres"
     key: "run-dbt-postgres"
@@ -7,6 +10,7 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
+            - "BUILD_SCHEMA"
             - "CI_POSTGRES_DBT_DBNAME"
             - "CI_POSTGRES_DBT_HOST"
             - "CI_POSTGRES_DBT_PASS"
@@ -22,6 +26,7 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
+            - "BUILD_SCHEMA"
             - "CI_SNOWFLAKE_DBT_ACCOUNT"
             - "CI_SNOWFLAKE_DBT_DATABASE"
             - "CI_SNOWFLAKE_DBT_PASS"
@@ -39,18 +44,22 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
+            - "BUILD_SCHEMA"
             - "GCLOUD_SERVICE_KEY"
     commands: |
       bash .buildkite/scripts/run_models.sh bigquery
 
   - label: ":amazon-redshift: Run Tests - Redshift"
     key: "run_dbt_redshift"
+    concurrency: 3
+    concurrency_group: "warehouse/redshift"
     plugins:
       - docker#v3.13.0:
           image: "python:3.10.13"
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
+            - "BUILD_SCHEMA"
             - "CI_REDSHIFT_DBT_DBNAME"
             - "CI_REDSHIFT_DBT_HOST"
             - "CI_REDSHIFT_DBT_PASS"
@@ -66,6 +75,7 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
+            - "BUILD_SCHEMA"
             - "CI_DATABRICKS_DBT_HOST"
             - "CI_DATABRICKS_DBT_HTTP_PATH"
             - "CI_DATABRICKS_DBT_TOKEN"
