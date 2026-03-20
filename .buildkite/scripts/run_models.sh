@@ -27,4 +27,4 @@ dbt seed --target "$db" --full-refresh
 dbt compile --target "$db"
 
 # Run test scenarios using Python script
-python3 .buildkite/scripts/run_test_scenarios.py "$db" "$SCHEMA_VAR_NAME" "$BUILD_SCHEMA"
+python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$SCHEMA_VAR_NAME" "$BUILD_SCHEMA"
