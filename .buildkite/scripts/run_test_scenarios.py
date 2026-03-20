@@ -56,7 +56,7 @@ def main():
         if build_schema:
             vars_dict[schema_var_name] = build_schema
 
-        vars_json = json.dumps(vars_dict)
+        vars_json = f"'{json.dumps(vars_dict)}'"
         refresh_flag = "--full-refresh" if full_refresh else ""
         print(f"Variables: {vars_json}")
         print(f"Full refresh: {full_refresh}")
@@ -69,11 +69,11 @@ def main():
         test_cmd = ['dbt', 'test', '--target', target, '--vars', vars_json]
 
         # Execute commands
-        if not run_dbt_command(run_cmd, cwd='integration_tests'):
+        if not run_dbt_command(run_cmd):
             print(f"dbt run failed for {scenario_name}")
             sys.exit(1)
 
-        if not run_dbt_command(test_cmd, cwd='integration_tests'):
+        if not run_dbt_command(test_cmd):
             print(f"dbt test failed for {scenario_name}")
             sys.exit(1)
 
