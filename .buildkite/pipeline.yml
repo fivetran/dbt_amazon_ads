@@ -11,6 +11,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "DBT_ADAPTER=dbt-postgres"
             - "CI_POSTGRES_DBT_DBNAME"
             - "CI_POSTGRES_DBT_HOST"
             - "CI_POSTGRES_DBT_PASS"
@@ -27,6 +28,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "DBT_ADAPTER=dbt-snowflake"
             - "CI_SNOWFLAKE_DBT_ACCOUNT"
             - "CI_SNOWFLAKE_DBT_DATABASE"
             - "CI_SNOWFLAKE_DBT_PASS"
@@ -45,6 +47,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "DBT_ADAPTER=dbt-bigquery"
             - "GCLOUD_SERVICE_KEY"
     commands: |
       bash .buildkite/scripts/run_models.sh bigquery
@@ -60,6 +63,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "DBT_ADAPTER=dbt-redshift"
             - "CI_REDSHIFT_DBT_DBNAME"
             - "CI_REDSHIFT_DBT_HOST"
             - "CI_REDSHIFT_DBT_PASS"
@@ -76,6 +80,7 @@ steps:
           environment:
             - "BASH_ENV=/tmp/.bashrc"
             - "BUILD_SCHEMA"
+            - "DBT_ADAPTER=dbt-databricks"
             - "CI_DATABRICKS_DBT_HOST"
             - "CI_DATABRICKS_DBT_HTTP_PATH"
             - "CI_DATABRICKS_DBT_TOKEN"
