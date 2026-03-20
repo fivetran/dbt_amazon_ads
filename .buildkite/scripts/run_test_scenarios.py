@@ -56,17 +56,24 @@ def main():
         if build_schema:
             vars_dict[schema_var_name] = build_schema
 
-        vars_json = f"'{json.dumps(vars_dict)}'"
+        # Build YAML format for dbt --vars
+        vars_yaml_parts = []
+        for key, value in vars_dict.items():
+            if isinstance(value, str):
+                vars_yaml_parts.append(f"{key}: {value}")
+            else:
+                vars_yaml_parts.append(f"{key}: {value}")
+        vars_yaml = f"{{{', '.join(vars_yaml_parts)}}}"
         refresh_flag = "--full-refresh" if full_refresh else ""
-        print(f"Variables: {vars_json}")
+        print(f"Variables: {vars_yaml}")
         print(f"Full refresh: {full_refresh}")
 
         # Run dbt commands
-        run_cmd = ['dbt', 'run', '--target', target, '--vars', vars_json]
+        run_cmd = ['dbt', 'run', '--target', target, '--vars', vars_yaml]
         if full_refresh:
             run_cmd.append('--full-refresh')
 
-        test_cmd = ['dbt', 'test', '--target', target, '--vars', vars_json]
+        test_cmd = ['dbt', 'test', '--target', target, '--vars', vars_yaml]
 
         # Execute commands
         if not run_dbt_command(run_cmd):
