@@ -24,52 +24,60 @@ fi
 # Schemas to clean
 PACKAGE_NAME="${DBT_PACKAGE_NAME:-amazon_ads}"
 SCHEMA1="${BUILD_SCHEMA}"
-SCHEMA2="${PACKAGE_NAME}_dev_${BUILD_SCHEMA}"
+SCHEMA2="${BUILD_SCHEMA}_${PACKAGE_NAME}_dev"
 
 echo "Cleaning schemas: ${SCHEMA1}, ${SCHEMA2}"
+echo "Step key: ${BUILDKITE_STEP_KEY:-unknown}"
 
-# BigQuery cleanup
-if [[ -n "${GCLOUD_SERVICE_KEY:-}" ]] && command -v bq >/dev/null 2>&1; then
-    echo "${GCLOUD_SERVICE_KEY}" | gcloud auth activate-service-account --key-file=- --quiet 2>/dev/null
-    bq rm -r -f -d "dbt-package-testing:${SCHEMA1}" --quiet 2>/dev/null || true
-    bq rm -r -f -d "dbt-package-testing:${SCHEMA2}" --quiet 2>/dev/null || true
-    echo "BigQuery cleanup completed"
-fi
-
-# PostgreSQL cleanup
-if [[ -n "${CI_POSTGRES_DBT_HOST:-}" ]] && command -v psql >/dev/null 2>&1; then
-    PGPASSWORD="${CI_POSTGRES_DBT_PASS}" psql -h "${CI_POSTGRES_DBT_HOST}" -U "${CI_POSTGRES_DBT_USER}" -d "${CI_POSTGRES_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" -q 2>/dev/null || true
-    PGPASSWORD="${CI_POSTGRES_DBT_PASS}" psql -h "${CI_POSTGRES_DBT_HOST}" -U "${CI_POSTGRES_DBT_USER}" -d "${CI_POSTGRES_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" -q 2>/dev/null || true
-    echo "PostgreSQL cleanup completed"
-fi
-
-# Redshift cleanup
-if [[ -n "${CI_REDSHIFT_DBT_HOST:-}" ]] && command -v psql >/dev/null 2>&1; then
-    PGPASSWORD="${CI_REDSHIFT_DBT_PASS}" psql -h "${CI_REDSHIFT_DBT_HOST}" -U "${CI_REDSHIFT_DBT_USER}" -d "${CI_REDSHIFT_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" -q 2>/dev/null || true
-    PGPASSWORD="${CI_REDSHIFT_DBT_PASS}" psql -h "${CI_REDSHIFT_DBT_HOST}" -U "${CI_REDSHIFT_DBT_USER}" -d "${CI_REDSHIFT_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" -q 2>/dev/null || true
-    echo "Redshift cleanup completed"
-fi
-
-# Snowflake cleanup
-if [[ -n "${CI_SNOWFLAKE_DBT_ACCOUNT:-}" ]] && command -v snowsql >/dev/null 2>&1; then
-    snowsql -a "${CI_SNOWFLAKE_DBT_ACCOUNT}" -u "${CI_SNOWFLAKE_DBT_USER}" -p "${CI_SNOWFLAKE_DBT_PASS}" \
-            -r "${CI_SNOWFLAKE_DBT_ROLE}" -w "${CI_SNOWFLAKE_DBT_WAREHOUSE}" -d "${CI_SNOWFLAKE_DBT_DATABASE}" \
-            -q "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" --quiet 2>/dev/null || true
-    snowsql -a "${CI_SNOWFLAKE_DBT_ACCOUNT}" -u "${CI_SNOWFLAKE_DBT_USER}" -p "${CI_SNOWFLAKE_DBT_PASS}" \
-            -r "${CI_SNOWFLAKE_DBT_ROLE}" -w "${CI_SNOWFLAKE_DBT_WAREHOUSE}" -d "${CI_SNOWFLAKE_DBT_DATABASE}" \
-            -q "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" --quiet 2>/dev/null || true
-    echo "Snowflake cleanup completed"
-fi
-
-# Databricks cleanup
-if [[ -n "${CI_DATABRICKS_DBT_HOST:-}" ]] && command -v curl >/dev/null 2>&1; then
-    curl -s -X POST -H "Authorization: Bearer ${CI_DATABRICKS_DBT_TOKEN}" -H "Content-Type: application/json" \
-         "${CI_DATABRICKS_DBT_HOST}/api/2.0/sql/statements" \
-         -d "{\"statement\": \"DROP SCHEMA IF EXISTS \\\"${CI_DATABRICKS_DBT_CATALOG}\\\".\\\"${SCHEMA1}\\\" CASCADE\"}" >/dev/null 2>&1 || true
-    curl -s -X POST -H "Authorization: Bearer ${CI_DATABRICKS_DBT_TOKEN}" -H "Content-Type: application/json" \
-         "${CI_DATABRICKS_DBT_HOST}/api/2.0/sql/statements" \
-         -d "{\"statement\": \"DROP SCHEMA IF EXISTS \\\"${CI_DATABRICKS_DBT_CATALOG}\\\".\\\"${SCHEMA2}\\\" CASCADE\"}" >/dev/null 2>&1 || true
-    echo "Databricks cleanup completed"
-fi
+# Clean up only the warehouse for this specific step
+case "${BUILDKITE_STEP_KEY:-}" in
+    "run_dbt_bigquery")
+        if [[ -n "${GCLOUD_SERVICE_KEY:-}" ]] && command -v bq >/dev/null 2>&1; then
+            echo "${GCLOUD_SERVICE_KEY}" | gcloud auth activate-service-account --key-file=- --quiet 2>/dev/null
+            bq --quiet rm -r -f -d "dbt-package-testing:${SCHEMA1}" 2>/dev/null || true
+            bq --quiet rm -r -f -d "dbt-package-testing:${SCHEMA2}" 2>/dev/null || true
+            echo "BigQuery cleanup completed"
+        fi
+        ;;
+    "run-dbt-postgres")
+        if [[ -n "${CI_POSTGRES_DBT_HOST:-}" ]] && command -v psql >/dev/null 2>&1; then
+            PGPASSWORD="${CI_POSTGRES_DBT_PASS}" psql -h "${CI_POSTGRES_DBT_HOST}" -U "${CI_POSTGRES_DBT_USER}" -d "${CI_POSTGRES_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" -q 2>/dev/null || true
+            PGPASSWORD="${CI_POSTGRES_DBT_PASS}" psql -h "${CI_POSTGRES_DBT_HOST}" -U "${CI_POSTGRES_DBT_USER}" -d "${CI_POSTGRES_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" -q 2>/dev/null || true
+            echo "PostgreSQL cleanup completed"
+        fi
+        ;;
+    "run_dbt_redshift")
+        if [[ -n "${CI_REDSHIFT_DBT_HOST:-}" ]] && command -v psql >/dev/null 2>&1; then
+            PGPASSWORD="${CI_REDSHIFT_DBT_PASS}" psql -h "${CI_REDSHIFT_DBT_HOST}" -U "${CI_REDSHIFT_DBT_USER}" -d "${CI_REDSHIFT_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" -q 2>/dev/null || true
+            PGPASSWORD="${CI_REDSHIFT_DBT_PASS}" psql -h "${CI_REDSHIFT_DBT_HOST}" -U "${CI_REDSHIFT_DBT_USER}" -d "${CI_REDSHIFT_DBT_DBNAME}" -c "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" -q 2>/dev/null || true
+            echo "Redshift cleanup completed"
+        fi
+        ;;
+    "run_dbt_snowflake")
+        if [[ -n "${CI_SNOWFLAKE_DBT_ACCOUNT:-}" ]] && command -v snowsql >/dev/null 2>&1; then
+            snowsql -a "${CI_SNOWFLAKE_DBT_ACCOUNT}" -u "${CI_SNOWFLAKE_DBT_USER}" -p "${CI_SNOWFLAKE_DBT_PASS}" \
+                    -r "${CI_SNOWFLAKE_DBT_ROLE}" -w "${CI_SNOWFLAKE_DBT_WAREHOUSE}" -d "${CI_SNOWFLAKE_DBT_DATABASE}" \
+                    -q "DROP SCHEMA IF EXISTS \"${SCHEMA1}\" CASCADE;" --quiet 2>/dev/null || true
+            snowsql -a "${CI_SNOWFLAKE_DBT_ACCOUNT}" -u "${CI_SNOWFLAKE_DBT_USER}" -p "${CI_SNOWFLAKE_DBT_PASS}" \
+                    -r "${CI_SNOWFLAKE_DBT_ROLE}" -w "${CI_SNOWFLAKE_DBT_WAREHOUSE}" -d "${CI_SNOWFLAKE_DBT_DATABASE}" \
+                    -q "DROP SCHEMA IF EXISTS \"${SCHEMA2}\" CASCADE;" --quiet 2>/dev/null || true
+            echo "Snowflake cleanup completed"
+        fi
+        ;;
+    "run_dbt_databricks")
+        if [[ -n "${CI_DATABRICKS_DBT_HOST:-}" ]] && command -v curl >/dev/null 2>&1; then
+            curl -s -X POST -H "Authorization: Bearer ${CI_DATABRICKS_DBT_TOKEN}" -H "Content-Type: application/json" \
+                "${CI_DATABRICKS_DBT_HOST}/api/2.0/sql/statements" \
+                -d "{\"statement\": \"DROP SCHEMA IF EXISTS \\\"${CI_DATABRICKS_DBT_CATALOG}\\\".\\\"${SCHEMA1}\\\" CASCADE\"}" >/dev/null 2>&1 || true
+            curl -s -X POST -H "Authorization: Bearer ${CI_DATABRICKS_DBT_TOKEN}" -H "Content-Type: application/json" \
+                "${CI_DATABRICKS_DBT_HOST}/api/2.0/sql/statements" \
+                -d "{\"statement\": \"DROP SCHEMA IF EXISTS \\\"${CI_DATABRICKS_DBT_CATALOG}\\\".\\\"${SCHEMA2}\\\" CASCADE\"}" >/dev/null 2>&1 || true
+            echo "Databricks cleanup completed"
+        fi
+        ;;
+    *)
+        echo "Unknown or no step key, skipping cleanup"
+        ;;
+esac
 
 echo "Schema cleanup completed"
