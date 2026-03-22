@@ -25,7 +25,9 @@ SCHEMA_VAR_NAME=$(grep -o 'schema_var_name: .*' ../.github/workflows/generate-do
 dbt deps
 dbt seed --target "$db" --full-refresh
 echo "=== Running dbt compile ==="
+echo "Running: dbt compile --target \"$db\" --vars \"{${SCHEMA_VAR_NAME}: ${BUILD_SCHEMA}}\""
 dbt compile --target "$db" --vars "{${SCHEMA_VAR_NAME}: ${BUILD_SCHEMA}}"
+echo "✓ Successful compile"
 
 # Run test scenarios using Python script
 python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$SCHEMA_VAR_NAME" "$BUILD_SCHEMA"
