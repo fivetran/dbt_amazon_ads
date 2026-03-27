@@ -9,8 +9,9 @@ python3 -m venv venv
 . venv/bin/activate
 pip install --upgrade pip setuptools
 
-# Determine warehouse from step key pattern
-WAREHOUSE=${BUILDKITE_STEP_KEY#run_dbt_}
+# Get warehouse from command line argument
+db=$1
+WAREHOUSE=$db
 
 # Install specific adapter for this warehouse
 echo "Installing dbt adapter: dbt-${WAREHOUSE}"
@@ -18,7 +19,6 @@ pip install "dbt-${WAREHOUSE}>=1.3.0,<2.0.0"
 mkdir -p ~/.dbt
 cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
 
-db=$1
 echo `pwd`
 cd integration_tests
 

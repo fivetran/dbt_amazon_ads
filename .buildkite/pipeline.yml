@@ -1,6 +1,10 @@
 steps:
   - label: ":postgres: Run Tests - Postgres"
     key: "run_dbt_postgres"
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -17,6 +21,10 @@ steps:
 
   - label: ":snowflake-db: Run Tests - Snowflake"
     key: "run_dbt_snowflake"
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -35,6 +43,10 @@ steps:
 
   - label: ":gcloud: Run Tests - BigQuery"
     key: "run_dbt_bigquery"
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -50,6 +62,10 @@ steps:
     key: "run_dbt_redshift"
     concurrency: 3
     concurrency_group: "warehouse/redshift"
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -66,6 +82,10 @@ steps:
 
   - label: ":databricks: Run Tests - Databricks"
     key: "run_dbt_databricks"
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
