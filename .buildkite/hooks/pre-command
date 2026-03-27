@@ -21,7 +21,7 @@ case "${BUILDKITE_STEP_KEY:-}" in
         echo "Setting up BigQuery credentials and dependencies"
         export GCLOUD_SERVICE_KEY=$(gcloud secrets versions access latest --secret="GCLOUD_SERVICE_KEY" --project="dbt-package-testing-363917")
         ;;
-    "run-dbt-postgres")
+    "run_dbt_postgres")
         echo "Setting up PostgreSQL credentials and dependencies"
         export CI_POSTGRES_DBT_HOST=$(gcloud secrets versions access latest --secret="CI_POSTGRES_DBT_HOST" --project="dbt-package-testing-363917")
         export CI_POSTGRES_DBT_USER=$(gcloud secrets versions access latest --secret="CI_POSTGRES_DBT_USER" --project="dbt-package-testing-363917")

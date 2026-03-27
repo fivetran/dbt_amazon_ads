@@ -2,10 +2,10 @@
 test_scenarios:
   - vars:
       amazon_ads__portfolio_history_enabled: false
-    full_refresh: false
+    include_incremental: true
 
 # Add more scenarios as needed:
 # - vars:
 #     amazon_ads__some_other_flag: true
 #     amazon_ads__another_setting: "custom_value"
-#   full_refresh: true
+#   include_incremental: false

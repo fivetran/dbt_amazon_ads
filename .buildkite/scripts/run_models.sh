@@ -9,9 +9,12 @@ python3 -m venv venv
 . venv/bin/activate
 pip install --upgrade pip setuptools
 
+# Determine warehouse from step key pattern
+WAREHOUSE=${BUILDKITE_STEP_KEY#run_dbt_}
+
 # Install specific adapter for this warehouse
-echo "Installing dbt adapter: ${DBT_ADAPTER}"
-pip install "${DBT_ADAPTER}>=1.3.0,<2.0.0"
+echo "Installing dbt adapter: dbt-${WAREHOUSE}"
+pip install "dbt-${WAREHOUSE}>=1.3.0,<2.0.0"
 mkdir -p ~/.dbt
 cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
 
@@ -19,15 +22,13 @@ db=$1
 echo `pwd`
 cd integration_tests
 
-# Get schema variable name from workflow file
-SCHEMA_VAR_NAME=$(grep -o 'schema_var_name: .*' ../.github/workflows/generate-docs.yml | cut -d' ' -f2 | tr -d '\r')
+SCHEMA_VAR_NAME='amazon_ads_schema'
 
-dbt deps
-dbt seed --target "$db" --full-refresh
-echo "=== Running dbt compile ==="
-echo "Running: dbt compile --target \"$db\" --vars \"{${SCHEMA_VAR_NAME}: ${BUILD_SCHEMA}}\""
-dbt compile --target "$db" --vars "{${SCHEMA_VAR_NAME}: ${BUILD_SCHEMA}}"
-echo "✓ Successful compile"
+# Fetch central test scenario script
+SCRIPT_VERSION="feature/buildkite-scripts"  # Use feature/buildkite-scripts branch
+mkdir -p ../.buildkite/scripts
+curl -f -s -o ../.buildkite/scripts/run_test_scenarios.py \
+    "https://raw.githubusercontent.com/fivetran/dbt_package_automations/${SCRIPT_VERSION}/buildkite/scripts/run_test_scenarios.py"
 
-# Run test scenarios using Python script
+# Run test scenarios using Python script (includes deps, seed, compile)
 python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$SCHEMA_VAR_NAME" "$BUILD_SCHEMA"
