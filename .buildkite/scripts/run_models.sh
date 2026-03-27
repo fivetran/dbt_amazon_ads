@@ -9,13 +9,12 @@ python3 -m venv venv
 . venv/bin/activate
 pip install --upgrade pip setuptools
 
-# Get warehouse from command line argument
+# Get database from command line argument
 db=$1
-WAREHOUSE=$db
 
-# Install specific adapter for this warehouse
-echo "Installing dbt adapter: dbt-${WAREHOUSE}"
-pip install "dbt-${WAREHOUSE}>=1.3.0,<2.0.0"
+# Install specific adapter for this database
+echo "Installing dbt adapter: dbt-${db}"
+pip install "dbt-${db}>=1.3.0,<2.0.0"
 
 echo "Creating dbt config directory..."
 mkdir -p ~/.dbt
