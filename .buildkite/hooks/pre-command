@@ -9,7 +9,7 @@ BUILD_NUMBER="${BUILDKITE_BUILD_NUMBER:-0}"
 
 # Create unique schema name using commit SHA and build number
 COMMIT_SHA=$(echo "${BUILDKITE_COMMIT:-unknown}" | cut -c1-7)
-BUILD_SCHEMA=$(echo "bk_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
+BUILD_SCHEMA=$(echo "zz_bk_integration_tests_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
 export BUILD_SCHEMA
 echo "Build schema: ${BUILD_SCHEMA}"
 
