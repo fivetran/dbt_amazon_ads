@@ -20,12 +20,10 @@ cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
 
 cd integration_tests
 
-SCHEMA_VAR_NAME='amazon_ads_schema'
-
 # Fetch central test scenario script
 mkdir -p ../.buildkite/scripts
 curl -f -s -o ../.buildkite/scripts/run_test_scenarios.py \
     "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/buildkite-scripts/.buildkite/scripts/run_test_scenarios.py"
 
 # Run test scenarios using Python script (includes deps, seed, compile)
-python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$SCHEMA_VAR_NAME" "$BUILD_SCHEMA"
+python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$BUILD_SCHEMA"

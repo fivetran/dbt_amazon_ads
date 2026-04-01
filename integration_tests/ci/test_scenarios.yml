@@ -1,3 +1,7 @@
+# Name of the dbt variable used to set the schema where data lives
+# This is the variable name you use in dbt (e.g., --vars amazon_ads_schema: my_schema)
+schema_variable_name: "amazon_ads_schema"
+
 # Additional test scenarios (default run happens automatically)
 test_scenarios:
   - vars:
