@@ -9,7 +9,14 @@ BUILD_NUMBER="${BUILDKITE_BUILD_NUMBER:-0}"
 
 # Create unique schema name using commit SHA and build number
 COMMIT_SHA=$(echo "${BUILDKITE_COMMIT:-unknown}" | cut -c1-7)
-BUILD_SCHEMA=$(echo "zz_bk_integration_tests_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
+
+# Add databricks-specific identifier for SQL warehouse to differentiate from all purpose cluster
+if [[ "${BUILDKITE_STEP_KEY:-}" == "run_dbt_databricks_sql" ]]; then
+    BUILD_SCHEMA=$(echo "zz_bk_integration_tests_sql_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
+else
+    BUILD_SCHEMA=$(echo "zz_bk_integration_tests_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
+fi
+
 export BUILD_SCHEMA
 echo "Build schema: ${BUILD_SCHEMA}"
 
