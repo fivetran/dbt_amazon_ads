@@ -1,15 +1,18 @@
 # Name of the dbt variable used to set the schema where data lives
 # This is the variable name you use in dbt (e.g., --vars amazon_ads_schema: my_schema)
 schema_variable_name: "amazon_ads_schema"
+default_include_incremental: false  # Whether default scenario should test incremental runs
 
 # Additional test scenarios (default run happens automatically)
 test_scenarios:
-  - vars:
+  - name: "portfolio history disabled"
+    vars:
       amazon_ads__portfolio_history_enabled: false
-    include_incremental: true
+    include_incremental: false
 
 # Add more scenarios as needed:
-# - vars:
+# - name: "some other scenario"
+#   vars:
 #     amazon_ads__some_other_flag: true
 #     amazon_ads__another_setting: "custom_value"
 #   include_incremental: false
