@@ -26,5 +26,8 @@ curl -f -s -o ../.buildkite/scripts/run_test_scenarios.py \
     "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/buildkite-scripts/.buildkite/scripts/run_test_scenarios.py"
 
 # Run test scenarios using Python script (includes deps, seed, compile)
+<<<<<<< Updated upstream
 # Test parameters and scenarios are configured in: integration_tests/ci/test_scenarios.yml
+=======
+>>>>>>> Stashed changes
 python3 ../.buildkite/scripts/run_test_scenarios.py "$db" "$BUILD_SCHEMA"
