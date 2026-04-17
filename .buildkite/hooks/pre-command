@@ -1,0 +1,3 @@
+#!/bin/bash
+curl -s -o /tmp/build-setup.sh "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/buildkite-scripts/.buildkite/scripts/build-setup.sh"
+source /tmp/build-setup.sh

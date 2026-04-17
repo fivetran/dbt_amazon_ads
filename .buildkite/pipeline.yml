@@ -17,9 +17,11 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
-            - "BUILDKITE_BUILD_NUMBER"
-            - "BUILDKITE_COMMIT"
-            - "BUILDKITE_STEP_KEY"
+            - "BUILD_SCHEMA"
+            - "CI_POSTGRES_DBT_DBNAME"
+            - "CI_POSTGRES_DBT_HOST"
+            - "CI_POSTGRES_DBT_PASS"
+            - "CI_POSTGRES_DBT_USER"
     commands: |
       curl -s "${RUN_MODELS_URL}" | bash -s postgres
 
@@ -35,9 +37,13 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
-            - "BUILDKITE_BUILD_NUMBER"
-            - "BUILDKITE_COMMIT"
-            - "BUILDKITE_STEP_KEY"
+            - "BUILD_SCHEMA"
+            - "CI_SNOWFLAKE_DBT_ACCOUNT"
+            - "CI_SNOWFLAKE_DBT_DATABASE"
+            - "CI_SNOWFLAKE_DBT_PASS"
+            - "CI_SNOWFLAKE_DBT_ROLE"
+            - "CI_SNOWFLAKE_DBT_USER"
+            - "CI_SNOWFLAKE_DBT_WAREHOUSE"
     commands: |
       curl -s "${RUN_MODELS_URL}" | bash -s snowflake
 
@@ -53,9 +59,8 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
-            - "BUILDKITE_BUILD_NUMBER"
-            - "BUILDKITE_COMMIT"
-            - "BUILDKITE_STEP_KEY"
+            - "BUILD_SCHEMA"
+            - "GCLOUD_SERVICE_KEY"
     commands: |
       curl -s "${RUN_MODELS_URL}" | bash -s bigquery
 
@@ -73,9 +78,11 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
-            - "BUILDKITE_BUILD_NUMBER"
-            - "BUILDKITE_COMMIT"
-            - "BUILDKITE_STEP_KEY"
+            - "BUILD_SCHEMA"
+            - "CI_REDSHIFT_DBT_DBNAME"
+            - "CI_REDSHIFT_DBT_HOST"
+            - "CI_REDSHIFT_DBT_PASS"
+            - "CI_REDSHIFT_DBT_USER"
             - "BUILD_SCHEMA"
             - "CI_REDSHIFT_DBT_DBNAME"
             - "CI_REDSHIFT_DBT_HOST"
@@ -96,9 +103,11 @@ steps:
           shell: [ "/bin/bash", "-e", "-c" ]
           environment:
             - "BASH_ENV=/tmp/.bashrc"
-            - "BUILDKITE_BUILD_NUMBER"
-            - "BUILDKITE_COMMIT"
-            - "BUILDKITE_STEP_KEY"
+            - "BUILD_SCHEMA"
+            - "CI_DATABRICKS_DBT_HOST"
+            - "CI_DATABRICKS_DBT_HTTP_PATH"
+            - "CI_DATABRICKS_DBT_TOKEN"
+            - "CI_DATABRICKS_DBT_CATALOG"
             - "BUILD_SCHEMA"
             - "CI_DATABRICKS_DBT_HOST"
             - "CI_DATABRICKS_DBT_HTTP_PATH"
