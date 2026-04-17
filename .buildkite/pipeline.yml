@@ -83,11 +83,6 @@ steps:
             - "CI_REDSHIFT_DBT_HOST"
             - "CI_REDSHIFT_DBT_PASS"
             - "CI_REDSHIFT_DBT_USER"
-            - "BUILD_SCHEMA"
-            - "CI_REDSHIFT_DBT_DBNAME"
-            - "CI_REDSHIFT_DBT_HOST"
-            - "CI_REDSHIFT_DBT_PASS"
-            - "CI_REDSHIFT_DBT_USER"
     commands: |
       curl -s "${RUN_MODELS_URL}" | bash -s redshift
 
