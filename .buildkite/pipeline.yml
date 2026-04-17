@@ -1,10 +1,21 @@
+# Each test downloads a centralized test runner script from the dbt_package_automations repo,
+# which handles environment setup, dependency installation, and dbt test execution.
+
+# YAML anchors for reusable configurations
+x-runner: &get-runner |
+  mkdir -p .buildkite/scripts
+  curl -f -s -o .buildkite/scripts/run_models.sh \
+      "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/buildkite-scripts/.buildkite/scripts/run_models.sh"
+
+x-retry-config: &retry-on-timeout
+  automatic:
+    - exit_status: -1  # Timeout
+      limit: 1
+
 steps:
   - label: ":postgres: Run Tests - Postgres"
     key: "run_dbt_postgres"
-    retry:
-      automatic:
-        - exit_status: -1  # Timeout
-          limit: 1
+    retry: *retry-on-timeout
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -17,14 +28,12 @@ steps:
             - "CI_POSTGRES_DBT_PASS"
             - "CI_POSTGRES_DBT_USER"
     commands: |
-      bash .buildkite/scripts/run_models.sh postgres 
+      *get-runner
+      bash .buildkite/scripts/run_models.sh postgres
 
   - label: ":snowflake-db: Run Tests - Snowflake"
     key: "run_dbt_snowflake"
-    retry:
-      automatic:
-        - exit_status: -1  # Timeout
-          limit: 1
+    retry: *retry-on-timeout
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -39,14 +48,12 @@ steps:
             - "CI_SNOWFLAKE_DBT_USER"
             - "CI_SNOWFLAKE_DBT_WAREHOUSE"
     commands: |
+      *get-runner
       bash .buildkite/scripts/run_models.sh snowflake
 
   - label: ":gcloud: Run Tests - BigQuery"
     key: "run_dbt_bigquery"
-    retry:
-      automatic:
-        - exit_status: -1  # Timeout
-          limit: 1
+    retry: *retry-on-timeout
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -56,16 +63,14 @@ steps:
             - "BUILD_SCHEMA"
             - "GCLOUD_SERVICE_KEY"
     commands: |
+      *get-runner
       bash .buildkite/scripts/run_models.sh bigquery
 
   - label: ":amazon-redshift: Run Tests - Redshift"
     key: "run_dbt_redshift"
     concurrency: 3
     concurrency_group: "warehouse/redshift"
-    retry:
-      automatic:
-        - exit_status: -1  # Timeout
-          limit: 1
+    retry: *retry-on-timeout
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -78,14 +83,12 @@ steps:
             - "CI_REDSHIFT_DBT_PASS"
             - "CI_REDSHIFT_DBT_USER"
     commands: |
+      *get-runner
       bash .buildkite/scripts/run_models.sh redshift
 
   - label: ":databricks: Run Tests - Databricks"
     key: "run_dbt_databricks"
-    retry:
-      automatic:
-        - exit_status: -1  # Timeout
-          limit: 1
+    retry: *retry-on-timeout
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -98,4 +101,5 @@ steps:
             - "CI_DATABRICKS_DBT_TOKEN"
             - "CI_DATABRICKS_DBT_CATALOG"
     commands: |
+      *get-runner
       bash .buildkite/scripts/run_models.sh databricks
