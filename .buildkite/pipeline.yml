@@ -1,19 +1,16 @@
 # Each test downloads a centralized test runner script from the dbt_package_automations repo,
 # which handles environment setup, dependency installation, and dbt test execution.
 
-# YAML anchors for reusable configurations
 env:
   RUN_MODELS_URL: "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/buildkite-scripts/.buildkite/scripts/run_models.sh"
-
-x-retry-config: &retry-on-timeout
-  automatic:
-    - exit_status: -1  # Timeout
-      limit: 1
 
 steps:
   - label: ":postgres: Run Tests - Postgres"
     key: "run_dbt_postgres"
-    retry: *retry-on-timeout
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -30,7 +27,10 @@ steps:
 
   - label: ":snowflake-db: Run Tests - Snowflake"
     key: "run_dbt_snowflake"
-    retry: *retry-on-timeout
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -49,7 +49,10 @@ steps:
 
   - label: ":gcloud: Run Tests - BigQuery"
     key: "run_dbt_bigquery"
-    retry: *retry-on-timeout
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -65,7 +68,10 @@ steps:
     key: "run_dbt_redshift"
     concurrency: 3
     concurrency_group: "warehouse/redshift"
-    retry: *retry-on-timeout
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
@@ -82,7 +88,10 @@ steps:
 
   - label: ":databricks: Run Tests - Databricks"
     key: "run_dbt_databricks"
-    retry: *retry-on-timeout
+    retry:
+      automatic:
+        - exit_status: -1  # Timeout
+          limit: 1
     plugins:
       - docker#v3.13.0:
           image: "python:3.13"
