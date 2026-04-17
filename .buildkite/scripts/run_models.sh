@@ -9,12 +9,9 @@ python3 -m venv venv
 . venv/bin/activate
 pip install --upgrade pip setuptools
 
-# Get database from command line argument
-db=$1
-
 # Install specific adapter for this database
-echo "Installing dbt adapter: dbt-${db}"
-pip install "dbt-${db}>=1.3.0,<2.0.0"
+echo "Installing dbt adapter: dbt-$1"
+pip install "dbt-$1>=1.3.0,<2.0.0"
 mkdir -p ~/.dbt
 cp integration_tests/ci/sample.profiles.yml ~/.dbt/profiles.yml
 
