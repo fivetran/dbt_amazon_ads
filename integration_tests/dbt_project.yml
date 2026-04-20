@@ -1,54 +1,74 @@
 config-version: 2
-
-name: 'amazon_ads_integration_tests'
-version: '1.2.0'
-
-profile: 'integration_tests' 
-
+name: amazon_ads_integration_tests
+version: 1.2.0
+profile: integration_tests
 vars:
   amazon_ads:
-    amazon_ads_schema: amazon_ads_integration_tests_03
-    amazon_ads_ad_group_history_identifier: "ad_group_history_data"
-    amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
-    amazon_ads_advertised_product_report_identifier: "advertised_product_report_data"
-    amazon_ads_campaign_history_identifier: "campaign_history_data"
-    amazon_ads_campaign_level_report_identifier: "campaign_level_report_data"
-    amazon_ads_portfolio_history_identifier: "portfolio_history_data"
-    amazon_ads_product_ad_history_identifier: "product_ad_history_data"
-    amazon_ads_profile_identifier: "profile_data"
-    amazon_ads_keyword_history_identifier: "keyword_history_data"
-    amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
-    amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
-
+    amazon_ads_schema: amazon_ads_integration_tests
+    amazon_ads_ad_group_history_identifier: ad_group_history_data
+    amazon_ads_ad_group_level_report_identifier: ad_group_level_report_data
+    amazon_ads_advertised_product_report_identifier: advertised_product_report_data
+    amazon_ads_campaign_history_identifier: campaign_history_data
+    amazon_ads_campaign_level_report_identifier: campaign_level_report_data
+    amazon_ads_portfolio_history_identifier: portfolio_history_data
+    amazon_ads_product_ad_history_identifier: product_ad_history_data
+    amazon_ads_profile_identifier: profile_data
+    amazon_ads_keyword_history_identifier: keyword_history_data
+    amazon_ads_targeting_keyword_report_identifier: targeting_keyword_report_data
+    amazon_ads_search_term_ad_keyword_report_identifier: search_term_ad_keyword_report_data
   amazon_ads__campaign_passthrough_metrics:
-      - name: sales_7_d
-      - name: purchases_30_d 
-        alias: purchases_alias
-      - name: purchases_14_d
-
+  - name: sales_7_d
+  - name: purchases_30_d
+    alias: purchases_alias
+  - name: purchases_14_d
 models:
   +persist_docs:
     relation: true
-    columns: "{{ false if target.type in ('databricks') else true }}"
-  +schema: "amazon_ads_{{ var('directed_schema','dev') }}"
-
+    columns: '{{ false if target.type in (''databricks'') else true }}'
+  +schema: amazon_ads_{{ var('directed_schema','dev') }}
 dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['spark_utils', 'dbt_utils']
-
+- macro_namespace: dbt_utils
+  search_order:
+  - spark_utils
+  - dbt_utils
 seeds:
   +docs:
-    show: False
-  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+    show: false
+  +quote_columns: '{{ true if target.type == ''redshift'' else false }}'
+  +column_types:
+    _fivetran_synced: timestamp
   amazon_ads_integration_tests:
-    +column_types:
-      _fivetran_synced: "timestamp"
-      campaign_budget_amount: "float"
-      click_through_rate: "float"
-      keyword_bid: "float"
-      clicks: "float"
-      impressions: "float"
-      cost: "float"
+    advertised_product_report_data:
+      +column_types:
+        campaign_budget_amount: float
+        clicks: float
+        impressions: float
+        cost: float
+    campaign_level_report_data:
+      +column_types:
+        campaign_budget_amount: float
+        clicks: float
+        impressions: float
+        cost: float
+    ad_group_level_report_data:
+      +column_types:
+        clicks: float
+        cost: float
+        impressions: float
+    search_term_ad_keyword_report_data:
+      +column_types:
+        campaign_budget_amount: float
+        clicks: float
+        cost: float
+        impressions: float
+        keyword_bid: float
+    targeting_keyword_report_data:
+      +column_types:
+        campaign_budget_amount: float
+        clicks: float
+        cost: float
+        impressions: float
+        keyword_bid: float
 flags:
-  send_anonymous_usage_stats: False
-  use_colors: True
+  send_anonymous_usage_stats: false
+  use_colors: true
