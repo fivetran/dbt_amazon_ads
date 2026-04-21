@@ -7,7 +7,7 @@ profile: 'integration_tests'
 
 vars:
   amazon_ads:
-    amazon_ads_schema: amazon_ads_integration_tests_03
+    amazon_ads_schema: amazon_ads_integration_tests
     amazon_ads_ad_group_history_identifier: "ad_group_history_data"
     amazon_ads_ad_group_level_report_identifier: "ad_group_level_report_data"
     amazon_ads_advertised_product_report_identifier: "advertised_product_report_data"
@@ -41,14 +41,58 @@ seeds:
     show: False
   +quote_columns: "{{ true if target.type == 'redshift' else false }}"
   amazon_ads_integration_tests:
-    +column_types:
-      _fivetran_synced: "timestamp"
-      campaign_budget_amount: "float"
-      click_through_rate: "float"
-      keyword_bid: "float"
-      clicks: "float"
-      impressions: "float"
-      cost: "float"
+    ad_group_level_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        clicks: "float"
+        cost: "float"
+        impressions: "float"
+    advertised_product_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        clicks: "float"
+        cost: "float"
+        impressions: "float"
+    campaign_level_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        campaign_budget_amount: "float"
+        clicks: "float"
+        cost: "float"
+        impressions: "float"
+    search_term_ad_keyword_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        clicks: "float"
+        cost: "float"
+        impressions: "float"
+        keyword_bid: "float"
+    targeting_keyword_report_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+        clicks: "float"
+        cost: "float"
+        impressions: "float"
+        keyword_bid: "float"
+    ad_group_history_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+    campaign_history_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+    keyword_history_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+    portfolio_history_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+    product_ad_history_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
+    profile_data:
+      +column_types:
+        _fivetran_synced: "timestamp"
 flags:
   send_anonymous_usage_stats: False
   use_colors: True
