@@ -3,19 +3,12 @@
 set -e
 
 # Generate unique schema name for this build
-# Format: bk_<commit_sha>_<build_number>
-# Get package name from environment variable set in pipeline.yml, default to "unknown" if not set
-BUILD_NUMBER="${BUILDKITE_BUILD_NUMBER:-0}"
-
-# Create unique schema name using commit SHA and build number
-COMMIT_SHA=$(echo "${BUILDKITE_COMMIT:-unknown}" | cut -c1-7)
-
-# Add databricks-specific identifier for SQL warehouse to differentiate from all purpose cluster
-if [[ "${BUILDKITE_STEP_KEY:-}" == "run_dbt_databricks_sql" ]]; then
-    BUILD_SCHEMA=$(echo "zz_bk_integration_tests_sql_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
-else
-    BUILD_SCHEMA=$(echo "zz_bk_integration_tests_${COMMIT_SHA}_${BUILD_NUMBER}" | cut -c1-63 | sed 's/_$//')
-fi
+# Format: zz_bk_integration_tests_<commit_sha>_<build_number>
+BUILD_NUMBER=$BUILDKITE_BUILD_NUMBER
+COMMIT_SHA=${BUILDKITE_COMMIT:0:7}
+PREFIX="zz_bk_integration_tests"
+if [[ "$BUILDKITE_STEP_KEY" == "run_dbt_databricks_sql" ]]; then PREFIX="${PREFIX}_sql"; fi
+BUILD_SCHEMA="${PREFIX}_${COMMIT_SHA}_${BUILD_NUMBER}"
 
 export BUILD_SCHEMA
 echo "Build schema: ${BUILD_SCHEMA}"
