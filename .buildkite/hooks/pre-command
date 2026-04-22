@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Pre-command hook to load centralized pipeline
+set -euo pipefail
+
+# Only run on the first step to load the centralized pipeline
+if [[ "${BUILDKITE_STEP_NUMBER:-}" == "1" ]]; then
+    echo "Loading centralized pipeline from dbt_package_automations..."
+
+    # Download and upload the centralized pipeline definition
+    curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
+        | buildkite-agent pipeline upload
+
+    echo "Central pipeline loaded successfully"
+fi
