@@ -5,17 +5,8 @@ set -euo pipefail
 
 echo "Configuring TEST_* variables and loading centralized pipeline..."
 
-# Export TEST_* variables for central pipeline
-export TEST_POSTGRES=true
-export TEST_SNOWFLAKE=true
-export TEST_BIGQUERY=true
-export TEST_REDSHIFT=true
-export TEST_DATABRICKS=true
-export TEST_DATABRICKS_SQL=false
-export TEST_SQLSERVER=false
-
-# Download the centralized pipeline definition
+# Download the centralized pipeline (now with hardcoded conditions)
 curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
     -o .buildkite/pipeline.yml
 
-echo "Centralized pipeline downloaded."
+echo "Centralized pipeline loaded."
