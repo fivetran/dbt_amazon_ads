@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Pre-command hook to load centralized pipeline
+# Post-checkout hook to configure and load centralized pipeline (runs once per build)
 set -euo pipefail
 
-echo "Loading centralized pipeline from dbt_package_automations..."
+echo "Configuring TEST_* variables and loading centralized pipeline..."
 
 # Export TEST_* variables for central pipeline
 export TEST_POSTGRES=true
