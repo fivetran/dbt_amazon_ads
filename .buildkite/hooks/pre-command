@@ -19,4 +19,3 @@ curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/fe
     | buildkite-agent pipeline upload
 
 echo "Central pipeline loaded with TEST_* configuration"
-        | buildkite-agent pipeline upload
