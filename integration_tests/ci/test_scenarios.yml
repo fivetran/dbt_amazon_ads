@@ -1,0 +1,16 @@
+# Test scenarios configuration for Amazon Ads dbt package
+# This file defines the different test scenarios to run during CI/CD
+
+# The dbt variable name that controls which schema to use for testing
+schema_variable_name: "amazon_ads_schema"
+
+# Whether the default scenario should include incremental testing
+default_include_incremental: false
+
+# List of test scenarios to run
+test_scenarios:
+  # Test with portfolio history disabled
+  - name: "portfolio history disabled"
+    vars:
+      amazon_ads__portfolio_history_enabled: false
+    include_incremental: false
