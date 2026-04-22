@@ -3,30 +3,19 @@
 # Post-checkout hook to configure and load centralized pipeline (runs after checkout)
 set -euo pipefail
 
-echo "Configuring central pipeline"
+echo "Loading pipeline.yml..."
 
-# Download the central pipeline template
+# Set environment variables for warehouse testing using Buildkite agent
+buildkite-agent env set TEST_POSTGRES true
+buildkite-agent env set TEST_SNOWFLAKE false
+buildkite-agent env set TEST_BIGQUERY false
+buildkite-agent env set TEST_REDSHIFT false
+buildkite-agent env set TEST_DATABRICKS false
+buildkite-agent env set TEST_DATABRICKS_SQL false
+buildkite-agent env set TEST_SQLSERVER false
+
+# Download the central pipeline (use as-is)
 curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
-    -o .buildkite/pipeline_base.yml
+    -o .buildkite/pipeline.yml
 
-# Create pipeline with merged env section
-cat > .buildkite/pipeline.yml << EOF
-env:
-  RUN_MODELS_URL: "https://raw.githubusercontent.com/fivetran/dbt_package_automations/refs/heads/feature/centralized-bk/.buildkite/scripts/run_models.sh"
-  TEST_POSTGRES: true
-  TEST_SNOWFLAKE: false
-  TEST_BIGQUERY: false
-  TEST_REDSHIFT: false
-  TEST_DATABRICKS: false
-  TEST_DATABRICKS_SQL: false
-  TEST_SQLSERVER: false
-
-EOF
-
-# Append the steps section (skip the env section)
-tail -n +4 .buildkite/pipeline_base.yml >> .buildkite/pipeline.yml
-
-# Clean up temp file
-rm -f .buildkite/pipeline_base.yml
-
-echo "Central pipeline configured."
+echo "pipeline.yml loaded successfully."
