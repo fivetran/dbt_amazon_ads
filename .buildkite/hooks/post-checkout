@@ -3,14 +3,12 @@
 # Post-checkout hook to configure and load centralized pipeline (runs after checkout)
 set -euo pipefail
 
-echo "Loading pipeline.yml..."
+echo "Generating centralized pipeline..."
 
-# Set enabled warehouses for this package (as array)
-buildkite-agent env set ENABLED_WAREHOUSES="postgres snowflake"
+buildkite-agent env set ENABLED_WAREHOUSES "postgres snowflake"
 
-# Download the central pipeline generator
 curl -fsSL \
   https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/bootstrap_pipeline.sh \
   | bash
 
-echo "pipeline.yml loaded successfully."
+echo "Centralized pipeline generated."
