@@ -18,7 +18,4 @@ export TEST_SQLSERVER=false
 curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
     -o .buildkite/pipeline.yml
 
-# Upload the centralized pipeline definition
-buildkite-agent pipeline upload .buildkite/pipeline.yml
-
-echo "Central pipeline loaded with TEST_* configuration"
+echo "Centralized pipeline downloaded."
