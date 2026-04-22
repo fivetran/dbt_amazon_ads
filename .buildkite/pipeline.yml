@@ -12,10 +12,4 @@ env:
   TEST_DATABRICKS_SQL: false
   TEST_SQLSERVER: false
 
-steps:
-  - label: ":gear: Load Central Pipeline"
-    key: "load_pipeline"
-    command: |
-      # Download and load pipeline from dbt_package_automations
-      curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
-        | buildkite-agent pipeline upload
+# Pipeline steps will be loaded by pre-command hook
