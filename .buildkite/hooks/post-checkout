@@ -5,14 +5,8 @@ set -euo pipefail
 
 echo "Loading pipeline.yml..."
 
-# Set environment variables for warehouse testing using Buildkite agent
-buildkite-agent env set TEST_POSTGRES=true
-buildkite-agent env set TEST_SNOWFLAKE=false
-buildkite-agent env set TEST_BIGQUERY=false
-buildkite-agent env set TEST_REDSHIFT=false
-buildkite-agent env set TEST_DATABRICKS=false
-buildkite-agent env set TEST_DATABRICKS_SQL=false
-buildkite-agent env set TEST_SQLSERVER=false
+# Set enabled warehouses for this package
+buildkite-agent env set ENABLED_WAREHOUSES=postgres,snowflake
 
 # Download the central pipeline (use as-is)
 curl -f -s https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/pipeline.yml \
