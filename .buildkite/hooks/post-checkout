@@ -5,10 +5,8 @@ set -euo pipefail
 
 echo "Generating centralized pipeline..."
 
-buildkite-agent env set "ENABLED_WAREHOUSES=postgres snowflake"
-
 curl -fsSL \
-  https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/bootstrap_pipeline.sh \
-  | bash
+  https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/dynamic_pipeline.sh \
+  | ENABLED_WAREHOUSES="postgres snowflake" bash
 
 echo "Centralized pipeline generated."
