@@ -5,8 +5,14 @@ set -euo pipefail
 
 echo "Generating centralized pipeline..."
 
+# Download pre-command script for environment setup
+curl -fsSL \
+  https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/setup_vars.sh \
+  -o .buildkite/hooks/pre-command
+
+# Available warehouse options: postgres, snowflake, bigquery, redshift, databricks, databricks_sql, sqlserver
 curl -fsSL \
   https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/dynamic_pipeline.sh \
-  | ENABLED_WAREHOUSES="postgres snowflake" bash
+  | ENABLED_WAREHOUSES="postgres,snowflake" bash
 
 echo "Centralized pipeline generated."
