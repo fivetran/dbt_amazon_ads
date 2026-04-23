@@ -1,16 +1,6 @@
 # Test scenarios configuration for Amazon Ads dbt package
 # This file defines the different test scenarios to run during CI/CD
 
-# Warehouse testing configuration
-warehouses:
-  postgres: true
-  snowflake: false
-  bigquery: false
-  redshift: false
-  databricks: false
-  databricks_sql: false
-  sqlserver: false
-
 # The dbt variable name that controls which schema to use for testing
 schema_variable_name: "amazon_ads_schema"
 
