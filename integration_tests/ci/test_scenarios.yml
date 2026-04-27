@@ -4,6 +4,9 @@
 # The dbt variable name that controls which schema to use for testing
 schema_variable_name: "amazon_ads_schema"
 
+# Optional warehouse configuration (only specify if needed)
+include_databricks_sql: true
+
 # Whether the default scenario should include incremental testing
 default_include_incremental: false
 
