@@ -1,5 +1,5 @@
 steps:
-  - label: ":rocket: Run CI Tests"
+  - label: ":building_construction: Setup CI Tests"
     key: "super_run"
     commands: |
       set -e
