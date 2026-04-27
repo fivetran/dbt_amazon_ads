@@ -1,0 +1,9 @@
+env:
+  INCLUDE_DATABRICKS_SQL: "true"
+  INCLUDE_SQLSERVER: "false"
+
+steps:
+  - label: ":rocket: Run CI Tests"
+    key: "super_run"
+    commands: |
+      curl -fsSL https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/SUPER_RUN.sh | bash
