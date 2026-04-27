@@ -2,13 +2,6 @@ steps:
   - label: ":rocket: Run CI Tests"
     key: "super_run"
     commands: |
-      echo "🚀 Downloading and running SUPER_RUN.sh..."
-      if ! curl -fsSL https://raw.githubusercontent.com/fivetran/dbt_package_automations/test/superscript/.buildkite/scripts/SUPER_RUN.sh -o SUPER_RUN.sh; then
-        echo "❌ Failed to download SUPER_RUN.sh"
-        exit 1
-      fi
-      if [[ ! -s SUPER_RUN.sh ]]; then
-        echo "❌ Downloaded SUPER_RUN.sh is empty"
-        exit 1
-      fi
+      set -e
+      curl -fsSL https://raw.githubusercontent.com/fivetran/dbt_package_automations/test/superscript/.buildkite/scripts/SUPER_RUN.sh -o SUPER_RUN.sh
       bash SUPER_RUN.sh
