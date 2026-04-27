@@ -6,4 +6,4 @@ steps:
   - label: ":rocket: Run CI Tests"
     key: "super_run"
     commands: |
-      curl -fsSL https://raw.githubusercontent.com/fivetran/dbt_package_automations/feature/centralized-bk/.buildkite/scripts/SUPER_RUN.sh | bash
+      curl -fsSL https://raw.githubusercontent.com/fivetran/dbt_package_automations/test/superscript/.buildkite/scripts/SUPER_RUN.sh | bash
