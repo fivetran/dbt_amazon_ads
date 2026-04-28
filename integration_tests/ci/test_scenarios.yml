@@ -7,9 +7,6 @@ schema_variable_name: "amazon_ads_schema"
 # Optional warehouse configuration (only specify if needed)
 include_databricks_sql: true
 
-# Whether the default scenario should include incremental testing
-default_include_incremental: false
-
 # Dbt adapter versions (optional - defaults will be used if not specified)
 dbt_adapter_versions:
   snowflake: ">=1.3.0,<1.6.0"
@@ -20,7 +17,9 @@ dbt_adapter_versions:
 
 # List of test scenarios to run
 test_scenarios:
-  # Test with portfolio history disabled
+  - name: "default"
+    vars: {}
+    include_incremental: false
   - name: "portfolio history disabled"
     vars:
       amazon_ads__portfolio_history_enabled: false
