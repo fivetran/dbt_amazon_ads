@@ -33,7 +33,7 @@ final as (
         bidding_strategy,
         creation_date,
         end_date,
-        name as campaign_name,
+        campaign_name, -- used alias in get_campaign_history_columns macro to test the alias feature
         cast(portfolio_id as {{ dbt.type_string() }}) as portfolio_id,
         cast(profile_id as {{ dbt.type_string() }}) as profile_id,
         serving_status,
