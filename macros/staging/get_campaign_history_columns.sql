@@ -6,7 +6,7 @@
     {"name": "end_date", "datatype": "date"},
     {"name": "id", "datatype": dbt.type_string()},
     {"name": "last_updated_date", "datatype": dbt.type_timestamp()},
-    {"name": "name", "datatype": dbt.type_string()},
+    {"name": "name", "datatype": dbt.type_string(), "alias": "campaign_name"}, 
     {"name": "portfolio_id", "datatype": dbt.type_int()},
     {"name": "profile_id", "datatype": dbt.type_int()},
     {"name": "serving_status", "datatype": dbt.type_string()},

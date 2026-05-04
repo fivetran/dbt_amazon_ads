@@ -1,33 +1,33 @@
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
+{% set stg_tmp_relation = ref('stg_amazon_ads__profile_tmp') %}
+
 with base as (
 
-    select * 
-    from {{ ref('stg_amazon_ads__profile_tmp') }}
+    select *
+    from {{ stg_tmp_relation }}
 ),
 
 fields as (
 
-    select
-        {{
-            fivetran_utils.fill_staging_columns(
-                source_columns=adapter.get_columns_in_relation(ref('stg_amazon_ads__profile_tmp')),
-                staging_columns=get_profile_columns()
-            )
-        }}
-    
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='amazon_ads_union_schemas', 
-            union_database_variable='amazon_ads_union_databases') 
+select
+    {{ amazon_ads.standardize_column_names(
+        tmp_relation=stg_tmp_relation,
+        table_name='profile',
+        base_columns=get_profile_columns())
         }}
 
-    from base
+    {{ fivetran_utils.source_relation(
+        union_schema_variable='amazon_ads_union_schemas',
+        union_database_variable='amazon_ads_union_databases')
+        }}
+from base
 ),
 
 final as (
 
     select
-        source_relation, 
+        source_relation,
         cast(id as {{ dbt.type_string() }}) as profile_id,
         cast(account_id as {{ dbt.type_string() }}) as account_id,
         account_marketplace_string_id,
