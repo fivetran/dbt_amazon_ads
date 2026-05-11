@@ -1,0 +1,11 @@
+schema_variable_name: "amazon_ads_schema"
+
+test_scenarios:
+  - name: "Default"
+    vars: {}
+    include_incremental: false
+
+  - name: "portfolio history disabled"
+    vars:
+      amazon_ads__portfolio_history_enabled: false
+    include_incremental: false
