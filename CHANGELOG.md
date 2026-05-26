@@ -1,3 +1,27 @@
+# dbt_amazon_ads v1.2.1
+
+[PR #XX]() includes the following updates: 
+
+## Feature Update
+- Introduces support for the newer, more flexible unioning framework. Previously, to run the package on multiple Amazon Ads sources at once, you could only use the `amazon_ads_union_schemas` variable OR `amazon_ads_union_databases` (mutually exclusive). While these setups are still supported for backwards compatibility, we recommend using `amazon_ads_sources` instead, which can be configured as such:
+
+```yml
+# dbt_project.yml
+
+vars:
+  amazon_ads_:
+    amazon_ads__sources:
+      - database: connection_1_destination_name # Required
+        schema: connection_1_schema_name # Required
+        name: connection_1_source_name # Required only if following this step: https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#recommended-incorporate-unioned-sources-into-dag
+
+      - database: connection_2_destination_name
+        schema: connection_2_schema_name
+        name: connection_2_source_name
+```
+
+- See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for more details.
+
 # dbt_amazon_ads v1.2.0
 
 [PR #32](https://github.com/fivetran/dbt_amazon_ads/pull/32) includes the following updates:

@@ -79,6 +79,75 @@ packages:
 
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/amazon_ads_source` in your `packages.yml` since this package has been deprecated.
 
+#### Option A: Single connection
+By default, this package runs using your destination and the `amazon_ads` schema. If this is not where your Amazon Ads data is (for example, if your Amazon Ads schema is named `amazon_ads_fivetran`), add the following configuration to your root `dbt_project.yml` file:
+
+```yml
+vars:
+    amazon_ads_database: your_destination_name
+    amazon_ads_schema: your_schema_name
+```
+
+#### Option B: Union multiple connections
+If you have multiple Amazon Ads connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. For each source table, the package will union all of the data together and pass the unioned table into the transformations. The `source_relation` column in each model indicates the origin of each record.
+
+To use this functionality, you will need to set the `amazon_ads_sources` variable in your root `dbt_project.yml` file:
+
+```yml
+# dbt_project.yml
+
+vars:
+  amazon_ads:
+    amazon_ads_sources:
+      - database: connection_1_destination_name # Required
+        schema: connection_1_schema_name # Required
+        name: connection_1_source_name # Required only if following the step in the following subsection
+
+      - database: connection_2_destination_name
+        schema: connection_2_schema_name
+        name: connection_2_source_name
+```
+
+> Previous versions of this package employed two separate, mutually exclusive variables for unioning: `amazon_ads_union_schemas` and `amazon_ads_union_databases`. While these variables are still supported, `amazon_ads_sources` is the recommended variable to configure.
+
+##### Recommended: Incorporate unioned sources into DAG
+> *If you are running the package through [Fivetran Transformations for dbt Core™](https://fivetran.com/docs/transformations/dbt#transformationsfordbtcore), the below step is necessary in order to synchronize model runs with your Amazon Ads connections. Alternatively, you may choose to run the package through Fivetran [Quickstart](https://fivetran.com/docs/transformations/quickstart), which would create separate sets of models for each Amazon Ads source rather than one set of unioned models.*
+
+By default, this package defines one single-connection source, called `amazon_ads`, which will be disabled if you are unioning multiple connections. This means that your DAG will not include your Amazon Ads sources, though the package will run successfully.
+
+To properly incorporate all of your Amazon Ads connections into your project's DAG:
+1. Define each of your sources in a `.yml` file in your project. Utilize the following template for the `source`-level configurations, and, **most importantly**, copy and paste the table and column-level definitions from the package's `src_amazon_ads.yml` [file](https://github.com/fivetran/dbt_amazon_ads/blob/main/models/staging/src_amazon_ads.yml).
+
+```yml
+# a .yml file in your root project
+
+version: 2
+
+sources:
+  - name: <name> # ex: Should match name in amazon_ads_sources
+    schema: <schema_name>
+    database: <database_name>
+    loader: fivetran
+    config:
+      loaded_at_field: _fivetran_synced
+      freshness: # feel free to adjust to your liking
+        warn_after: {count: 72, period: hour}
+        error_after: {count: 168, period: hour}
+
+    tables: # copy and paste from amazon_ads/models/staging/src_amazon_ads.yml - see https://support.atlassian.com/bitbucket-cloud/docs/yaml-anchors/ for how to use anchors to only do so once
+```
+
+2. In the above `.yml` file, remove the `and var('amazon_ads_sources', []) == []` condition from the `enabled` config for the following source tables (if you have the tables in your schemas):
+- [`portfolio_history`](https://github.com/fivetran/dbt_amazon_ads/blob/main/models/staging/src_amazon_ads.yml#L206)
+
+3. Set the `has_defined_sources` variable (scoped to the `amazon_ads` package) to `True` in your root project, like such:
+```yml
+# dbt_project.yml
+vars:
+  amazon_ads:
+    has_defined_sources: true
+```
+
 #### Databricks Dispatch Configuration
 If you are using a Databricks destination with this package, you will need to add the following dispatch configuration (or a variation) within your `dbt_project.yml`. This is necessary to ensure that this package searches for macros in the `dbt-labs/spark_utils` package before searching the `dbt-labs/dbt_utils` package.
 ```yml
@@ -106,18 +175,6 @@ vars:
 
 ### (Optional) Additional configurations
 <details open><summary>Expand/Collapse details</summary>
-
-#### Union multiple connections
-If you have multiple amazon_ads connections in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either the `amazon_ads_union_schemas` OR `amazon_ads_union_databases` variables (cannot do both) in your root `dbt_project.yml` file:
-
-```yml
-vars:
-    amazon_ads_union_schemas: ['amazon_ads_usa','amazon_ads_canada'] # use this if the data is in different schemas/datasets of the same database/project
-    amazon_ads_union_databases: ['amazon_ads_usa','amazon_ads_canada'] # use this if the data is in different databases/projects but uses the same schema name
-```
-> NOTE: The native `source.yml` connection set up in the package will not function when the union schema/database feature is utilized. Although the data will be correctly combined, you will not observe the sources linked to the package models in the Directed Acyclic Graph (DAG). This happens because the package includes only one defined `source.yml`.
-
-To connect your multiple schema/database sources to the package models, follow the steps outlined in the [Union Data Defined Sources Configuration](https://github.com/fivetran/dbt_fivetran_utils/tree/releases/v0.4.latest#union_data-source) section of the Fivetran Utils documentation for the union_data macro. This will ensure a proper configuration and correct visualization of connections in the DAG.
 
 #### Passing Through Additional Metrics
 By default, this package will select `clicks`, `impressions`, `cost`, `purchases_30_d`, and `sales_30_d` from the source reporting tables to store into the staging and end models. If you would like to pass through additional metrics to the package models, add the following configurations to your `dbt_project.yml` file. These variables allow the pass-through fields to be aliased (`alias`) if desired, but not required. Use the following format for declaring the respective pass-through variables:

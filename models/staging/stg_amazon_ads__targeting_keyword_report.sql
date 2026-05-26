@@ -16,10 +16,7 @@ fields as (
             )
         }}
     
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='amazon_ads_union_schemas', 
-            union_database_variable='amazon_ads_union_databases') 
-        }}
+        {{ amazon_ads.apply_source_relation() }}
 
     from base
 ),

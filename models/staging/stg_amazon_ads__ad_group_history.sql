@@ -16,10 +16,7 @@ fields as (
             )
         }}
     
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='amazon_ads_union_schemas', 
-            union_database_variable='amazon_ads_union_databases') 
-        }}
+        {{ amazon_ads.apply_source_relation() }}
 
     from base
 ),
@@ -36,7 +33,7 @@ final as (
         name as ad_group_name,
         serving_status,
         state,
-        row_number() over (partition by source_relation, id order by last_updated_date desc) = 1 as is_most_recent_record
+        row_number() over (partition by id {{ amazon_ads.partition_by_source_relation() }} order by last_updated_date desc) = 1 as is_most_recent_record
     from fields
 )
 
