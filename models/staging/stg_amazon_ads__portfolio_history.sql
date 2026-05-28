@@ -45,7 +45,7 @@ final as (
         cast(profile_id as {{ dbt.type_string() }}) as profile_id,
         serving_status,
         state,
-        row_number() over (partition by source_relation, id order by last_updated_date desc) = 1 as is_most_recent_record
+        row_number() over ({{ partition_by_source_relation('amazon_ads') }} id order by last_updated_date desc) = 1 as is_most_recent_record
     from fields
 )
 
