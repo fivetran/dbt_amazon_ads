@@ -10,7 +10,7 @@
         default_variable='profile',
         union_schema_variable='amazon_ads_union_schemas',
         union_database_variable='amazon_ads_union_databases'
-    ) if var('amazon_ads_union_schemas') or var('amazon_ads_union_databases')
+    ) if var('amazon_ads_union_schemas', None) or var('amazon_ads_union_databases', None)
 
     else fivetran_utils.union_connections(
         connection_dictionary='amazon_ads_sources',
