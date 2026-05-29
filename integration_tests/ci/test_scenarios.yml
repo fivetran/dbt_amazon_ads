@@ -17,7 +17,12 @@ test_scenarios:
     vars: {}
     include_incremental: false
 
-  - name: "portfolio history disabled"
+  # - name: "portfolio history disabled"
+  #   vars:
+  #     amazon_ads__portfolio_history_enabled: false
+  #   include_incremental: false
+
+  - name: "test old union logic"
     vars:
-      amazon_ads__portfolio_history_enabled: false
+      amazon_ads_union_schemas: [var('amazon_ads_schema'), var('amazon_ads_schema')]
     include_incremental: false
