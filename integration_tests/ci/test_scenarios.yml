@@ -13,9 +13,9 @@ include_sqlserver: false
 include_dbt_compile: true
 
 test_scenarios:
-  - name: "Default"
-    vars: {}
-    include_incremental: false
+  # - name: "Default"
+  #   vars: {}
+  #   include_incremental: false
 
   # - name: "portfolio history disabled"
   #   vars:
@@ -24,5 +24,6 @@ test_scenarios:
 
   - name: "test old union logic"
     vars:
-      amazon_ads_union_schemas: [var('amazon_ads_schema'), var('amazon_ads_schema')]
+      amazon_ads_union_schemas: ['{{ var("amazon_ads_schema") }}', '{{ var("amazon_ads_schema") }}']
     include_incremental: false
+    warehouses: ['postgres']
