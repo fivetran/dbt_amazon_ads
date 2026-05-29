@@ -21,7 +21,7 @@ fields as (
                 union_database_variable='amazon_ads_union_databases'
                 ) if var('amazon_ads_union_schemas', None) or var('amazon_ads_union_databases', None)
             
-            else fivetran_utils.apply_source_relation('amazon_ads')
+            else ', source_relation'
         }}
 
     from base

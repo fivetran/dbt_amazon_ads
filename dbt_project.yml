@@ -32,3 +32,6 @@ vars:
     amazon_ads__campaign_passthrough_metrics: []
     amazon_ads__search_term_ad_keyword_passthrough_metrics: []
     amazon_ads__targeting_keyword_passthrough_metrics: []
+    package_name: 'amazon_ads'
+    schema_var_name: 'amazon_ads_schema'
+    database_var_name: 'amazon_ads_database'
