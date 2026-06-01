@@ -15,9 +15,6 @@ fields as (
                 staging_columns=get_portfolio_history_columns()
             )
         }}
-    
-    {{ fivetran_utils.apply_source_relation() }}
-
     from base
 ),
 

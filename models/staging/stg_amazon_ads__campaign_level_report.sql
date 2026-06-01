@@ -15,9 +15,6 @@ fields as (
                 staging_columns=get_campaign_level_report_columns()
             )
         }}
-    
-    {{ fivetran_utils.apply_source_relation() }}
-
     from base
 ),
 
