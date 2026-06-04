@@ -1,6 +1,22 @@
 # dbt_amazon_ads v1.3.0
 
-TBD
+[PR #47](https://github.com/fivetran/dbt_amazon_ads/pull/47) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 1 possible breaking change**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| All models | Single-connection `source_relation` value | Empty string (`''`) | `<amazon_ads_database>.<amazon_ads_schema>` | Powered by the new `fivetran_utils.apply_source_relation` macro |
+
+## Feature Update
+- Introduces the `amazon_ads_sources` variable, which lets you union multiple Amazon Ads connections simultaneously. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for setup details.
+  - The old `amazon_ads_union_schemas` and `amazon_ads_union_databases` variables remain supported for backward compatibility.
+
+
+## Under the Hood
+- Adds the `fivetran_using_source_casing` variable for case-sensitive destination support. When enabled, downstream transformations respect source casing to ensure consistent results. See the [Additional Configurations](https://github.com/fivetran/dbt_amazon_ads/#source-casing-for-case-sensitive-destinations) section of the README for details. 
+- Introduces `fivetran_utils.partition_by_source_relation` for partitioning by source model across staging models.
 
 # dbt_amazon_ads v1.2.0
 
@@ -33,7 +49,7 @@ TBD
   - If you reference `fivetran/amazon_ads_source` in your `packages.yml`, you must remove this dependency to avoid conflicts.
   - Any source overrides referencing the `fivetran/amazon_ads_source` package will also need to be removed or updated to reference this package.
   - Update any amazon_ads_source-scoped variables to be scoped to only under this package. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md) for how to configure the build schema of staging models.
-- As part of the consolidation, vars are no longer used to reference staging models, and only sources are represented by vars. Staging models are now referenced directly with `ref()` in downstream models.
+- As part of theconfigurations consolidation, vars are no longer used to reference staging models, and only sources are represented by vars. Staging models are now referenced directly with `ref()` in downstream models.
 
 
 ### dbt Fusion Compatibility Updates

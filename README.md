@@ -74,7 +74,7 @@ Include the following amazon_ads package version in your `packages.yml` file _if
 ```yaml
 packages:
   - package: fivetran/amazon_ads
-    version: [">=1.2.0", "<1.3.0"] # we recommend using ranges to capture non-breaking changes automatically
+    version: [">=1.3.0", "<1.4.0"] # we recommend using ranges to capture non-breaking changes automatically
 ```
 
 > All required sources and staging models are now bundled into this transformation package. Do not include `fivetran/amazon_ads_source` in your `packages.yml` since this package has been deprecated.
@@ -178,6 +178,14 @@ If an individual source table has a different name than the package expects, add
 ```yml
 vars:
     amazon_ads_<default_source_table_name>_identifier: your_table_name 
+```
+
+#### Source casing for case-sensitive destinations
+By default, the package applies case-insensitive comparisons when resolving `source_relation` values. If your destination is case-sensitive and you want downstream transformations to respect the exact casing of your source database and schema names, set the following variable:
+
+```yml
+vars:
+    fivetran_using_source_casing: true
 ```
 
 </details>
