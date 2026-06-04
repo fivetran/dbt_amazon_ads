@@ -1,10 +1,22 @@
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
+{% if var('amazon_ads_sources',[]) != [] %}
+
+{{
+    fivetran_utils.union_connections(
+        connection_dictionary='amazon_ads_sources',
+        single_source_name='amazon_ads',
+        single_table_name='search_term_ad_keyword_report'
+    )
+}}
+
+{% else %}
+
 {{
     fivetran_utils.union_data(
-        table_identifier='search_term_ad_keyword_report', 
-        database_variable='amazon_ads_database', 
-        schema_variable='amazon_ads_schema', 
+        table_identifier='search_term_ad_keyword_report',
+        database_variable='amazon_ads_database',
+        schema_variable='amazon_ads_schema',
         default_database=target.database,
         default_schema='amazon_ads',
         default_variable='search_term_ad_keyword_report',
@@ -12,3 +24,5 @@
         union_database_variable='amazon_ads_union_databases'
     )
 }}
+
+{% endif %}

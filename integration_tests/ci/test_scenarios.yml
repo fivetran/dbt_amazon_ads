@@ -21,3 +21,9 @@ test_scenarios:
     vars:
       amazon_ads__portfolio_history_enabled: false
     include_incremental: false
+
+  - name: "MDLS"
+    vars:
+      using_deliberate_quoting: false
+    include_incremental: false
+    include_dbt_seed: true

@@ -16,10 +16,7 @@ fields as (
             )
         }}
     
-        {{ fivetran_utils.source_relation(
-            union_schema_variable='amazon_ads_union_schemas', 
-            union_database_variable='amazon_ads_union_databases') 
-        }}
+        {{ fivetran_utils.apply_source_relation(package_name="amazon_ads") }}
 
     from base
 ),
@@ -43,7 +40,7 @@ final as (
         budget,
         budget_type,
         effective_budget,
-        row_number() over (partition by source_relation, id order by last_updated_date desc) = 1 as is_most_recent_record
+        row_number() over (partition by id {{ fivetran_utils.partition_by_source_relation(package_name='amazon_ads') }} order by last_updated_date desc) = 1 as is_most_recent_record
     from fields
 )
 

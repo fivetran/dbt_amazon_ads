@@ -1,3 +1,7 @@
+# dbt_amazon_ads v1.3.0
+
+TBD
+
 # dbt_amazon_ads v1.2.0
 
 [PR #32](https://github.com/fivetran/dbt_amazon_ads/pull/32) includes the following updates:
