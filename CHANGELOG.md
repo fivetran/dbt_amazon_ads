@@ -13,10 +13,9 @@
 - Introduces the `amazon_ads_sources` variable, which lets you union multiple Amazon Ads connections simultaneously. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for setup details.
   - The old `amazon_ads_union_schemas` and `amazon_ads_union_databases` variables remain supported for backward compatibility.
 
-
 ## Under the Hood
 - Adds the `fivetran_using_source_casing` variable for case-sensitive destination support. When enabled, downstream transformations respect source casing to ensure consistent results. See the [Additional Configurations](https://github.com/fivetran/dbt_amazon_ads/#source-casing-for-case-sensitive-destinations) section of the README for details. 
-- Introduces `fivetran_utils.partition_by_source_relation` for partitioning by source model across staging models.
+- Introduces `fivetran_utils.partition_by_source_relation` to conditionally include `source_relation` in partition clauses only when multiple sources are configured.
 
 # dbt_amazon_ads v1.2.0
 
