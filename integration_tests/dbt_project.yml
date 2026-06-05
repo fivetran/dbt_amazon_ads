@@ -39,7 +39,7 @@ dispatch:
 seeds:
   +docs:
     show: False
-  +quote_columns: "{{ target.type == 'redshift' or not var('using_deliberate_quoting', true) }}"
+  +quote_columns: "{{ target.type == 'redshift' or var('fivetran_using_source_casing', false) }}"
   amazon_ads_integration_tests:
     ad_group_level_report_data:
       +column_types:
