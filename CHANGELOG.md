@@ -8,7 +8,7 @@
 | Data Model(s) | Change type | Old | New | Notes |
 | ------------- | ----------- | --- | --- | ----- |
 | All models | Single-connection `source_relation` value | Empty string (`''`) | `<amazon_ads_database>.<amazon_ads_schema>` | Powered by the new `fivetran_utils.apply_source_relation` macro. |
-| All models | `source_relation` value for `amazon_ads_sources` users | Empty string (`''`) | `<amazon_ads_database>.<amazon_ads_schema>.<table_name>` | Introduces the `amazon_ads_sources` variable to union multiple Amazon Ads connections simultaneously. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for setup details. |
+| All models | `source_relation` value for `amazon_ads_sources` users | Empty string (`''`) | `<amazon_ads_database>.<amazon_ads_schema>` | Introduces the `amazon_ads_sources` variable to union multiple Amazon Ads connections simultaneously. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for setup details. |
 | All models | `source_relation` value for legacy `amazon_ads_union_schemas` / `amazon_ads_union_databases` users | Schema or database name (e.g. `my_schema`) | Empty string (`''`) | `fivetran_utils.apply_source_relation` calls `source_relation()` without package-specific variable arguments, so the legacy union variables no longer populate `source_relation`. We recommend migrating to `amazon_ads_sources` for meaningful `source_relation` values. |
 
 ## Under the Hood
