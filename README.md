@@ -170,6 +170,14 @@ models:
         +schema: my_new_schema_name # Leave +schema: blank to use the default target_schema.
 ```
 
+#### Source casing for case-sensitive destinations
+By default, the package applies case-insensitive comparisons when resolving `source_relation` values. If your destination is case-sensitive and you want downstream transformations to respect the exact casing of your source database and schema names, set the following variable:
+
+```yml
+vars:
+    fivetran_using_source_casing: true
+```
+
 #### Change the source table references
 If an individual source table has a different name than the package expects, add the table name as it appears in your destination to the respective variable. This is not available when running the package on multiple unioned connections.
 
