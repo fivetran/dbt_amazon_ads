@@ -1,3 +1,21 @@
+# dbt_amazon_ads v1.3.0
+
+[PR #49](https://github.com/fivetran/dbt_amazon_ads/pull/49) includes the following updates:
+
+## Schema/Data Changes (--full-refresh required after upgrading)
+**1 total change • 1 possible breaking change**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| All models | `source_relation` column (when using a single amazon_ads schema) | Empty string (`''`) | `<database>.<schema>` |  |
+
+## Feature Updates
+- Introduces the new (recommended) `amazon_ads_sources` variable for more robust union data configuration. The old`amazon_ads_union_schemas` and `amazon_ads_union_databases` variables will still be supported. See the [README](https://github.com/fivetran/dbt_amazon_ads/tree/main#define-database-and-schema-variables) for specific details.
+
+## Under the Hood
+- Adds the `fivetran_using_source_casing` variable for case-sensitive destination support. When enabled, downstream transformations respect source casing to ensure consistent results. See the [Additional Configurations](https://github.com/fivetran/dbt_amazon_ads/#source-casing-for-case-sensitive-destinations) section of the README for details.
+- Introduces `fivetran_utils.partition_by_source_relation` to conditionally include `source_relation` in partition clauses only when multiplesources are configured.
+
 # dbt_amazon_ads v1.2.0
 
 [PR #32](https://github.com/fivetran/dbt_amazon_ads/pull/32) includes the following updates:

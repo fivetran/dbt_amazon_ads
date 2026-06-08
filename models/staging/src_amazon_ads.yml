@@ -9,7 +9,7 @@ sources:
 
     config:
       loaded_at_field: _fivetran_synced
-      enabled: "{{ var('ad_reporting__amazon_ads_enabled', true) }}"
+      enabled: "{{ var('amazon_ads_sources', []) == [] }}"
       freshness: 
         warn_after: {count: 48, period: hour}
         error_after: {count: 168, period: hour}
@@ -203,7 +203,7 @@ sources:
         description: Each record represents a portfolio in Amazon Ads.
         identifier: "{{ var('amazon_ads_portfolio_history_identifier', 'portfolio_history') }}"
         config:
-          enabled: "{{ var('ad_reporting__amazon_ads_enabled', true) and var('amazon_ads__portfolio_history_enabled', true) }}"
+          enabled: "{{ var('ad_reporting__amazon_ads_enabled', true) and var('amazon_ads__portfolio_history_enabled', true) and var('amazon_ads_sources', []) == [] }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"
