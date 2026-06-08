@@ -2,13 +2,15 @@
 
 [PR #47](https://github.com/fivetran/dbt_amazon_ads/pull/47) includes the following updates:
 
-## Schema/Data Changes
+## Schema/Data Changes (--full-refresh required after upgrading)
 **2 total changes • 1 possible breaking change**
 
 | Data Model(s) | Change type | Old | New | Notes |
 | ------------- | ----------- | --- | --- | ----- |
-| All models | Single-connection `source_relation` value | Empty string (`''`) | `<database>.<schema>` | Values are derived from the `amazon_ads_database` and `amazon_ads_schema` variables (or their defaults). Powered by the new `fivetran_utils.apply_source_relation` macro. |
-| All models | `source_relation` value for `amazon_ads_sources` users | Empty string (`''`) | `<database>.<schema>` | Values are derived from each entry's `database` and `schema` fields in `amazon_ads_sources`. Introduces the `amazon_ads_sources` variable to union multiple Amazon Ads connections simultaneously. See the [README](https://github.com/fivetran/dbt_amazon_ads/blob/main/README.md#option-b-union-multiple-connections) for setup details. |
+| All models | `source_relation` column (when using a single Amazon Ads schema) | Empty string (`''`) | `<database>.<schema>` |  |
+
+## Feature Updates
+- Introduces the new (recommended) `amazon_ads_sources` variable for more robust union data configuration. The old `amazon_ads_union_schemas` and `amazon_ads_union_databases` variables will still be supported. See the [README](https://github.com/fivetran/dbt_amazon_ads/tree/main#define-database-and-schema-variables) for specific details. 
 
 ## Under the Hood
 - Adds the `fivetran_using_source_casing` variable for case-sensitive destination support. When enabled, downstream transformations respect source casing to ensure consistent results. See the [Additional Configurations](https://github.com/fivetran/dbt_amazon_ads/#source-casing-for-case-sensitive-destinations) section of the README for details. 
