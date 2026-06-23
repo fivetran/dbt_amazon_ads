@@ -1,7 +1,7 @@
 config-version: 2
 
 name: 'amazon_ads_integration_tests'
-version: '1.2.0'
+version: '1.3.0'
 
 profile: 'integration_tests' 
 
@@ -39,7 +39,7 @@ dispatch:
 seeds:
   +docs:
     show: False
-  +quote_columns: "{{ true if target.type == 'redshift' else false }}"
+  +quote_columns: "{{ target.type == 'redshift' or var('fivetran_using_source_casing', false) }}"
   amazon_ads_integration_tests:
     ad_group_level_report_data:
       +column_types:
