@@ -3,8 +3,7 @@
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
 
 ## Feature Updates
-- PLACEHOLDER - fill in changelog content before running
-
+- Adds support for DuckDB as a destination.
 
 # dbt_amazon_ads v1.3.0
 
