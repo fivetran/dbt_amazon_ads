@@ -1,3 +1,11 @@
+# dbt_amazon_ads v1.3.1
+
+[PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
+
+## Feature Updates
+- PLACEHOLDER - fill in changelog content before running
+
+
 # dbt_amazon_ads v1.3.0
 
 [PR #49](https://github.com/fivetran/dbt_amazon_ads/pull/49) includes the following updates:
