@@ -6,7 +6,7 @@ on:
 
 jobs:
   generate-docs:
-    if: "github.event.label.name == 'docs:ready'"
+    if: github.event.label.name == 'docs:ready'
     uses: fivetran/dbt_package_automations/.github/workflows/generate-docs.yml@docs-generator-status-report
     secrets: inherit
     with:
