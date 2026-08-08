@@ -13,7 +13,7 @@ models:
       +materialized: table
       tmp:
         +materialized: view
-
+#test
 vars:
   amazon_ads:    
     ad_group_history: "{{ source('amazon_ads', 'ad_group_history') }}"
