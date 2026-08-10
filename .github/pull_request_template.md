@@ -1,7 +1,7 @@
 **Please provide your name and company**
 
 **Link the issue/feature request which this PR is meant to address**
-<!--- If an issue was not created, please create one first so we may discuss the PR prior to opening one. -->
+<!--- If an issue was not created, please create one so our team is notified of your submissions. -->
 - 
 
 **Detail what changes this PR introduces and how this addresses the issue/feature request linked above.**
