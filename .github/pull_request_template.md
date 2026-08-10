@@ -2,12 +2,16 @@
 
 **Link the issue/feature request which this PR is meant to address**
 <!--- If an issue was not created, please create one first so we may discuss the PR prior to opening one. -->
+- 
 
 **Detail what changes this PR introduces and how this addresses the issue/feature request linked above.**
+- 
 
 **How did you validate the changes introduced within this PR?**
+- 
 
 **Which warehouse did you use to develop these changes?**
+- 
 
 **If you had to summarize this PR in an emoji, which would it be?**
 <!--- For a complete list of markdown compatible emojis check our this git repo (https://gist.github.com/rxaviers/7360908)  --> 
