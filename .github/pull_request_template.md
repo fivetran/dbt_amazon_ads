@@ -1,5 +1,5 @@
 Resolves #
-<!--- If an issue was not created, please create one so our team can review your submission. -->
+<!--- Add your issue # above. If an issue was not created, please create one so our team can review your submission. -->
 
 ### Please provide your name and company
 
