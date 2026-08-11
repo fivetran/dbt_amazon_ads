@@ -1,16 +1,13 @@
 **Please provide your name and company**
 
-**Link the issue/feature request which this PR is meant to address**
-<!--- If an issue was not created, please create one so our team is notified of your submissions. -->
+Resolves #
+<!--- If an issue was not created, please create one so our team can review your submission. -->
 - 
 
-**Detail what changes this PR introduces and how this addresses the issue/feature request linked above.**
+**Describe what this PR changes and how it addresses the linked issue or feature request.**
 - 
 
-**How did you validate the changes introduced within this PR?**
-- 
-
-**Which warehouse did you use to develop these changes?**
+**How did you validate the changes introduced within this PR, and what warehouse did you use for testing?**
 - 
 
 **If you had to summarize this PR in an emoji, which would it be?**
