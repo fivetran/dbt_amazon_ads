@@ -1,4 +1,4 @@
-### Resolves issue #
+Resolves #
 <!--- If an issue was not created, please create one so our team can review your submission. -->
 
 ### Please provide your name and company
@@ -10,9 +10,6 @@
 ### How did you validate the changes introduced within this PR, and what warehouse did you use for testing?
 
 
-### If you had to summarize this PR in an emoji, which would it be?
-<!--- For a complete list of markdown compatible emojis check our this git repo (https://gist.github.com/rxaviers/7360908)  --> 
-:dancer:
 
 **Feedback**
 
