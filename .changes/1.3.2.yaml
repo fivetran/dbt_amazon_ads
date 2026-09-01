@@ -1,0 +1,18 @@
+version: 1.3.2
+pr:
+  number: 1
+is_breaking: true
+new_features:
+  - title: Changelog POC test entry
+    description: Example release entry used to test the changelog-poc reusable workflow end to end.
+bug_fixes:
+  - description: Fixes an incorrect join condition in the campaign performance staging model.
+schema_data_changes:
+  entries:
+    - "`ad_group_id` renamed to `adgroup_id` in `amazon_ads__campaign_report`"
+dependencies:
+  - Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
+under_the_hood:
+  - Adds integration test coverage for the renamed column
+contributors:
+  - catherine-fritz
