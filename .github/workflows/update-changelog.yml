@@ -1,0 +1,11 @@
+name: 'update changelog'
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  update-changelog:
+    if: github.event.label.name == 'changelog:ready'
+    uses: fivetran/dbt_package_automations/.github/workflows/update-changelog.yml@changelog-poc/initial-test
+    secrets: inherit
