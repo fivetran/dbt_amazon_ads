@@ -1,3 +1,22 @@
+# dbt_amazon_ads v1.3.2
+
+[PR #1](https://github.com/fivetran/dbt_amazon_ads/pull/1) includes the following updates:
+
+## Schema/Data Change (--full-refresh required after upgrading)
+- `ad_group_id` renamed to `adgroup_id` in `amazon_ads__campaign_report`
+
+## Feature Update
+- **Changelog POC test entry**: Example release entry used to test the changelog-poc reusable workflow end to end.
+
+## Bug Fix
+- Fixes an incorrect join condition in the campaign performance staging model.
+
+## Under the Hood
+- Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
+- Adds integration test coverage for the renamed column
+
+Thanks to @catherine-fritz for the contribution!
+
 # dbt_amazon_ads v1.3.1
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
 
