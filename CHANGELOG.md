@@ -3,7 +3,11 @@
 [PR #1](https://github.com/fivetran/dbt_amazon_ads/pull/1) includes the following updates:
 
 ## Schema/Data Change (--full-refresh required after upgrading)
-- `ad_group_id` renamed to `adgroup_id` in `amazon_ads__campaign_report`
+**1 total change • 1 possible breaking change**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| amazon_ads__campaign_report (Breaking) | Changed field/model | `ad_group_id` | `adgroup_id` | Renamed for consistency with the source schema. |
 
 ## Feature Update
 - **Changelog POC test entry**: Example release entry used to test the changelog-poc reusable workflow end to end.
@@ -15,7 +19,8 @@
 - Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
 - Adds integration test coverage for the renamed column
 
-Thanks to @catherine-fritz for the contribution!
+## Contributors
+- [@fivetran-catfritz](https://github.com/fivetran-catfritz) ([PR #1](https://github.com/fivetran/dbt_amazon_ads/pull/1))
 
 # dbt_amazon_ads v1.3.1
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
