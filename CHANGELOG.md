@@ -14,9 +14,13 @@
 
 ## Bug Fix
 - Fixes an incorrect join condition in the campaign performance staging model.
+  - The join previously matched on `campaign_id` alone, which could double-count rows when a campaign spanned multiple ad groups.
+  - Now also joins on `ad_group_id` to preserve grain.
+
+## Dependency Updates
+- Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
 
 ## Under the Hood
-- Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
 - Adds integration test coverage for the renamed column
 
 ## Contributors

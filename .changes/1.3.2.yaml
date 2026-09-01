@@ -7,10 +7,12 @@ new_features:
   description: Example release entry used to test the changelog-poc reusable workflow
     end to end.
 bug_fixes:
-  - description: Fixes an incorrect join condition in the campaign performance staging model.
-    details:
-      - The join previously matched on `campaign_id` alone, which could double-count rows when a campaign spanned multiple ad groups.
-      - Now also joins on `ad_group_id` to preserve grain.
+- description: Fixes an incorrect join condition in the campaign performance staging
+    model.
+  details:
+  - The join previously matched on `campaign_id` alone, which could double-count rows
+    when a campaign spanned multiple ad groups.
+  - Now also joins on `ad_group_id` to preserve grain.
 schema_data_changes:
   entries:
   - model: amazon_ads__campaign_report
@@ -20,9 +22,9 @@ schema_data_changes:
     notes: Renamed for consistency with the source schema.
     breaking: true
 dependencies:
-  - description: Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
+- description: Bumps `dbt-labs/dbt_utils` from 1.1.1 to 1.3.0
 under_the_hood:
-  - description: Adds integration test coverage for the renamed column
+- description: Adds integration test coverage for the renamed column
 contributors:
 - fivetran-catfritz
 date: '2026-09-01'
