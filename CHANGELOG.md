@@ -11,6 +11,7 @@
 
 ## Feature Update
 - **Changelog POC test entry**: Example release entry used to test the changelog-poc reusable workflow end to end.
+  - This is a test entry for the changelog-poc workflow.
 
 ## Bug Fix
 - Fixes an incorrect join condition in the campaign performance staging model.

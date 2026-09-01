@@ -3,10 +3,11 @@ pr:
   number: 1
 is_breaking: true
 new_features:
-  - title: Changelog POC test entry
-    description: Example release entry used to test the changelog-poc reusable workflow end to end.
-    details:
-    - This is a test entry for the changelog-poc workflow.
+- title: Changelog POC test entry
+  description: Example release entry used to test the changelog-poc reusable workflow
+    end to end.
+  details:
+  - This is a test entry for the changelog-poc workflow.
 bug_fixes:
 - description: Fixes an incorrect join condition in the campaign performance staging
     model.
