@@ -25,7 +25,7 @@
 - Adds integration test coverage for the renamed column
 
 ## Contributors
-- [@fivetran-catfritz](https://github.com/fivetran-catfritz) ([PR #1](https://github.com/fivetran/dbt_amazon_ads/pull/1)) — Catherine Fritz: Authored the changelog-poc pipeline used to generate this entry.
+- [@fivetran-catfritz](https://github.com/fivetran-catfritz) ([PR #2](https://github.com/fivetran/dbt_amazon_ads/pull/2))
 
 # dbt_amazon_ads v1.3.1
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
