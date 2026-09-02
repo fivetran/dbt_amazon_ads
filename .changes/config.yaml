@@ -1,0 +1,16 @@
+package: dbt_amazon_ads
+repo_url: https://github.com/fivetran/dbt_amazon_ads
+docs_base_url: https://fivetran.github.io/dbt_amazon_ads/#!/model/model.dbt_amazon_ads.
+sections:
+  - key: schema_data_changes
+    heading: Schema/Data Change
+  - key: new_features
+    heading: Feature Update
+  - key: bug_fixes
+    heading: Bug Fix
+  - key: dependencies
+    heading: Dependency Updates
+  - key: under_the_hood
+    heading: Under the Hood
+  - key: contributors
+    heading: Contributors
