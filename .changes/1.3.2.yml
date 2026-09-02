@@ -18,12 +18,12 @@ schema_data_changes:
   entries:
   - models:
     - name: amazon_ads__campaign_report
+    - name: test_model
     change_type: Changed field/model
     old: '`ad_group_id`'
     new: '`adgroup_id`'
     is_breaking: true
     notes: Renamed for consistency with the source schema.
-    - name: test_model
 dependencies:
 - package: dbt-labs/dbt_utils
   old_version: 1.1.1
