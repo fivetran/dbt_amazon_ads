@@ -17,8 +17,8 @@ bug_fixes:
 schema_data_changes:
   entries:
   - models:
-    - name: amazon_ads__campaign_report
-    - name: test_model
+    - amazon_ads__campaign_report
+    - test_model
     change_type: Changed field/model
     old: '`ad_group_id`'
     new: '`adgroup_id`'
