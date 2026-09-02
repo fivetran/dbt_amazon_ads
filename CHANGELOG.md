@@ -9,7 +9,7 @@
 | ------------- | ----------- | --- | --- | ----- |
 | amazon_ads__campaign_report<br>test_model<br>(Breaking) | Changed field/model | `ad_group_id` | `adgroup_id` | Renamed for consistency with the source schema. |
 
-## Fancy New Features Wow
+## Feature Update
 - **Changelog POC test entry**: Example release entry used to test the changelog-poc reusable workflow end to end.
   - Sub-bullet test entry for the changelog-poc workflow.
 
