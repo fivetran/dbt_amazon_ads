@@ -5,7 +5,7 @@ sections:
   - key: schema_data_changes
     heading: Schema/Data Change
   - key: new_features
-    heading: Feature Update
+    heading: Fancy New Features Wow
   - key: bug_fixes
     heading: Bug Fix
   - key: dependencies
