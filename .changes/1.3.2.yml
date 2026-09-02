@@ -6,7 +6,7 @@ new_features:
   description: Example release entry used to test the changelog-poc reusable workflow
     end to end.
   details:
-  - This is a test entry for the changelog-poc workflow.
+  - Sub-bullet test entry for the changelog-poc workflow.
 bug_fixes:
 - description: Fixes an incorrect join condition in the campaign performance staging
     model.
