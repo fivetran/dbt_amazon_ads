@@ -3,15 +3,15 @@
 [PR #1](https://github.com/fivetran/dbt_amazon_ads/pull/1) includes the following updates:
 
 ## Schema/Data Change (--full-refresh required after upgrading)
-**1 total change • 1 possible breaking change**
+**1 total change • 0 possible breaking changes**
 
 | Data Model(s) | Change type | Old | New | Notes |
 | ------------- | ----------- | --- | --- | ----- |
-| amazon_ads__campaign_report, test_model (Breaking) | Changed field/model | `ad_group_id` | `adgroup_id` | Renamed for consistency with the source schema. |
+| amazon_ads__campaign_report<br>test_model |  |  |  |  |
 
 ## Fancy New Features Wow
 - **Changelog POC test entry**: Example release entry used to test the changelog-poc reusable workflow end to end.
-  - This is a test entry for the changelog-poc workflow.
+  - Sub-bullet test entry for the changelog-poc workflow.
 
 ## Bug Fix
 - Fixes an incorrect join condition in the campaign performance staging model.
