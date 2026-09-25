@@ -8,6 +8,10 @@
 
 schema_variable_name: "amazon_ads_schema"
 
+# TEMPORARY — points the generated pipeline steps at the branch under test.
+# Remove once done testing solution_analytics#add-dbt-v2-testing.
+test_branch: "add-dbt-v2-testing"
+
 include_databricks_sql: false
 include_sqlserver: false
 include_duckdb: true
