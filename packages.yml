@@ -1,3 +1,8 @@
 packages:
-- package: fivetran/fivetran_utils
-  version: [">=0.4.0", "<0.5.0"]
+# TEMPORARY - testing the dbt v2/Databricks union_connections fix on
+# fivetran/dbt_fivetran_utils#fix/union-connections-fusion-databricks-limit.
+# Revert to the dbt Hub package below once validated.
+- git: "https://github.com/fivetran/dbt_fivetran_utils.git"
+  revision: fix/union-connections-fusion-databricks-limit
+# - package: fivetran/fivetran_utils
+#   version: [">=0.4.0", "<0.5.0"]
