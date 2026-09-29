@@ -5,10 +5,13 @@
     dispatch search order checks here for `default__union_connections` before
     falling back to the fivetran_utils package - no `dispatch:` config needed.
 
-    The only change vs. the upstream macro: identifier resolution consults
-    `amazon_ads_custom_names.<schema>.<table>.__identifier__` first, falling
-    back to the existing flat `<source>_<table>_identifier` var so this is
-    backwards compatible with packages that don't set the new var.
+    This file is otherwise an unmodified copy of fivetran_utils' installed
+    default__union_connections (v0.4.13). Since the macro doesn't exist on
+    main, a PR diff will show this whole file as added - look for the three
+    "POC CHANGE" comments below for what's actually different: identifier
+    resolution consults `amazon_ads_custom_names.<schema>.<table>.__identifier__`
+    first, falling back to the existing flat `<source>_<table>_identifier`
+    var so this is backwards compatible with packages that don't set the new var.
 -#}
 
 {% macro default__union_connections(connection_dictionary, single_source_name, single_table_name, default_identifier=single_table_name) %}
@@ -18,6 +21,7 @@
 {%- set connections = var(connection_dictionary, []) %}
 {%- set using_unioning = connections | length > 0 %}
 {%- set identifier_var = single_source_name + "_" + single_table_name + "_identifier" %}
+{# POC CHANGE (1 of 3): new lookup, not present in upstream fivetran_utils.default__union_connections #}
 {%- set custom_names = var(single_source_name ~ '_custom_names', {}) %}
 
 {%- if using_unioning %}
@@ -32,6 +36,8 @@
         {%- else %}
             {%- set database = connection.database if connection.database else target.database %}
             {%- set schema = connection.schema if connection.schema else single_source_name %}
+            {# POC CHANGE (2 of 3): upstream has `identifier = var(identifier_var, default_identifier)` here - #}
+            {# this checks the custom_names dict first, falling back to that same flat var #}
             {%- set identifier = custom_names.get(schema, {}).get(single_table_name, {}).get('__identifier__', var(identifier_var, default_identifier)) %}
         {%- endif %}
 
@@ -69,6 +75,8 @@
 
     {%- set database = source(single_source_name, single_table_name).database %}
     {%- set schema = source(single_source_name, single_table_name).schema %}
+    {# POC CHANGE (3 of 3): same swap as above, applied to the non-union branch - upstream has #}
+    {# `identifier = var(identifier_var, default_identifier)` here #}
     {%- set identifier = custom_names.get(schema, {}).get(single_table_name, {}).get('__identifier__', var(identifier_var, default_identifier)) %}
 
     {%- set relation=adapter.get_relation(
