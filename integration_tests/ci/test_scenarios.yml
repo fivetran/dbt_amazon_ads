@@ -23,6 +23,28 @@ test_scenarios:
       amazon_ads__portfolio_history_enabled: false
     include_incremental: false
 
+  # duckdb-only for now: connection 1 is portable everywhere (no database/schema set,
+  # so it falls back to target.database / var('amazon_ads_schema') - safe on any
+  # warehouse even if this whole scenario were run there). Connection 2 needs its own
+  # schema with campaign_history physically present under a different name
+  # ("campaign_history_renamed") - that fixture isn't provisioned by the real CI
+  # runner yet (solution_analytics work still needed), so this scenario is only
+  # meaningful where that fixture exists today. Verified manually on DuckDB by
+  # hand-provisioning zz_dbt_catherine_conn2 with the renamed table and running
+  # with exactly this scenario's vars (both connections unioned correctly).
+  - name: "Union connections with custom table name"
+    warehouses: ["duckdb"]
+    vars:
+      amazon_ads_sources:
+        - name: "conn1"
+        - name: "conn2"
+          schema: "zz_dbt_catherine_conn2"
+      amazon_ads_custom_names:
+        zz_dbt_catherine_conn2:
+          campaign_history:
+            __identifier__: campaign_history_renamed
+    include_incremental: false
+
   - name: "MDLS"
     vars:
       fivetran_using_source_casing: true
