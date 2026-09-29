@@ -23,28 +23,6 @@ test_scenarios:
       amazon_ads__portfolio_history_enabled: false
     include_incremental: false
 
-  # POC only - not yet runnable in real CI. Verified manually on DuckDB by hand-provisioning
-  # a second schema (zz_dbt_catherine_conn2) with campaign_history data under the alias
-  # "campaign_history_renamed", then running with exactly this scenario's vars. Both
-  # connections unioned correctly, each resolving its own __identifier__ override.
-  # Still needed for this to run for real in solution_analytics CI: the runner needs to
-  # provision + seed a second (renamed-table) schema per warehouse before this scenario
-  # executes, and clean it up after. See conversation with Claude for full context.
-  - name: "Union connections with custom table name"
-    vars:
-      amazon_ads_sources:
-        - database: "dbt"
-          schema: "zz_dbt_catherine"
-          name: "conn1"
-        - database: "dbt"
-          schema: "zz_dbt_catherine_conn2"
-          name: "conn2"
-      amazon_ads_custom_names:
-        zz_dbt_catherine_conn2:
-          campaign_history:
-            __identifier__: campaign_history_renamed
-    include_incremental: false
-
   - name: "MDLS"
     vars:
       fivetran_using_source_casing: true
