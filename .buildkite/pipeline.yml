@@ -1,10 +1,23 @@
 # TEMPORARY — testing solution_analytics branch slack-pipeline-notifications (Slack CI telemetry).
-# Bypasses the normal main-branch bootstrap in fivetran/infrastructure's dbt.yml so this
-# repo's CI runs execute_buildkite_pipeline.sh from that branch instead of main.
+# Hand-written instead of calling execute_buildkite_pipeline.sh, to limit this test run to
+# just postgres (fastest warehouse) rather than the full matrix - execute_buildkite_pipeline.sh
+# doesn't have a "just one warehouse" option, and this is throwaway, so not worth adding one.
 # Remove this file once testing is done — repos should not normally have .buildkite/pipeline.yml.
 steps:
-  - label: ":pipeline:"
-    command: |
+  - label: ":postgres: [dbt v1] Run Tests - Postgres"
+    key: "run_dbt_postgres_v1"
+    commands: |
       git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/execute_buildkite_pipeline.sh
+      ./solution_analytics_scripts/run_warehouse_tests.sh postgres v1
+
+  - label: ":slack: Notify Slack - Main CI Result"
+    key: "notify_slack_main_result"
+    if: build.branch == "main" || build.branch == "test/slack-notifications"
+    allow_dependency_failure: true
+    depends_on:
+      - "run_dbt_postgres_v1"
+    commands: |
+      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
+      ./solution_analytics_scripts/notify_slack_main_result.sh "run_dbt_postgres_v1"
