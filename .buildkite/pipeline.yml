@@ -11,7 +11,7 @@ steps:
       echo "--- yq --version ---"
       yq --version
       echo "--- yq query, no suppression ---"
-      yq -r '.users[] | select(.github == "fivetran-catfritz") | .slack_user_id' /tmp/solution_analytics/utils/slack_github_mapping.yml
+      yq '.users[] | select(.github == "fivetran-catfritz") | .slack_user_id' /tmp/solution_analytics/utils/slack_github_mapping.yml
 
   - label: ":postgres: [dbt v1] Run Tests - Postgres"
     key: "run_dbt_postgres_v1"
