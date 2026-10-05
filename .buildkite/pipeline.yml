@@ -1,0 +1,10 @@
+# TEMPORARY — testing solution_analytics branch slack-pipeline-notifications (Slack CI telemetry).
+# Bypasses the normal main-branch bootstrap in fivetran/infrastructure's dbt.yml so this
+# repo's CI runs execute_buildkite_pipeline.sh from that branch instead of main.
+# Remove this file once testing is done — repos should not normally have .buildkite/pipeline.yml.
+steps:
+  - label: ":pipeline:"
+    command: |
+      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
+      ./solution_analytics_scripts/execute_buildkite_pipeline.sh
