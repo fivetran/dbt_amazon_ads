@@ -10,7 +10,7 @@ steps:
     commands: |
       git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/notify_slack_merged_to_main.sh
+      ./solution_analytics_scripts/slack/notify_slack_merged_to_main.sh
 
   - label: ":postgres: [dbt v1] Run Tests - Postgres"
     key: "run_dbt_postgres_v1"
@@ -28,4 +28,4 @@ steps:
     commands: |
       git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/notify_slack_main_result.sh "run_dbt_postgres_v1"
+      ./solution_analytics_scripts/slack/notify_slack_main_result.sh "run_dbt_postgres_v1"
