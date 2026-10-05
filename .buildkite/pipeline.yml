@@ -4,6 +4,15 @@
 # doesn't have a "just one warehouse" option, and this is throwaway, so not worth adding one.
 # Remove this file once testing is done — repos should not normally have .buildkite/pipeline.yml.
 steps:
+  - label: ":mag: Debug yq"
+    key: "debug_yq"
+    commands: |
+      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      echo "--- yq --version ---"
+      yq --version
+      echo "--- yq query, no suppression ---"
+      yq -r '.users[] | select(.github == "fivetran-catfritz") | .slack_user_id' /tmp/solution_analytics/utils/slack_github_mapping.yml
+
   - label: ":postgres: [dbt v1] Run Tests - Postgres"
     key: "run_dbt_postgres_v1"
     commands: |
