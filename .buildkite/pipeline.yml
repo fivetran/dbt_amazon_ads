@@ -1,21 +1,13 @@
-# TEMPORARY — testing solution_analytics branch slack-pipeline-notifications (Slack CI telemetry).
+# TEMPORARY — testing solution_analytics branch slack-notifications-minimal (Slack CI telemetry).
 # Hand-written instead of calling execute_buildkite_pipeline.sh, to limit this test run to
 # just postgres (fastest warehouse) rather than the full matrix - execute_buildkite_pipeline.sh
 # doesn't have a "just one warehouse" option, and this is throwaway, so not worth adding one.
 # Remove this file once testing is done — repos should not normally have .buildkite/pipeline.yml.
 steps:
-  - label: ":twisted_rightwards_arrows: Notify Slack - Merged to Main"
-    key: "notify_slack_merged_to_main"
-    if: (build.branch == "main" || build.branch == "test/slack-notifications") && build.source == "webhook"
-    commands: |
-      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
-      cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/slack/notify_slack_merged_to_main.sh
-
   - label: ":postgres: [dbt v1] Run Tests - Postgres"
     key: "run_dbt_postgres_v1"
     commands: |
-      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      git clone --depth 1 --branch "slack-notifications-minimal" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
       ./solution_analytics_scripts/run_warehouse_tests.sh postgres v1
 
@@ -26,6 +18,6 @@ steps:
     depends_on:
       - "run_dbt_postgres_v1"
     commands: |
-      git clone --depth 1 --branch "slack-pipeline-notifications" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      git clone --depth 1 --branch "slack-notifications-minimal" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
       ./solution_analytics_scripts/slack/notify_slack_main_result.sh "run_dbt_postgres_v1"
