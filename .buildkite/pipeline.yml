@@ -20,4 +20,4 @@ steps:
     commands: |
       git clone --depth 1 --branch "slack-notifications-minimal" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/slack/notify_slack_main_result.sh "run_dbt_postgres_v1"
+      ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1"
