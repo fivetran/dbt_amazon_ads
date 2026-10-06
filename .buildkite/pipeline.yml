@@ -1,0 +1,29 @@
+# TEMPORARY — testing solution_analytics branch slack-notifications-minimal (Slack CI telemetry).
+# Hand-written instead of calling execute_buildkite_pipeline.sh, to limit this test run to
+# just postgres (fastest warehouse) rather than the full matrix - execute_buildkite_pipeline.sh
+# doesn't have a "just one warehouse" option, and this is throwaway, so not worth adding one.
+# Remove this file once testing is done — repos should not normally have .buildkite/pipeline.yml.
+#
+# The postgres step is faked (just "exit 0") instead of running the real dbt tests,
+# for faster iteration while debugging the Slack notifier itself - swap the real
+# run_warehouse_tests.sh command back in before actually validating warehouse tests.
+steps:
+  - label: ":postgres: [FAKED] Run Tests - Postgres"
+    key: "run_dbt_postgres_v1"
+    commands: |
+      echo "Faking a passing postgres test for faster Slack notifier iteration"
+      exit 0
+
+  - label: ":slack: Notify Slack - Main CI Result"
+    key: "notify_slack_main_result"
+    if: build.branch == "main" || build.branch == "test/slack-notifications"
+    allow_dependency_failure: true
+    depends_on:
+      - "run_dbt_postgres_v1"
+    commands: |
+      git clone --depth 1 --branch "slack-notifications-minimal" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
+      # Bogus commit SHA, just for this run - forces the GitHub author lookup to
+      # fail so we can test the usergroup fallback live, without needing a real
+      # unmapped-author commit that also has this throwaway pipeline.yml.
+      BUILDKITE_COMMIT="0000000000000000000000000000000000000000" ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1"
