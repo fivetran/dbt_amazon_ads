@@ -23,4 +23,7 @@ steps:
     commands: |
       git clone --depth 1 --branch "slack-notifications-minimal" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1"
+      # Bogus commit SHA, just for this run - forces the GitHub author lookup to
+      # fail so we can test the usergroup fallback live, without needing a real
+      # unmapped-author commit that also has this throwaway pipeline.yml.
+      BUILDKITE_COMMIT="0000000000000000000000000000000000000000" ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1"
