@@ -1,0 +1,42 @@
+# Copy this file to .changes/{version}.yml in your package repo (e.g. .changes/1.3.0.yml).
+# Only `version` is required - delete any section with nothing to report for this release.
+# Full field reference and a filled-in example: see the "Changelog generation" section of
+# https://github.com/fivetran/dbt_package_automations/blob/main/README.md
+
+version: 0.0.0  # required. Pre-releases: -a1, -a2, ... Betas: -b1, -b2, ...
+pr_number: 0  # optional. Default PR link for this release and every contributor below.
+is_breaking: false  # optional. Adds "(--full-refresh required after upgrading)" to the schema table heading.
+
+schema_data_changes:
+  entries:
+    - models:
+        - example_model_name  # one or more model names this row applies to
+      change_type: "Changed field/model"  # or "New field/model", "Removed field/model", "Materialization"
+      old: ""  # previous value/state - omit for additions
+      new: ""  # new value/state - omit for removals
+      is_breaking: false  # sorts this row first and tags it (Breaking) in the table
+      notes: ""  # why the change was made
+
+new_features:
+  - title: ""  # optional bolded lead-in
+    description: ""  # required
+    details:  # optional sub-bullets
+      - ""
+
+bug_fixes:
+  - description: ""  # required
+
+dependencies:
+  - package: ""  # e.g. fivetran/stripe_source
+    old_version: ""
+    new_version: ""
+    description: ""  # optional
+
+under_the_hood:
+  - description: ""  # required
+
+contributors:
+  - name: ""
+    github_handle: ""
+    contribution: ""
+    pr_number: 0  # optional - overrides the release-level pr_number above for this person
