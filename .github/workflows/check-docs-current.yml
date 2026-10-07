@@ -6,5 +6,5 @@ on:
 
 jobs:
   check-docs:
-    uses: fivetran/dbt_package_automations/.github/workflows/check-docs-current.yml@main
+    uses: fivetran/dbt_package_automations/.github/workflows/check-docs-current.yml@scaffold-changes-template-on-pr-open
     secrets: inherit
