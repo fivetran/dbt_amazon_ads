@@ -1,7 +1,7 @@
 <!--section="amazon-ads_transformation_model"-->
 # Amazon Ads dbt Package
 
-This dbt package transforms data from Fivetran's Amazon Ads connector into analytics-ready tables.
+This dbt package transforms data from Fivetran's Amazon Ads connector into analytics-ready tables. 
 
 ## Resources
 
