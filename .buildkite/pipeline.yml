@@ -19,7 +19,7 @@ steps:
     key: "run_dbt_snowflake_v1"
     commands: |
       echo "Faking a failing snowflake test for faster Slack notifier iteration"
-      exit 1
+      exit 0
 
   - label: ":slack: Notify Slack - Main CI Result"
     key: "notify_slack_main_result"
