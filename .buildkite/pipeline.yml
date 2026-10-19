@@ -29,6 +29,6 @@ steps:
       - "run_dbt_postgres_v1"
       - "run_dbt_snowflake_v1"
     commands: |
-      git clone --depth 1 --branch "main" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      git clone --depth 1 --branch "slack-notify-failure-link" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
       ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1" "run_dbt_snowflake_v1"
