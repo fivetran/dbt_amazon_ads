@@ -18,8 +18,29 @@ steps:
   - label: ":snowflake-db: [FAKED] Run Tests - Snowflake"
     key: "run_dbt_snowflake_v1"
     commands: |
-      echo "Faking a failing snowflake test for faster Slack notifier iteration"
-      exit 1
+      if [[ "${BUILDKITE_RETRY_COUNT:-0}" -gt 0 ]]; then
+          echo "Retry detected - faking a PASSING snowflake test this time (simulating a resolved flake)"
+          test_exit_code=0
+      else
+          echo "Faking a FAILING snowflake test for faster Slack notifier iteration"
+          test_exit_code=1
+      fi
+
+      # Only re-notify if: this is a retry, AND the real notify step already
+      # finished (meaning the original build fully completed already - not an
+      # in-flight automatic retry that the normal notify step will still catch).
+      if [[ "${BUILDKITE_RETRY_COUNT:-0}" -gt 0 ]]; then
+          notify_state=$(buildkite-agent step get "state" --step "notify_slack_main_result" 2>/dev/null || echo "")
+          echo "notify_slack_main_result state: $notify_state"
+          if [[ "$notify_state" == "finished" ]]; then
+              echo "Late retry after the build already finished - re-notifying Slack"
+              git clone --depth 1 --branch "slack-notify-failure-link" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+              cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
+              ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1" "run_dbt_snowflake_v1"
+          fi
+      fi
+
+      exit "$test_exit_code"
 
   - label: ":slack: Notify Slack - Main CI Result"
     key: "notify_slack_main_result"
@@ -32,12 +53,3 @@ steps:
       git clone --depth 1 --branch "slack-notify-failure-link" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
       ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1" "run_dbt_snowflake_v1"
-
-  - label: ":mag: [DEBUG] Check notify step state"
-    key: "debug_check_notify_state"
-    depends_on:
-      - "notify_slack_main_result"
-    allow_dependency_failure: true
-    commands: |
-      echo "notify_slack_main_result state: $(buildkite-agent step get "state" --step "notify_slack_main_result")"
-      echo "this job's own BUILDKITE_RETRY_COUNT: ${BUILDKITE_RETRY_COUNT:-unset}"
