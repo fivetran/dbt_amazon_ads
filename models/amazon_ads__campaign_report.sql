@@ -1,5 +1,9 @@
 {{ config(enabled=var('ad_reporting__amazon_ads_enabled', True)) }}
 
+-- DEMO (changelog tutorial): pretend this comment is a real fix - e.g.
+-- "corrects a join condition that could double-count rows." No actual
+-- logic changed; this is a placeholder for the live walkthrough.
+
 with report as (
     select *
     from {{ ref('stg_amazon_ads__campaign_level_report') }}
