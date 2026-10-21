@@ -1,3 +1,11 @@
+# dbt_amazon_ads v1.3.2
+
+[PR #56](https://github.com/fivetran/dbt_amazon_ads/pull/56) includes the following updates:
+
+## Bug Fix
+- Corrects a join condition in `amazon_ads__campaign_report` that could double-count rows and inflate campaign metrics.
+- **awesome bug fix really great**:
+
 # dbt_amazon_ads v1.3.1
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
 

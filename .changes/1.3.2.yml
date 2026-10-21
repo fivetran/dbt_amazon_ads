@@ -1,0 +1,7 @@
+version: 1.3.2
+pr_number: 56
+bug_fixes:
+- description: Corrects a join condition in `amazon_ads__campaign_report` that could
+    double-count rows and inflate campaign metrics.
+- title: awesome bug fix really great
+date: '2026-10-21'
