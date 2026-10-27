@@ -98,7 +98,7 @@ sources:
 
       - name: campaign_history
         description: Each record represents a campaign in Amazon Ads.
-        identifier: "{{ var('amazon_ads_campaign_history_identifier', 'campaign_history') }}"
+        identifier: "{{ (var('amazon_ads_custom_names', {}).values() | list | first | default({})).get('campaign_history', {}).get('__identifier__', var('amazon_ads_campaign_history_identifier', 'campaign_history')) }}"
         columns:
           - name: _fivetran_synced
             description: "{{ doc('_fivetran_synced') }}"

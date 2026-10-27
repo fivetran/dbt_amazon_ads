@@ -19,6 +19,10 @@ vars:
     amazon_ads_keyword_history_identifier: "keyword_history_data"
     amazon_ads_targeting_keyword_report_identifier: "targeting_keyword_report_data"
     amazon_ads_search_term_ad_keyword_report_identifier: "search_term_ad_keyword_report_data"
+    amazon_ads_custom_names:
+      amazon_ads_integration_tests:
+        campaign_history:
+          __identifier__: campaign_history_data
 
   amazon_ads__campaign_passthrough_metrics:
       - name: sales_7_d
