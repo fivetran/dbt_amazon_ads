@@ -32,6 +32,8 @@ steps:
       - "run_dbt_postgres_v1"
       - "run_dbt_snowflake_v1"
     commands: |
-      git clone --depth 1 --branch "slack-notify-permit-retry" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
+      git clone --depth 1 --branch "slack-notify-bot-approver" "git@github.com:fivetran/solution_analytics.git" "/tmp/solution_analytics"
       cp -r /tmp/solution_analytics/.buildkite/scripts/. ./solution_analytics_scripts
-      ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1" "run_dbt_snowflake_v1"
+      # Real bot-authored commit (PR #60, approved by fivetran-catfritz) - forces
+      # the bot-detection path so we can validate it resolves to the approver.
+      BUILDKITE_COMMIT="73308c33d9c73ba7eef12ccb62d3d52bd8c9124c" ./solution_analytics_scripts/slack/notify_main_ci_result.sh "run_dbt_postgres_v1" "run_dbt_snowflake_v1"
