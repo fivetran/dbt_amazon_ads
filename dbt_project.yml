@@ -14,6 +14,8 @@ models:
       tmp:
         +materialized: view
 
+on-run-end: "{{ log('amazon_ads run finished', info=true) }}"
+
 vars:
   amazon_ads:    
     ad_group_history: "{{ source('amazon_ads', 'ad_group_history') }}"
