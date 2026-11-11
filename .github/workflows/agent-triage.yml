@@ -1,26 +1,26 @@
 name: Agent triage
 
-# Runs only when a maintainer adds the `agent:triage` label.
-# The called workflow reads the PR as text and never runs its code.
+# Runs when someone with write access adds the `agent:triage` label, and on new pushes
+# to clear a stale verdict label. The called workflow reads the PR as text and never
+# runs its code.
 #
 # POC: uses `pull_request` so we can test from a branch before this file is on main.
-# With `pull_request`, fork PRs get no secrets, so the run skips Claude for them.
-# Before rollout, switch to `pull_request_target`. It loads this file from main, so a PR
-# cannot change it, and it lets fork PRs use the key.
+# Before rollout, switch to `pull_request_target` (loads this file from main, so a PR
+# cannot change it) and pin both refs below to a release tag or commit.
 on:
   pull_request:
-    types: [labeled]
+    types: [labeled, synchronize]
 
 permissions:
   contents: read
-  pull-requests: write
-  issues: write
+  pull-requests: read
 
 jobs:
   triage:
-    if: github.event.label.name == 'agent:triage'
-    # POC: points at the poc/agent-triage branch. Switch both refs to main after merge.
+    if: github.event.action == 'synchronize' || github.event.label.name == 'agent:triage'
     uses: fivetran/dbt_package_automations/.github/workflows/agent-triage.yml@poc/agent-triage
-    secrets: inherit
     with:
       automations_ref: poc/agent-triage
+    secrets:
+      PKG_REVIEW_TOKEN: ${{ secrets.PKG_REVIEW_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
