@@ -103,7 +103,7 @@ The currency used for all monetary values for entities under this profile.
 {% enddocs %}
 
 {% docs default_bid %}
-The date of creation of the record.
+The default bid for the ad group, applied when a keyword or target has no bid of its own.
 {% enddocs %}
 
 {% docs impressions %}
@@ -123,23 +123,15 @@ The ID of the keyword.
 {% enddocs %}
 
 {% docs keyword_match_type %}
-One of (broad, exact, or phrase.)
+Type of matching for the keyword used in bid. One of: BROAD, PHRASE, or EXACT.
 {% enddocs %}
 
 {% docs keyword_text %}
 The exact text for the keyword.
 {% enddocs %}
 
-{% docs keyword_type %}
-Type of matching for the keyword used in bid. One of: BROAD, PHRASE, or EXACT.
-{% enddocs %}
-
 {% docs last_updated_date %}
 Date of last update to record.
-{% enddocs %}
-
-{% docs match_type %}
-Type of matching for the keyword used in bid. One of: BROAD, PHRASE, or EXACT.
 {% enddocs %}
 
 {% docs negative_keyword_id %}

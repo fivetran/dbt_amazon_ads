@@ -1,3 +1,14 @@
+# dbt_amazon_ads v1.3.2
+
+[PR #66](https://github.com/fivetran/dbt_amazon_ads/pull/66) includes the following updates:
+
+## Under the Hood
+- **Column description corrections**: Corrects inaccurate column descriptions in the package documentation. No model output or schema changes.
+  - `default_bid` in `amazon_ads__ad_group_report` described a record creation date, and now describes the ad group's default bid.
+  - `ad_group_id` and `ad_group_name` in `amazon_ads__ad_group_report`, and `ad_group_name` in `amazon_ads__ad_report`, referenced the campaign doc blocks and now reference the ad group doc blocks.
+  - `keyword_type` and `match_type` shared two duplicate doc blocks, and now share a single `keyword_match_type` doc block across the source, staging, and end model documentation.
+  - The portfolio budget descriptions in `amazon_ads__portfolio_report` described the Amazon Ads API request contract, and now describe the warehouse columns.
+
 # dbt_amazon_ads v1.3.1
 [PR #51](https://github.com/fivetran/dbt_amazon_ads/pull/51) includes the following updates:
 

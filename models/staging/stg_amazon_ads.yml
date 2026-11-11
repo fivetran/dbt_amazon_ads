@@ -325,9 +325,9 @@ models:
       - name: cost
         description: "{{ doc('cost') }}"
       - name: keyword_type
-        description: "{{ doc('keyword_type') }}"
+        description: "{{ doc('keyword_match_type') }}"
       - name: match_type
-        description: "{{ doc('match_type') }}"
+        description: "{{ doc('keyword_match_type') }}"
       - name: targeting
         description: "{{ doc('targeting') }}"
       - name: purchases_30_d
