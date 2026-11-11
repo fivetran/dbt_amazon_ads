@@ -12,7 +12,7 @@ on:
     types: [labeled, synchronize]
 
 permissions:
-  contents: read
+  contents: write  # only the create-branch job uses write
   pull-requests: read
 
 jobs:
