@@ -1,6 +1,6 @@
 name: Agent triage
 
-# Runs only when a maintainer adds the `agent:run` label.
+# Runs only when a maintainer adds the `agent:triage` label.
 # The called workflow reads the PR as text and never runs its code.
 #
 # POC: uses `pull_request` so we can test from a branch before this file is on main.
@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   triage:
-    if: github.event.label.name == 'agent:run'
+    if: github.event.label.name == 'agent:triage'
     # POC: points at the poc/agent-triage branch. Switch both refs to main after merge.
     uses: fivetran/dbt_package_automations/.github/workflows/agent-triage.yml@poc/agent-triage
     secrets: inherit
