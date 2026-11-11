@@ -43,11 +43,11 @@ models:
       - name: account_name
         description: "{{ doc('account_name') }}"
       - name: ad_group_id
-        description: "{{ doc('campaign_id') }}"
+        description: "{{ doc('ad_group_id') }}"
         tests:
           - not_null
       - name: ad_group_name
-        description: "{{ doc('campaign_name') }}"
+        description: "{{ doc('ad_group_name') }}"
       - name: campaign_bidding_strategy
         description: "{{ doc('campaign_bidding_strategy') }}"
       - name: campaign_id
@@ -97,7 +97,7 @@ models:
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
       - name: ad_group_name
-        description: "{{ doc('campaign_name') }}"
+        description: "{{ doc('ad_group_name') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
       - name: campaign_name
@@ -191,19 +191,19 @@ models:
       - name: account_name
         description: "{{ doc('account_name') }}"
       - name: budget_amount
-        description: The budget amount associated with the portfolio. Cannot be null.
+        description: The budget amount applied to the portfolio.
       - name: budget_currency_code
-        description: The currency used for all monetary values for entities under this profile. Cannot be null.
+        description: The currency of the portfolio's budget amount.
       - name: budget_end_date
-        description: The end date after which the budget is no longer applied. Optional if policy is set to dateRange or monthlyRecurring.
+        description: The date after which the portfolio's budget no longer applies. Set only when the budget policy is dateRange.
       - name: budget_start_date
-        description: The starting date in YYYYMMDD format to which the budget is applied. Required if policy is set to dateRange. Not specified if policy is set to monthlyRecurring. Note that the starting date for monthlyRecurring is the date when the policy is set.
+        description: The date from which the portfolio's budget applies. Set when the budget policy is dateRange. For monthlyRecurring, the budget starts on the date the policy is set.
       - name: budget_policy
-        description: The budget policy. Set to dateRange to specify a budget for a specific period of time. Set to monthlyRecurring to specify a budget that is automatically renewed at the beginning of each month. Cannot be null.
+        description: "How the portfolio's budget renews. One of: dateRange for a budget covering a fixed period, or monthlyRecurring for a budget that renews at the start of each month."
       - name: country_code
         description: "{{ doc('country_code') }}"
       - name: in_budget
-        description: Indicates the current budget status of the portfolio. Set to true if the portfolio is in budget, set to false if the portfolio is out of budget.
+        description: Boolean indicating whether the portfolio is currently within its budget.
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
       - name: portfolio_name
@@ -257,9 +257,9 @@ models:
       - name: keyword_text
         description: "{{ doc('keyword_text') }}"
       - name: keyword_type
-        description: "{{ doc('keyword_type') }}"
+        description: "{{ doc('keyword_match_type') }}"
       - name: match_type
-        description: "{{ doc('match_type') }}"
+        description: "{{ doc('keyword_match_type') }}"
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
       - name: portfolio_name
@@ -307,7 +307,7 @@ models:
       - name: keyword_text
         description: "{{ doc('keyword_text') }}"
       - name: match_type
-        description: "{{ doc('match_type') }}"
+        description: "{{ doc('keyword_match_type') }}"
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
       - name: portfolio_name

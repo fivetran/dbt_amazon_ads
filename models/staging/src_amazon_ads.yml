@@ -315,9 +315,9 @@ sources:
           - name: keyword_id
             description: "{{ doc('keyword_id') }}"
           - name: keyword_type
-            description: "{{ doc('keyword_type') }}"
+            description: "{{ doc('keyword_match_type') }}"
           - name: match_type
-            description: "{{ doc('match_type') }}"
+            description: "{{ doc('keyword_match_type') }}"
           - name: targeting
             description: "{{ doc('targeting') }}"
           - name: clicks
