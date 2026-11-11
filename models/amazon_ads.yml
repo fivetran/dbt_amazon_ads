@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: amazon_ads__account_report
-    description: Each record in this table represents the daily performance at the account level.
+    description: Each record in this table represents the daily performance of one Amazon Ads account (profile).
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
