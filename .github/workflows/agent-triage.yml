@@ -1,0 +1,22 @@
+name: Agent triage
+
+# Runs only when a maintainer adds the `agent:run` label.
+# pull_request_target uses this file from the default branch, so a PR cannot change it.
+# The called workflow reads the PR as text and never runs its code.
+on:
+  pull_request_target:
+    types: [labeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  triage:
+    if: github.event.label.name == 'agent:run'
+    # POC: points at the poc/agent-triage branch. Switch both refs to main after merge.
+    uses: fivetran/dbt_package_automations/.github/workflows/agent-triage.yml@poc/agent-triage
+    secrets: inherit
+    with:
+      automations_ref: poc/agent-triage
