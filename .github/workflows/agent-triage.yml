@@ -21,6 +21,4 @@ jobs:
     uses: fivetran/dbt_package_automations/.github/workflows/agent-triage.yml@poc/agent-triage
     with:
       automations_ref: poc/agent-triage
-    secrets:
-      PKG_REVIEW_TOKEN: ${{ secrets.PKG_REVIEW_TOKEN }}
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    secrets: inherit
