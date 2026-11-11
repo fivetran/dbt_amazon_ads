@@ -48,7 +48,7 @@ fields as (
 
     from report
 
-    left join campaigns
+    inner join campaigns
         on campaigns.campaign_id = report.campaign_id
         and campaigns.source_relation = report.source_relation
     left join portfolios
