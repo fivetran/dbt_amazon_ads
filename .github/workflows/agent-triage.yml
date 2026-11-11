@@ -1,10 +1,14 @@
 name: Agent triage
 
 # Runs only when a maintainer adds the `agent:run` label.
-# pull_request_target uses this file from the default branch, so a PR cannot change it.
 # The called workflow reads the PR as text and never runs its code.
+#
+# POC: uses `pull_request` so we can test from a branch before this file is on main.
+# With `pull_request`, fork PRs get no secrets, so the run skips Claude for them.
+# Before rollout, switch to `pull_request_target`. It loads this file from main, so a PR
+# cannot change it, and it lets fork PRs use the key.
 on:
-  pull_request_target:
+  pull_request:
     types: [labeled]
 
 permissions:
