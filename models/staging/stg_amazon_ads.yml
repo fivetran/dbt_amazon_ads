@@ -3,6 +3,13 @@ version: 2
 models:
   - name: stg_amazon_ads__ad_group_history
     description: Each record represents an ad group in Amazon Ads.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_group_id
+              - last_updated_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -29,6 +36,13 @@ models:
 
   - name: stg_amazon_ads__ad_group_level_report
     description: Each record in this table represents the daily performance by Amazon ad group.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_group_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -53,6 +67,13 @@ models:
 
   - name: stg_amazon_ads__advertised_product_report
     description: Advertised product reports contain performance data for products that are advertised as part of your campaigns.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -89,6 +110,13 @@ models:
 
   - name: stg_amazon_ads__campaign_history
     description: Each record represents a campaign in Amazon Ads.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - campaign_id
+              - last_updated_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -129,6 +157,13 @@ models:
 
   - name: stg_amazon_ads__campaign_level_report
     description: Campaign reports contain performance data broken down at the campaign level. 
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - campaign_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -165,6 +200,13 @@ models:
 
   - name: stg_amazon_ads__keyword_history
     description: Each record represents a keyword in Amazon Ads.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - keyword_id
+              - last_updated_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -199,6 +241,13 @@ models:
 
   - name: stg_amazon_ads__portfolio_history
     description: Each record represents a portfolio in Amazon Ads.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - portfolio_id
+              - last_updated_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -235,6 +284,13 @@ models:
 
   - name: stg_amazon_ads__product_ad_history
     description: Each record represents a product in Amazon Ads.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - ad_id
+              - last_updated_date
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -263,6 +319,12 @@ models:
 
   - name: stg_amazon_ads__profile
     description: Each record represents a profile. Advertisers who operate in more than one marketplace (for example, Amazon.com, Amazon.co.uk, Amazon.co.jp) will have one profile associated with each marketplace.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - profile_id
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -295,6 +357,13 @@ models:
 
   - name: stg_amazon_ads__targeting_keyword_report
     description: Targeting reports contain performance metrics broken down by both targeting expressions and keywords.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - keyword_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -337,6 +406,14 @@ models:
 
   - name: stg_amazon_ads__search_term_ad_keyword_report
     description: Search term reports contain search term performance metrics broken down by targeting expressions and keywords. 
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - source_relation
+              - search_term
+              - keyword_id
+              - date_day
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
