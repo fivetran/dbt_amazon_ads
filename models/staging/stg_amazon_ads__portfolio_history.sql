@@ -1,4 +1,4 @@
-{{ config(enabled=fivetran_utils.enabled_vars(['ad_reporting__amazon_ads_enabled','amazon_ads__portfolio_history_enabled'])) }}
+{{ config(enabled=(var('ad_reporting__amazon_ads_enabled', true) and var('amazon_ads__portfolio_history_enabled', true))) }}
 
 with base as (
 
