@@ -1,0 +1,5 @@
+version: 1.3.2
+under_the_hood:
+- description: Replaces `fivetran_utils.enabled_vars` in model configs with `and` and an explicit `true`
+    default for each variable, so each model's default shows where it's used. Unset variables still
+    default to `true`.
