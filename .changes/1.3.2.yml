@@ -3,7 +3,6 @@ pr_number: 66
 under_the_hood:
 - title: Column description corrections
   description: Corrects inaccurate column descriptions in the package documentation.
-    No model output or schema changes.
   details:
   - '`default_bid` in `amazon_ads__ad_group_report` described a record creation date,
     and now describes the ad group''s default bid.'
