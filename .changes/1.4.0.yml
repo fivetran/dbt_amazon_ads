@@ -2,12 +2,21 @@ version: 1.4.0
 pr_number: 68
 new_features:
 - description: Raises the minimum dbt version to 1.10.0.
-- description: Adds `dbt_utils.unique_combination_of_columns` tests to staging and end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose).
+- description: Adds `dbt_utils.unique_combination_of_columns` tests to staging and
+    end models. If a test fails, please [open an issue](https://github.com/fivetran/dbt_amazon_ads/issues/new/choose).
 under_the_hood:
 - title: Column description corrections
-  description: Corrects inaccurate column descriptions in the package documentation. No model output or schema changes.
+  description: Corrects inaccurate column descriptions in the package documentation.
+    No model output or schema changes.
   details:
-  - '`default_bid` in `amazon_ads__ad_group_report` described a record creation date, and now describes the ad group''s default bid.'
-  - '`ad_group_id` and `ad_group_name` in `amazon_ads__ad_group_report`, and `ad_group_name` in `amazon_ads__ad_report`, referenced the campaign doc blocks and now reference the ad group doc blocks.'
-  - '`keyword_type` and `match_type` shared two duplicate doc blocks, and now share a single `keyword_match_type` doc block across the source, staging, and end model documentation.'
-  - The portfolio budget descriptions in `amazon_ads__portfolio_report` described the Amazon Ads API request contract, and now describe the warehouse columns.
+  - '`default_bid` in `amazon_ads__ad_group_report` described a record creation date,
+    and now describes the ad group''s default bid.'
+  - '`ad_group_id` and `ad_group_name` in `amazon_ads__ad_group_report`, and `ad_group_name`
+    in `amazon_ads__ad_report`, referenced the campaign doc blocks and now reference
+    the ad group doc blocks.'
+  - '`keyword_type` and `match_type` shared two duplicate doc blocks, and now share
+    a single `keyword_match_type` doc block across the source, staging, and end model
+    documentation.'
+  - The portfolio budget descriptions in `amazon_ads__portfolio_report` described
+    the Amazon Ads API request contract, and now describe the warehouse columns.
+date: '2026-11-18'
