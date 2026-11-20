@@ -15,7 +15,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_name
         description: "{{ doc('ad_group_name') }}"
@@ -50,7 +50,7 @@ models:
         description: "{{ doc('report_date') }}"
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_bidding_strategy
         description: "{{ doc('campaign_bidding_strategy') }}"
@@ -81,7 +81,7 @@ models:
         description: "{{ doc('report_date') }}"
       - name: ad_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
@@ -122,7 +122,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
@@ -171,7 +171,7 @@ models:
         description: "{{ doc('report_date') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: clicks
         description: "{{ doc('clicks') }}"
@@ -212,7 +212,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: keyword_id
         description: "{{ doc('keyword_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: last_updated_date
         description: "{{ doc('last_updated_date') }}"
@@ -253,7 +253,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: portfolio_id
         description: "{{ doc('portfolio_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: portfolio_name
         description: "{{ doc('portfolio_name') }}"
@@ -296,7 +296,7 @@ models:
         description: "{{ doc('source_relation') }}"
       - name: ad_id
         description: "{{ doc('ad_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: last_updated_date
         description: "{{ doc('last_updated_date') }}"
@@ -332,7 +332,7 @@ models:
         description: "{{ doc('_fivetran_deleted') }}"
       - name: profile_id
         description: "{{ doc('profile_id') }}"
-        tests: 
+        data_tests: 
           - not_null
       - name: account_id
         description: "{{ doc('account_id') }}"
@@ -385,7 +385,7 @@ models:
         description: "{{ doc('keyword_bid') }}"
       - name: keyword_id
         description: "{{ doc('keyword_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: clicks
         description: "{{ doc('clicks') }}"
@@ -443,7 +443,7 @@ models:
         description: "{{ doc('cost') }}"
       - name: search_term
         description: "{{ doc('search_term') }}"
-        tests:
+        data_tests:
           - not_null
       - name: targeting
         description: "{{ doc('targeting') }}"

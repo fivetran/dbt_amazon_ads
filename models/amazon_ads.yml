@@ -17,11 +17,11 @@ models:
         description: "{{ doc('report_date') }}"
       - name: profile_id
         description: "{{ doc('profile_id') }}"
-        tests: 
+        data_tests: 
           - not_null
       - name: account_id
         description: "{{ doc('account_id') }}"
-        tests: 
+        data_tests: 
           - not_null
       - name: account_name
         description: "{{ doc('account_name') }}"
@@ -58,7 +58,7 @@ models:
         description: "{{ doc('account_name') }}"
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_name
         description: "{{ doc('ad_group_name') }}"
@@ -113,7 +113,7 @@ models:
         description: "{{ doc('account_name') }}"
       - name: ad_id
         description: "{{ doc('ad_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
@@ -184,7 +184,7 @@ models:
         description: "{{ doc('campaign_budget_type') }}"
       - name: campaign_id
         description: "{{ doc('campaign_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: campaign_name
         description: "{{ doc('campaign_name') }}"
@@ -245,7 +245,7 @@ models:
         description: "{{ doc('portfolio_name') }}"
       - name: profile_id
         description: "{{ doc('profile_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: serving_status
         description: "{{ doc('serving_status') }}"
@@ -294,7 +294,7 @@ models:
         description: "{{ doc('keyword_bid') }}"
       - name: keyword_id
         description: "{{ doc('keyword_id') }}"
-        tests:
+        data_tests:
           - not_null
       - name: keyword_text
         description: "{{ doc('keyword_text') }}"
@@ -368,7 +368,7 @@ models:
         description: "{{ doc('serving_status') }}"
       - name: search_term
         description: "{{ doc('search_term') }}"
-        tests:
+        data_tests:
           - not_null
       - name: state
         description: "{{ doc('state') }}"
