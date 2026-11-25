@@ -9,6 +9,8 @@
 #   databricks: ">=1.10.0,<2.0.0"
 #   duckdb: ">=1.10.0,<2.0.0"
 
+test_branch: "feature/lake-compute-ci"
+
 schema_variable_name: "amazon_ads_schema"
 
 include_databricks_sql: false
