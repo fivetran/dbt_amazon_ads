@@ -1,0 +1,20 @@
+version: 1.5.0
+schema_data_changes:
+  entries:
+  - models:
+    - '[amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report)'
+    - '[amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report)'
+    - '[amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report)'
+    - '[amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)'
+    - '[amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)'
+    - '[amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report)'
+    change_type: New column
+    is_breaking: false
+    notes: Adds `currency_code` from `PROFILE`, the currency used for all monetary values
+      under the profile. Spend and other monetary values in these models are reported in
+      this currency. This differs from `campaign_budget_currency_code`, which describes the
+      campaign budget only.
+under_the_hood:
+- description: Adds campaign `5555` to the `campaign_history_data` seed. Ad group `501` and
+    advertised product report rows referenced it, so their profile join returned nothing.
+date: '2026-11-27'

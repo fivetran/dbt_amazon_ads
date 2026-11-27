@@ -39,6 +39,7 @@ fields as (
         report.source_relation,
         report.date_day,
         account_info.account_name,
+        account_info.currency_code,
         account_info.account_id,
         account_info.country_code,
         account_info.profile_id,
@@ -82,7 +83,7 @@ fields as (
         on account_info.profile_id = campaigns.profile_id
         and account_info.source_relation = campaigns.source_relation 
 
-    {{ dbt_utils.group_by(20) }}
+    {{ dbt_utils.group_by(21) }}
 )
 
 select *
