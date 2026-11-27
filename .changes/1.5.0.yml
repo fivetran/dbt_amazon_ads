@@ -1,4 +1,5 @@
 version: 1.5.0
+pr_number: 69
 schema_data_changes:
   entries:
   - models:
