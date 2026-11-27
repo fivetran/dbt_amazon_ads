@@ -25,6 +25,8 @@ models:
           - not_null
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: country_code
         description: "{{ doc('country_code') }}"
       - name: clicks
@@ -56,6 +58,8 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
         data_tests:
@@ -111,6 +115,8 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: ad_id
         description: "{{ doc('ad_id') }}"
         data_tests:
@@ -174,6 +180,8 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: campaign_bidding_strategy
         description: "{{ doc('campaign_bidding_strategy') }}"
       - name: campaign_budget_amount
@@ -280,6 +288,8 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
       - name: ad_group_name
@@ -342,6 +352,8 @@ models:
         description: "{{ doc('account_id') }}"
       - name: account_name
         description: "{{ doc('account_name') }}"
+      - name: currency_code
+        description: '{{ doc("currency_code") }}'
       - name: ad_group_id
         description: "{{ doc('ad_group_id') }}"
       - name: ad_group_name
