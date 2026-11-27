@@ -1,3 +1,17 @@
+# dbt_amazon_ads v1.5.0
+
+[PR #69](https://github.com/fivetran/dbt_amazon_ads/pull/69) includes the following updates:
+
+## Schema/Data Change
+**1 total change • 0 possible breaking changes**
+
+| Data Model(s) | Change type | Old | New | Notes |
+| ------------- | ----------- | --- | --- | ----- |
+| [amazon_ads__account_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__account_report)<br>[amazon_ads__campaign_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__campaign_report)<br>[amazon_ads__ad_group_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_group_report)<br>[amazon_ads__ad_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__ad_report)<br>[amazon_ads__keyword_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__keyword_report)<br>[amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report) | New column |  |  | Adds `currency_code` from `PROFILE`, the currency used for all monetary values under the profile. Spend and other monetary values in these models are reported in this currency. This differs from `campaign_budget_currency_code`, which describes the campaign budget only. |
+
+## Under the Hood
+- Adds campaign `5555` to the `campaign_history_data` seed. Ad group `501` and advertised product report rows referenced it, so their profile join returned nothing.
+
 # dbt_amazon_ads v1.4.0
 
 [PR #68](https://github.com/fivetran/dbt_amazon_ads/pull/68) includes the following updates:

@@ -11,11 +11,12 @@ schema_data_changes:
     - '[amazon_ads__search_report](https://fivetran.github.io/dbt_amazon_ads/#!/model/model.amazon_ads.amazon_ads__search_report)'
     change_type: New column
     is_breaking: false
-    notes: Adds `currency_code` from `PROFILE`, the currency used for all monetary values
-      under the profile. Spend and other monetary values in these models are reported in
-      this currency. This differs from `campaign_budget_currency_code`, which describes the
-      campaign budget only.
+    notes: Adds `currency_code` from `PROFILE`, the currency used for all monetary
+      values under the profile. Spend and other monetary values in these models are
+      reported in this currency. This differs from `campaign_budget_currency_code`,
+      which describes the campaign budget only.
 under_the_hood:
-- description: Adds campaign `5555` to the `campaign_history_data` seed. Ad group `501` and
-    advertised product report rows referenced it, so their profile join returned nothing.
+- description: Adds campaign `5555` to the `campaign_history_data` seed. Ad group
+    `501` and advertised product report rows referenced it, so their profile join
+    returned nothing.
 date: '2026-11-27'
